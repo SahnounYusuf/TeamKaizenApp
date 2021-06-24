@@ -9,19 +9,39 @@ package entities;
  *
  * @author fakhreddine
  */
-public class user {
+public class User {
 
     private int id;
     private String nom;
     private String prenom;
     private String password;
     private String email;
+    private int phone;
+    private String role;
 
-    public user(String nom, String prenom, String password, String email) {
+    public User(int id, String nom, String prenom, String password, int phone, String email) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
         this.email = email;
+        this.phone = phone;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -40,15 +60,15 @@ public class user {
         this.email = email;
     }
 
-    public user() {
+    public User() {
     }
 
-    public user(String nom, String prenom) {
+    public User(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
     }
 
-    public user(int id, String nom, String prenom) {
+    public User(int id, String nom, String prenom) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -80,7 +100,7 @@ public class user {
 
     @Override
     public String toString() {
-        return "Personne{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + '}';
+        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + ", phone=" + phone + ", role=" + role + '}';
     }
 
 }
