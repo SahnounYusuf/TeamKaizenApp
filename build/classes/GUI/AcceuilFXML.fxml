@@ -78,7 +78,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events">
+            <Button mnemonicParsing="false" onAction="#GoToEvent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

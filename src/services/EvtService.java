@@ -107,4 +107,81 @@ public class EvtService {
         
         return event;
     }
+   
+   public ObservableList<Event> retriveAllEventsFroFX() throws SQLException {
+        ObservableList events = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM event";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            Event u = new Event();
+
+            u.setId(rs.getInt("id"));
+            u.setEvent_name(rs.getString(2));
+            u.setDate(rs.getString("date"));
+            u.setPlace(rs.getString("place"));
+            u.setParticipants(rs.getString("participants"));
+
+            events.add(u);
+
+        }
+
+        return events;
+    }
+
+    public Event retriveUserById(int id) throws SQLException {
+        Event u = null;
+
+        String sql = "SELECT * FROM event WHERE id = " + id;
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            u = new Event();
+
+            u.setId(rs.getInt("id"));
+            u.setEvent_name(rs.getString(2));
+            u.setDate(rs.getString("date"));
+            u.setPlace(rs.getString("place"));
+            u.setParticipants(rs.getString("participants"));
+
+        }
+        System.out.println("event with ID: " + id);
+        return u;
+    }
+    
+    public ObservableList<Event> SearchEvent(int id) {
+
+        ObservableList list = FXCollections.observableArrayList();
+        try {
+            String requete = "Select * from event where id like '%" + id + "%' ;";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                int idU = rs.getInt("id");
+                String event_name = rs.getString("event_name");
+                String date = rs.getString("date");
+                String place = rs.getString("place");
+                String participant = rs.getString("participant");
+
+                Event c = new Event(idU, event_name, date, place, participant);
+                list.add(c);
+                System.out.println("Event on Search");
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+    }
 }
