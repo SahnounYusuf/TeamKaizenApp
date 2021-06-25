@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import services.UserServices;
 import utils.Statics;
 
@@ -125,5 +128,29 @@ public class SettingsFXMLController implements Initializable {
     @FXML
     private void Sort(ActionEvent event) {
 
+    }
+
+    @FXML
+    private void OpenAccountInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void DeleteUser(ActionEvent event) {
+        User u = UserTable.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            try {
+                us.deleteUser(u.getId());
+                InitTableUser();
+            } catch (SQLException ex) {
+                Logger.getLogger(SettingsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
