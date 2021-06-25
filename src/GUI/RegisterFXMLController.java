@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.UserServices;
-import test.MainTestUser;
 
 /**
  * FXML Controller class
@@ -58,8 +55,6 @@ public class RegisterFXMLController implements Initializable {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
 
             Parent parent = root.load();
-
-            LoginFXMLController apc = root.getController();
 
             tfEmail.getScene().setRoot(parent);
         } catch (IOException ex) {

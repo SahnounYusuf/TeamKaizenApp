@@ -27,12 +27,12 @@ public class MainTestUser {
 
             UserServices us = new UserServices();
 
-            User u1 = new User(12345678, "Mourad", "Kassass", "mourad.elkassas@esprit.tn", 52103482, "mqsdkljfmlqsjfd");
-            User u2 = new User(12233344, "Yassin", "Nattat", "yassin.nattat@esprit.tn", 97651005, "qsdfaaaaa");
+            User u1 = new User(12345679, "Mourad", "Kassass", "mourad.elkassas@esprit.tn", 52103402, "aaaaaaa");
+            User u2 = new User(12233345, "Yassin", "Nattat", "yassin.nattat@esprit.tn", 97651105, "aa");
 
             // to add users to database
-//            us.addUser(u1);
-//            us.addUser(u2);
+            us.addUser(u1);
+            us.addUser(u2);
 
             // to display all the user in the database
             for (User u : us.retriveAllUsers()) {
@@ -41,6 +41,7 @@ public class MainTestUser {
             
             // to display a specified user
             System.out.println(us.retriveUserById(1));
+
             
         } catch (SQLException ex) {
             Logger.getLogger(MainTestUser.class.getName()).log(Level.SEVERE, null, ex);

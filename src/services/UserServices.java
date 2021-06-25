@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.MaConnection;
 import entities.User;
+import java.sql.Date;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -28,10 +31,10 @@ public class UserServices {
     }
 
     public void addUser(User u) throws SQLException {
-
+        u.setRole("user");
         String req = "INSERT INTO user (id, nom, prenom, email, phone, password, role) VALUES "
                 + "('" + u.getId() + "', '" + u.getNom() + "', '" + u.getPrenom() + "', '" + u.getEmail()
-                + "', '" + u.getPhone() + "', '" + u.getPassword() + "', '" + u.getRole() + "');";
+                + "', '" + u.getPhone() + "', '" + u.getPassword() + "', '" + u.getRole()+ "');";
 
         Statement ste = cnx.createStatement();
 
@@ -97,6 +100,33 @@ public class UserServices {
 
         return users;
     }
+    public ObservableList<User> retriveAllUsersFroFX() throws SQLException {
+        ObservableList users = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM user";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            User u = new User();
+
+            u.setId(rs.getInt("id"));
+            u.setNom(rs.getString(2));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setPhone(rs.getInt("phone"));
+            u.setPassword(rs.getString("password"));
+            u.setRole(rs.getString("role"));
+
+            users.add(u);
+
+        }
+
+        return users;
+    }
 
     public User retriveUserById(int id) throws SQLException {
         User user = null;
@@ -122,6 +152,34 @@ public class UserServices {
         }
         System.out.println("User with ID: " + id);
         return user;
+    }
+    
+    public ObservableList<User> SearchUser(int id) {
+
+        ObservableList list = FXCollections.observableArrayList();
+        try {
+            String requete = "Select * from user where id like '%" + id + "%' ;";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+
+                int idU = rs.getInt("id");
+                String nom = rs.getString("nom");
+                String prenom = rs.getString("prenom");
+                String email = rs.getString("email");
+                int phone = rs.getInt("phone");
+                String role = rs.getString("role");
+
+                User c = new User(idU, nom, prenom, email, phone, role);
+                list.add(c);
+                System.out.println("Users on Search");
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
     }
 
 }
