@@ -62,7 +62,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle ">
+            <Button mnemonicParsing="false" onAction="#GoToVelo" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle ">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
