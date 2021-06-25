@@ -7,7 +7,7 @@ package entities;
 
 /**
  *
- * @author fakhreddine
+ * @author Sahnoun Yusuf
  */
 public class User {
 
@@ -19,6 +19,20 @@ public class User {
     private String password;
     private String role;
 
+    public User() {
+    }
+
+    public User(String nom, String prenom) {
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    public User(int id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+    
     public User(int id, String nom, String prenom, String email, int phone, String password) {
         this.id = id;
         this.nom = nom;
@@ -58,20 +72,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public User() {
-    }
-
-    public User(String nom, String prenom) {
-        this.nom = nom;
-        this.prenom = prenom;
-    }
-
-    public User(int id, String nom, String prenom) {
-        this.id = id;
-        this.nom = nom;
-        this.prenom = prenom;
     }
 
     public int getId() {

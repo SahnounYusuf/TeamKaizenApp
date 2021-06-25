@@ -67,7 +67,7 @@ public class EventFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        lbWelcome.setText("Welcome " + user.getPrenom() + " " + user.getNom());
+        lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
         InitTableEvent();
     }    
