@@ -25,6 +25,13 @@ public class Event {
         this.participants = participants;
     }
 
+    public Event(String event_name, String date, String place, String participants) {
+        this.event_name = event_name;
+        this.date = date;
+        this.place = place;
+        this.participants = participants;
+    }
+
     public Event() {
     }
     
