@@ -14,12 +14,12 @@ public class User {
     private int id;
     private String nom;
     private String prenom;
-    private String password;
     private String email;
     private int phone;
+    private String password;
     private String role;
 
-    public User(int id, String nom, String prenom, String password, int phone, String email) {
+    public User(int id, String nom, String prenom, String email, int phone, String password) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -100,7 +100,9 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + ", phone=" + phone + ", role=" + role + '}';
+        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", phone=" + phone + ", password=" + password + ", role=" + role + '}';
     }
+
+
 
 }
