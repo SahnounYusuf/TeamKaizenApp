@@ -15,6 +15,8 @@ import java.util.List;
 import utils.MaConnection;
 import entities.User;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -43,20 +45,23 @@ public class UserServices {
 
     }
 
-    public void modifyUser(User u) throws SQLException {
+    public boolean modifyUser(int id, User u) {
 
-        String requete = "UPDATE user SET nom=?, prenom=?, email=?, phone=?, password=?, role=? WHERE id=?";
-        PreparedStatement pst = cnx.prepareStatement(requete);
-        pst.setInt(1, u.getId());
-        pst.setString(2, u.getNom());
-        pst.setString(3, u.getPrenom());
-        pst.setString(4, u.getEmail());
-        pst.setInt(5, u.getPhone());
-        pst.setString(6, u.getPassword());
-        pst.setString(7, u.getRole());
-        pst.executeUpdate();
-        System.out.println("User modified!");
-
+        try {
+            PreparedStatement pst = cnx.prepareStatement("UPDATE user SET nom=?, prenom=?, email=?, phone=?, password=? WHERE id= " + id);
+            
+            pst.setString(1, u.getNom());
+            pst.setString(2, u.getPrenom());
+            pst.setString(3, u.getEmail());
+            pst.setInt(4, u.getPhone());
+            pst.setString(5, u.getPassword());
+            pst.executeUpdate();
+            System.out.println("User modified!");
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     public boolean deleteUser(int id) throws SQLException {
