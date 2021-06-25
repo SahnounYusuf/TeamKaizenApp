@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import services.ServicesVelo;
 
 /**
@@ -136,6 +137,17 @@ public class VeloFXMLController implements Initializable {
 
     @FXML
     private void Sort(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToInfo(KeyEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
     
 }
