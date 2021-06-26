@@ -5,7 +5,6 @@
  */
 package services;
 
-import entities.Event;
 import entities.Velo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
