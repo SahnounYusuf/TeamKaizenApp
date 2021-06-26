@@ -66,7 +66,7 @@ public class SettingsFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbWelcome.setText("Welcome " + user.getPrenom() + " " + user.getNom());
+        lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
         InitTableUser();
     }
