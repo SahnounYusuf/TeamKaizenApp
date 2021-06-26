@@ -97,4 +97,12 @@ public class AcceuilFXMLController implements Initializable {
         }
     }
 
+    @FXML
+    private void GoToRent(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToPiece(ActionEvent event) {
+    }
+
 }

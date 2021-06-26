@@ -6,9 +6,13 @@
 package GUI;
 
 import entities.User;
+import entities.UserLog;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,45 +22,44 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import utils.Statics;
-import entities.Velo;
-import java.sql.SQLException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import services.ServicesVelo;
+import services.LogService;
+import services.UserServices;
+import utils.Statics;
 
 /**
  * FXML Controller class
  *
- * @author Mohamed
+ * @author Sahnoun Yusuf
  */
-public class VeloFXMLController implements Initializable {
-    
-    User user = Statics.getCurrentUser();
-    
-    ServicesVelo sv = new ServicesVelo();
-
-    ObservableList<Velo> velolist = FXCollections.observableArrayList();
+public class LogSettingsFXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
     @FXML
-    private TableView<Velo> bicycleTable;
+    private TableView<UserLog> LogTable;
     @FXML
     private TableColumn<?, ?> id_col;
     @FXML
-    private TableColumn<?, ?> mark_col;
+    private TableColumn<?, ?> nom_col;
     @FXML
-    private TableColumn<?, ?> model_col;
+    private TableColumn<?, ?> prenom_col;
     @FXML
-    private TableColumn<?, ?> desc_col;
+    private TableColumn<?, ?> email_col;
     @FXML
-    private TableColumn<?, ?> price_col;
+    private TableColumn<?, ?> role_col;
     @FXML
     private TextField searchBar;
+    
+    UserServices us = new UserServices();
+    LogService ul = new LogService();
+
+    ObservableList<UserLog> loglist = FXCollections.observableArrayList();
+    
+    User user = Statics.getCurrentUser();
+    @FXML
+    private TableColumn<?, ?> time_col;
 
     /**
      * Initializes the controller class.
@@ -65,37 +68,25 @@ public class VeloFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
-
         System.out.println("the user is: " + user);
-        InitTableBicycle();
+        InitTableLog();
     }    
+
+    @FXML
+    private void OpenAccountInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
 
     @FXML
     private void GoToNewsFeed(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void GoToEvents(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void GoToSettings(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -115,16 +106,16 @@ public class VeloFXMLController implements Initializable {
     }
 
     @FXML
-    private void InitTableBicycle() {
+    private void InitTableLog() {
         try {
-            velolist = (ObservableList<Velo>) sv.retrieveAllVeloFroFX();
-            id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
-            mark_col.setCellValueFactory(new PropertyValueFactory<>("mark"));
-            model_col.setCellValueFactory(new PropertyValueFactory<>("model"));
-            desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
-            price_col.setCellValueFactory(new PropertyValueFactory<>("price"));
-            
-            bicycleTable.setItems(velolist);
+            loglist = (ObservableList<UserLog>) ul.retriveAllUserLogFroFX();
+            id_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
+            nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+            email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
+            time_col.setCellValueFactory(new PropertyValueFactory<>("dateLogged"));
+            role_col.setCellValueFactory(new PropertyValueFactory<>("role"));
+            LogTable.setItems(loglist);
 
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -139,10 +130,11 @@ public class VeloFXMLController implements Initializable {
     private void Sort(ActionEvent event) {
     }
 
+
     @FXML
-    private void GoToInfo(KeyEvent event) {
+    private void GoToUserControl(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -151,15 +143,22 @@ public class VeloFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToInfo(MouseEvent event) {
+    private void GoToRent(ActionEvent event) {
     }
 
     @FXML
-    private void GoToRent(ActionEvent event) {
+    private void GoToBicycle(ActionEvent event) {
     }
 
     @FXML
     private void GoToPiece(ActionEvent event) {
     }
-    
+
+    @FXML
+    private void GoToEvent(ActionEvent event) {
+    }
+
+    @FXML
+    private void DeleteLog(ActionEvent event) {
+    }
 }
