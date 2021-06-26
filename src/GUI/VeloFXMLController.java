@@ -152,6 +152,13 @@ public class VeloFXMLController implements Initializable {
 
     @FXML
     private void GoToInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML

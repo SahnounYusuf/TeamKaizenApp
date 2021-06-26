@@ -208,6 +208,13 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private void GoToVelo(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
