@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.LoginFXMLController.infoBox;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
@@ -19,13 +20,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
 import services.UserServices;
 import utils.Statics;
 
@@ -156,5 +158,36 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private void MakeAdmin(ActionEvent event) {
+        User u = UserTable.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            boolean flag = us.makeAdmin(u.getId(), u);
+            InitTableUser();
+            if (!flag) {
+                infoBox("Operation can't be made!", null, "Failed");
+            }
+        }
+    }
+
+    @FXML
+    private void MakeUser(ActionEvent event) {
+
+        User u = UserTable.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            boolean flag = us.makeUser(u.getId(), u);
+            InitTableUser();
+            if (!flag) {
+                infoBox("Operation can't be made!", null, "Failed");
+            }
+        }
+
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 }
