@@ -1,0 +1,134 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package services;
+
+import java.sql.SQLException;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
+/**
+ *
+ * @author Sahnoun Yusuf
+ */
+public class MailService {
+//    public static void sendMail(String recepient, String msgUser) throws Exception {
+//        System.out.println("Preparing to send email");
+//        Properties properties = new Properties();
+//
+//        //Enable authentication
+//        properties.put("mail.smtp.auth", "true");
+//        //Set TLS encryption enabled
+//        properties.put("mail.smtp.starttls.enable", "true");
+//        //Set SMTP host
+//        properties.put("mail.smtp.host", "smtp.gmail.com");
+//        //Set smtp port
+//        properties.put("mail.smtp.port", "587");
+//
+//        //Your gmail address
+//        String myAccountEmail = "testh8083@gmail.com";
+//        //Your gmail password
+//        String password = "dude56207034";
+//
+//        //Create a session with account credentials
+//        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+//            @Override
+//            protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
+//                return new javax.mail.PasswordAuthentication(myAccountEmail, password);
+//            }
+//        });
+//
+//        //Prepare email message
+//        Message message = prepareMessage(session, myAccountEmail, recepient,msgUser);
+//
+//        //Send mail
+//        Transport.send(message);
+//        System.out.println("Message sent successfully");
+//    }
+//
+//    public static Message prepareMessage(Session session, String myAccountEmail, String recepient,String msgUser) {
+//        try {
+//            Message message = new MimeMessage(session);
+//            message.setFrom(new InternetAddress(myAccountEmail));
+//            message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+//            message.setSubject("My First Email from Java App");
+//            String htmlCode = "<h1> WE LOVE JAVA </h1> <br/> <h2><b>"+msgUser+" </b></h2>";
+//            message.setContent(htmlCode, "text/html");
+//            return message;
+//        } catch (MessagingException ex) {
+//            System.out.println(ex);
+//        }
+//        return null;
+//    }
+    
+    public MailService(String recepient) throws SQLException {
+        
+        UserServices us = new UserServices();
+        String userPassword = us.retriveUserPasswordByEmail(recepient);
+
+        // Recipient's email ID needs to be mentioned.
+        String to = "fromaddress@gmail.com";
+
+        // Sender's email ID needs to be mentioned
+        String from = "testh8083@gmail.com";
+
+        // Assuming you are sending email from through gmails smtp
+        String host = "smtp.gmail.com";
+
+        // Get system properties
+        Properties properties = System.getProperties();
+
+        // Setup mail server
+        properties.put("mail.smtp.host", host);
+        properties.put("mail.smtp.port", "465");
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.smtp.auth", "true");
+
+        // Get the Session object.// and pass username and password
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            protected PasswordAuthentication getPasswordAuthentication() {
+
+                return new PasswordAuthentication("testh8083@gmail.com", "dude56207034");
+
+            }
+
+        });
+
+        // Used to debug SMTP issues
+        session.setDebug(true);
+
+        try {
+            // Create a default MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From: header field of the header.
+            message.setFrom(new InternetAddress(from));
+
+            // Set To: header field of the header.
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recepient));
+
+            // Set Subject: header field
+            message.setSubject("Team Kaizen App");
+
+            // Now set the actual message
+            message.setText("This is your password: " + userPassword);
+
+            System.out.println("sending...");
+            // Send message
+            Transport.send(message);
+            System.out.println("Sent message successfully....");
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        }
+
+    }
+}

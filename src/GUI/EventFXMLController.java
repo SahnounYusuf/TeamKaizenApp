@@ -151,5 +151,17 @@ public class EventFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToVelo(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToPiece(ActionEvent event) {
+    }
     
 }
