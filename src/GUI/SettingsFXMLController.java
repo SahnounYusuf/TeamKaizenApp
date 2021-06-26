@@ -153,4 +153,8 @@ public class SettingsFXMLController implements Initializable {
             }
         }
     }
+
+    @FXML
+    private void MakeAdmin(ActionEvent event) {
+    }
 }

@@ -135,5 +135,6 @@
       </TextField>
       <ComboBox layoutX="319.0" layoutY="152.0" onAction="#Sort" prefHeight="42.0" prefWidth="273.0" promptText="Sort By" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-style: hidden hidden solid hidden; -fx-border-color: #a0a2ab;" />
       <Button layoutX="908.0" layoutY="608.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete User" />
+      <Button layoutX="726.0" layoutY="608.0" mnemonicParsing="false" onAction="#MakeAdmin" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Change to Admin" />
    </children>
 </AnchorPane>
