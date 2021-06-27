@@ -164,7 +164,7 @@ public class LogSettingsFXMLController implements Initializable {
     @FXML
     private void GoToEvent(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AddEventFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {

@@ -30,7 +30,7 @@ import utils.Statics;
 /**
  * FXML Controller class
  *
- * @author Yassine 
+ * @author Yassine
  */
 public class EventFXMLController implements Initializable {
 
@@ -47,17 +47,17 @@ public class EventFXMLController implements Initializable {
     @FXML
     private TableColumn<?, ?> participants_col;
     @FXML
-    private TextField searchBar;
-    @FXML
     private TableView<Event> eventTable;
-    
+
     EvtService es = new EvtService();
 
     ObservableList<Event> eventlist = FXCollections.observableArrayList();
-    
+
     Event event = new Event();
-    
+
     User user = Statics.getCurrentUser();
+    @FXML
+    private TextField searchBar;
 
     /**
      * Initializes the controller class.
@@ -68,7 +68,7 @@ public class EventFXMLController implements Initializable {
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
         InitTableEvent();
-    }    
+    }
 
     @FXML
     private void GoToNewsFeed(ActionEvent event) {
@@ -93,23 +93,6 @@ public class EventFXMLController implements Initializable {
     }
 
     @FXML
-    private void search(ActionEvent event) {
-//        String x = searchBar.getText();
-//        userlist = (ObservableList<User>) us.SearchUser(Integer.parseInt(x));
-//        id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
-//        nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//        prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-//        email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
-//        phone_col.setCellValueFactory(new PropertyValueFactory<>("phone"));
-//        role_col.setCellValueFactory(new PropertyValueFactory<>("role"));
-//        UserTable.setItems(userlist);
-    }
-
-    @FXML
-    private void Sort(ActionEvent event) {
-    }
-
-    @FXML
     private void InitTableEvent() {
         try {
             eventlist = (ObservableList<Event>) es.retriveAllEventsFroFX();
@@ -118,7 +101,7 @@ public class EventFXMLController implements Initializable {
             date_col.setCellValueFactory(new PropertyValueFactory<>("date"));
             place_col.setCellValueFactory(new PropertyValueFactory<>("place"));
             participants_col.setCellValueFactory(new PropertyValueFactory<>("participants"));
-            
+
             eventTable.setItems(eventlist);
 
         } catch (SQLException ex) {
@@ -138,10 +121,6 @@ public class EventFXMLController implements Initializable {
     }
 
     @FXML
-    private void AddEvent(ActionEvent event) {
-    }
-
-    @FXML
     private void GoToInfo(MouseEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
@@ -153,13 +132,18 @@ public class EventFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToRent(ActionEvent event) {
+    private void search(ActionEvent event) {
     }
 
     @FXML
-    private void GoToVelo(ActionEvent event) {
+    private void Sort(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToAddEvent(ActionEvent event) {
+
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AddEventFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -167,8 +151,4 @@ public class EventFXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void GoToPiece(ActionEvent event) {
-    }
-    
 }

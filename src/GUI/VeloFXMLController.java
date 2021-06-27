@@ -84,7 +84,7 @@ public class VeloFXMLController implements Initializable {
     @FXML
     private void GoToEvents(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AddEventFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
