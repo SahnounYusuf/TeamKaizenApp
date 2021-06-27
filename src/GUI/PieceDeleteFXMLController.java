@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import entities.Piece;
 import entities.Rent;
 import entities.User;
 import java.io.IOException;
@@ -22,9 +23,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import services.PieceService;
 import services.RentService;
 import utils.Statics;
 
@@ -33,30 +34,24 @@ import utils.Statics;
  *
  * @author Sahnoun Yusuf
  */
-public class RentDeleteFXMLController implements Initializable {
+public class PieceDeleteFXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
     @FXML
-    private TableView<Rent> RentTable;
+    private TableColumn<?, ?> col_name;
     @FXML
-    private TableColumn<?, ?> idv_col;
+    private TableColumn<?, ?> col_type;
     @FXML
-    private TableColumn<?, ?> idu_col;
+    private TableColumn<?, ?> col_desc;
     @FXML
-    private TableColumn<?, ?> marque_col;
+    private TableColumn<?, ?> col_Price;
     @FXML
-    private TableColumn<?, ?> model_col;
-    @FXML
-    private TableColumn<?, ?> prix_per_hour_col;
-    @FXML
-    private TableColumn<?, ?> date_disponibility;
-    @FXML
-    private TableColumn<?, ?> col_phone;
-
+    private TableView<Piece> PieceTable;
+    
+    ObservableList<Piece> piecelist = FXCollections.observableArrayList();
     User user = Statics.getCurrentUser();
-    RentService rs = new RentService();
-    ObservableList<Rent> rentlist = FXCollections.observableArrayList();
+    PieceService ps = new PieceService();
 
     /**
      * Initializes the controller class.
@@ -66,7 +61,7 @@ public class RentDeleteFXMLController implements Initializable {
         // TODO
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
-        InitTableRent();
+        InitTablePiece();
     }
 
     @FXML
@@ -92,9 +87,9 @@ public class RentDeleteFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToVelo(ActionEvent event) {
+    private void GoToRent(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -103,15 +98,14 @@ public class RentDeleteFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToPiece(ActionEvent event) {
+    private void GoToVelo(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
             System.out.println(ex);
         }
-
     }
 
     @FXML
@@ -138,47 +132,19 @@ public class RentDeleteFXMLController implements Initializable {
 
     @FXML
     private void Signout(ActionEvent event) {
-    }
-
-    @FXML
-    private void InitTableRent() {
         try {
-            rentlist = (ObservableList<Rent>) rs.retrieveAllRentFroFX();
-
-            idv_col.setCellValueFactory(new PropertyValueFactory<>("idv"));
-            idu_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
-            marque_col.setCellValueFactory(new PropertyValueFactory<>("marque"));
-            model_col.setCellValueFactory(new PropertyValueFactory<>("model"));
-            prix_per_hour_col.setCellValueFactory(new PropertyValueFactory<>("prix_per_hour"));
-            date_disponibility.setCellValueFactory(new PropertyValueFactory<>("date_disponibility"));
-            col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-
-            RentTable.setItems(rentlist);
-
-        } catch (SQLException ex) {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
             System.out.println(ex);
         }
     }
 
     @FXML
-    private void DeleteRent(ActionEvent event) {
-        Rent u = RentTable.getSelectionModel().getSelectedItem();
-        RentService rs = new RentService();
-        if (!u.equals(null)) {
-            try {
-                rs.supprimerRent(u.getIdv());
-                InitTableRent();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
-
-    }
-
-    @FXML
-    private void GoToPost(ActionEvent event) {
+    private void GoToPiece(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -189,10 +155,51 @@ public class RentDeleteFXMLController implements Initializable {
     @FXML
     private void GoToEdit(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentModifyFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceModifyFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToDelete(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceDeleteFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void DeletePiece(ActionEvent event) {
+        Piece u = PieceTable.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            try {
+                ps.supprimerPiece(u.getIdp());
+                InitTablePiece();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+    }
+
+    @FXML
+    private void InitTablePiece() {
+        try {
+            piecelist = (ObservableList<Piece>) ps.retriveAllPiecesFroFX();
+
+            col_name.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            col_type.setCellValueFactory(new PropertyValueFactory<>("type"));
+            col_desc.setCellValueFactory(new PropertyValueFactory<>("description"));
+            col_Price.setCellValueFactory(new PropertyValueFactory<>("prix"));
+
+            PieceTable.setItems(piecelist);
+
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
