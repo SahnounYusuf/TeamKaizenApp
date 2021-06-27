@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #24425a;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EventFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #24425a;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DeleteEventFXMLController">
    <children>
       <VBox prefHeight="720.0" prefWidth="300.0" style="-fx-background-color: #0C2D48;">
          <children>
@@ -113,7 +113,7 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" prefHeight="66.0" prefWidth="780.0" text="Events" textAlignment="CENTER" textFill="#2196f3">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" prefHeight="66.0" prefWidth="780.0" text="Delete Events" textAlignment="CENTER" textFill="#2196f3">
          <font>
             <Font name="Microsoft Tai Le" size="24.0" />
          </font>
@@ -127,6 +127,7 @@
             <TableColumn fx:id="participants_col" prefWidth="220.0" text="Collaborators" />
          </columns>
       </TableView>
+      <Button layoutX="908.0" layoutY="661.0" mnemonicParsing="false" onAction="#DelEvent" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete" />
       <TextField id="tfUsername" fx:id="searchBar" layoutX="316.0" layoutY="175.0" onAction="#search" prefHeight="42.0" prefWidth="273.0" promptText=" Search" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
          <font>
             <Font size="14.0" />
@@ -151,7 +152,7 @@
                   <Insets left="1.0" right="1.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToDeleteEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Delete Event">
+            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Delete Event">
                <font>
                   <Font size="18.0" />
                </font>

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package test;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -21,7 +21,7 @@ public class FXMain extends Application {
     
     public void start(Stage primaryStage) throws IOException {
         
-         FXMLLoader loader= new FXMLLoader(getClass().getResource("LoginFXML.fxml"));
+         FXMLLoader loader= new FXMLLoader(getClass().getResource("../GUI/LoginFXML.fxml"));
          Parent root= loader.load();
          Scene scene = new Scene(root);
          primaryStage.setTitle("KaizenApp");
