@@ -18,7 +18,7 @@ public class MaConnection {
 //    final String URL = "jdbc:mysql://51.89.167.87:4002/test";
 //    final String LOGIN = "elife";
 //    final String PASSWORD = "elife";
-    final String URL = "jdbc:mysql://127.0.0.1/test";
+    final String URL = "jdbc:mysql://127.0.0.1/pidev";
     final String LOGIN = "root";
     final String PASSWORD = "";
     private Connection cnx;
