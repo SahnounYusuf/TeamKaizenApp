@@ -31,8 +31,8 @@ public class EvtService {
 
     public void addEvent(Event p) throws SQLException {
         
-        String req = "INSERT INTO event (event_name, date, place, participants) VALUES "
-                + "('"+p.getEvent_name()+"', '"+p.getDate()+"', '"+p.getPlace()+"', '"+p.getParticipants()+"');";
+        String req = "INSERT INTO event (event_name, date, place) VALUES "
+                + "('"+p.getEvent_name()+"', '"+p.getDate()+"', '"+p.getPlace()+"');";
         
         Statement ste = cnx.createStatement();
         

@@ -7,13 +7,11 @@ package test;
 
 import entities.Event;
 import entities.User;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import services.EvtService;
 import services.UserServices;
-import utils.MaConnection;
 
 /**
  *

@@ -136,7 +136,11 @@
       <ComboBox layoutX="316.0" layoutY="218.0" onAction="#Sort" prefHeight="42.0" prefWidth="273.0" promptText="Sort By" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-style: hidden hidden solid hidden; -fx-border-color: #a0a2ab;" />
       <HBox layoutX="300.0" layoutY="66.0" prefHeight="100.0" prefWidth="780.0">
          <children>
+<<<<<<< HEAD
             <Button mnemonicParsing="false" onAction="#GoToAddEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
+=======
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
+>>>>>>> a1e1c1c4fd274a8b7f4fa5f76de6449af4ba33d1
                <font>
                   <Font size="18.0" />
                </font>
