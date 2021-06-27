@@ -5,12 +5,15 @@
  */
 package GUI;
 
+import entities.Piece;
 import entities.Rent;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,13 +21,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.SortEvent;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
+import services.PieceService;
 import services.RentService;
 import utils.Statics;
 
@@ -33,27 +35,19 @@ import utils.Statics;
  *
  * @author Matri Meher
  */
-public class RentDeleteFXMLController implements Initializable {
+public class PieceFXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
     @FXML
-    private TableView<Rent> RentTable;
+    private TextField tfName;
     @FXML
-    private TableColumn<?, ?> idv_col;
+    private TextField tfType;
     @FXML
-    private TableColumn<?, ?> idu_col;
+    private TextField tfDesc;
     @FXML
-    private TableColumn<?, ?> marque_col;
-    @FXML
-    private TableColumn<?, ?> model_col;
-    @FXML
-    private TableColumn<?, ?> prix_per_hour_col;
-    @FXML
-    private TableColumn<?, ?> date_disponibility;
-    @FXML
-    private TableColumn<?, ?> col_phone;
-
+    private TextField tfPrice;
+    
     User user = Statics.getCurrentUser();
     RentService rs = new RentService();
     ObservableList<Rent> rentlist = FXCollections.observableArrayList();
@@ -66,8 +60,7 @@ public class RentDeleteFXMLController implements Initializable {
         // TODO
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
-        InitTableRent();
-    }
+    }    
 
     @FXML
     private void OpenAccountInfo(MouseEvent event) {
@@ -102,17 +95,6 @@ public class RentDeleteFXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void GoToPiece(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-
-    }
 
     @FXML
     private void GoToEvents(ActionEvent event) {
@@ -138,47 +120,8 @@ public class RentDeleteFXMLController implements Initializable {
 
     @FXML
     private void Signout(ActionEvent event) {
-    }
-
-    @FXML
-    private void InitTableRent() {
         try {
-            rentlist = (ObservableList<Rent>) rs.retrieveAllRentFroFX();
-
-            idv_col.setCellValueFactory(new PropertyValueFactory<>("idv"));
-            idu_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
-            marque_col.setCellValueFactory(new PropertyValueFactory<>("marque"));
-            model_col.setCellValueFactory(new PropertyValueFactory<>("model"));
-            prix_per_hour_col.setCellValueFactory(new PropertyValueFactory<>("prix_per_hour"));
-            date_disponibility.setCellValueFactory(new PropertyValueFactory<>("date_disponibility"));
-            col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-
-            RentTable.setItems(rentlist);
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void DeleteRent(ActionEvent event) {
-        Rent u = RentTable.getSelectionModel().getSelectedItem();
-        RentService rs = new RentService();
-        if (!u.equals(null)) {
-            try {
-                rs.supprimerRent(u.getIdv());
-                InitTableRent();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
-
-    }
-
-    @FXML
-    private void GoToPost(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -189,7 +132,7 @@ public class RentDeleteFXMLController implements Initializable {
     @FXML
     private void GoToEdit(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentModifyFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceModifyFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -197,4 +140,57 @@ public class RentDeleteFXMLController implements Initializable {
         }
     }
 
+    @FXML
+    private void GoToDelete(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceDeleteFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void AddPost(ActionEvent event) {
+        Window owner = tfDesc.getScene().getWindow();
+        try {
+            PieceService ps = new PieceService();
+            
+            Piece p = new Piece();
+            
+            p.setNom(tfName.getText());
+            p.setType(tfType.getText());
+            p.setDescription(tfDesc.getText());
+            p.setPrix(tfPrice.getText());
+            p.setIdu(user.getId());
+            
+            ps.ajouterPiece(p);
+            showAlert(Alert.AlertType.INFORMATION, owner, "Success!",
+                    "Offer added.");
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+    
 }
