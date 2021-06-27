@@ -31,7 +31,7 @@ import utils.Statics;
 /**
  * FXML Controller class
  *
- * @author Sahnoun Yusuf
+ * @author Matri Meher
  */
 public class RentDeleteFXMLController implements Initializable {
 
