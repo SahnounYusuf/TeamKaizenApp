@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import utils.Statics;
 
 /**
@@ -34,7 +35,7 @@ public class AcceuilFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbWelcome.setText("Welcome " + user.getPrenom() + " " + user.getNom());
+        lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
 
         System.out.println("the user is: " + user);
     }
@@ -72,6 +73,36 @@ public class AcceuilFXMLController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+    }
+
+    @FXML
+    private void GoToVelo(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToPiece(ActionEvent event) {
     }
 
 }

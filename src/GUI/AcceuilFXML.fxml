@@ -38,7 +38,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="lbWelcome" alignment="CENTER" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9">
+            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9" underline="true">
                <VBox.margin>
                   <Insets left="40.0" />
                </VBox.margin>
@@ -46,7 +46,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="8.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="News Feed">
+            <Button blendMode="HARD_LIGHT" layoutX="8.0" layoutY="200.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="News Feed" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" top="60.0" />
                </VBox.margin>
@@ -54,7 +54,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent">
+            <Button mnemonicParsing="false" onAction="#GoToRent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -62,7 +62,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle ">
+            <Button mnemonicParsing="false" onAction="#GoToVelo" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle " textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -70,7 +70,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy Pieces">
+            <Button mnemonicParsing="false" onAction="#GoToPiece" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy Pieces" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -78,7 +78,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToEvent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events">
+            <Button mnemonicParsing="false" onAction="#GoToEvent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -86,7 +86,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#goToSettings" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Settings">
+            <Button mnemonicParsing="false" onAction="#goToSettings" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Settings" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -94,7 +94,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#Signout" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Sign Out">
+            <Button mnemonicParsing="false" onAction="#Signout" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Sign Out" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
