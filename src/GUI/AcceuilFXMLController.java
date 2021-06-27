@@ -99,6 +99,13 @@ public class AcceuilFXMLController implements Initializable {
 
     @FXML
     private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
