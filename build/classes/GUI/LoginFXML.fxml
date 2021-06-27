@@ -11,15 +11,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #0C2D48;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="GUI.LoginFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #0C2D48;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginFXMLController">
    <children>
-      <Label layoutX="468.0" layoutY="77.0" text="Kaizen Team" textFill="#2196f3">
+      <Label layoutX="469.0" layoutY="272.0" text="Kaizen Team" textFill="#2196f3">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="608.0" layoutY="77.0" text="App" textFill="#a0a2ab">
+      <Label layoutX="609.0" layoutY="272.0" text="App" textFill="#a0a2ab">
          <font>
             <Font size="24.0" />
          </font>
@@ -52,7 +51,7 @@
             <Image url="File:/C:/Users/Sahnoun Yusuf/Desktop/user.png" />
          </image>
       </ImageView>
-      <CheckBox layoutX="412.0" layoutY="537.0" mnemonicParsing="false" style="-fx-region-border: #a0a2ab;" text="Remeber me" textFill="#a1a2ab">
+      <CheckBox layoutX="412.0" layoutY="537.0" mnemonicParsing="false" style="-fx-region-border: #a0a2ab;" text="Remember me" textFill="#a1a2ab">
          <font>
             <Font size="14.0" />
          </font>
@@ -72,5 +71,11 @@
             <Font size="14.0" />
          </font>
       </TextField>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="224.0" fitWidth="200.0" layoutX="479.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="File:/C:/Users/Sahnoun Yusuf/Desktop/LogoVelo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
