@@ -48,6 +48,10 @@ public class AccountFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        tfEmail.setText(user.getEmail());
+        tfPhone.setText(Integer.toString(user.getPhone()));
+        tfPrenom.setText(user.getPrenom());
+        tfNom.setText(user.getNom());
     }    
 
     @FXML
