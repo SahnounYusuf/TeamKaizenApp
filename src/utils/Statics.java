@@ -5,6 +5,7 @@
  */
 package utils;
 
+import entities.Event;
 import entities.User;
 
 /**
@@ -14,6 +15,7 @@ import entities.User;
 public class Statics {
  
     public static User currentUser;
+    public static Event selectedEvent;
 
     public static User getCurrentUser() {
         return currentUser;
@@ -22,6 +24,12 @@ public class Statics {
     public static void setCurrentUser(User currentUser) {
         Statics.currentUser = currentUser;
     }
-    
-    
+
+    public static Event getSelectedEvent() {
+        return selectedEvent;
+    }
+
+    public static void setSelectedEvent(Event selectedEvent) {
+        Statics.selectedEvent = selectedEvent;
+    }
 }
