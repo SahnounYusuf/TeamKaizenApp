@@ -23,14 +23,14 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="989.0" layoutY="180.0" mnemonicParsing="false" onAction="#SignUpClicked" style="-fx-background-color: #0C2D48;" text="Sign Up" textFill="#a1a2ab">
+      <Button layoutX="580.0" layoutY="633.0" mnemonicParsing="false" onAction="#SignUpClicked" style="-fx-background-color: #0C2D48;" text="Sign Up" textFill="#a1a2ab" underline="true">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="852.0" layoutY="181.0" text="Not a member?" textFill="#a0a2ab">
+      <Label layoutX="470.0" layoutY="638.0" text="Not a member?" textFill="#a0a2ab">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <PasswordField id="tfPassword" fx:id="tfPassword" layoutX="443.0" layoutY="455.0" prefHeight="42.0" prefWidth="273.0" promptText=" Password" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
@@ -56,7 +56,7 @@
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <Button layoutX="456.0" layoutY="610.0" mnemonicParsing="false" onAction="#ForgetPasswordClicked" prefHeight="30.0" prefWidth="209.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a1a2ab;" text="Forget Password?" textFill="#a1a2ab" underline="true">
+      <Button layoutX="456.0" layoutY="592.0" mnemonicParsing="false" onAction="#ForgetPasswordClicked" prefHeight="30.0" prefWidth="209.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a1a2ab;" text="Forget Password?" textFill="#a1a2ab" underline="true">
          <font>
             <Font size="14.0" />
          </font>

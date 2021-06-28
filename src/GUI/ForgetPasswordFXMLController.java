@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import entities.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import services.MailService;
-import utils.Statics;
+import services.SmsService;
 
 /**
  * FXML Controller class
@@ -27,8 +26,9 @@ public class ForgetPasswordFXMLController implements Initializable {
 
     @FXML
     private TextField tfEmail;
-    
-    User user = Statics.getCurrentUser();
+  
+    @FXML
+    private TextField tfSms;
 
     /**
      * Initializes the controller class.
@@ -57,6 +57,11 @@ public class ForgetPasswordFXMLController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex);
         }
+    }
+
+    @FXML
+    private void SendSMS(ActionEvent event) {
+        SmsService ss = new SmsService(tfSms.getText());
     }
     
 }

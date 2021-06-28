@@ -237,4 +237,18 @@ public class UserServices {
         }
         return password;
     }
+    public String retriveUserPasswordByPhone(String phone) throws SQLException {
+        String password = "";
+
+        String sql = "SELECT password FROM user WHERE phone = '" + phone + "'";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            password = rs.getString("password");
+        }
+        return password;
+    }
 }
