@@ -10,7 +10,7 @@ import entities.User;
 
 /**
  *
- * @author fakhreddine
+ * @author Sahnoun Yusuf
  */
 public class Statics {
  

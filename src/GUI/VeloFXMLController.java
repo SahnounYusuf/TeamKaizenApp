@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import entities.DescriptionVelo;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
@@ -21,11 +22,15 @@ import javafx.scene.control.TextField;
 import utils.Statics;
 import entities.Velo;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import services.ServiceDescription;
 import services.ServicesVelo;
 
 /**
@@ -39,24 +44,18 @@ public class VeloFXMLController implements Initializable {
     
     ServicesVelo sv = new ServicesVelo();
 
-    ObservableList<Velo> velolist = FXCollections.observableArrayList();
-
     @FXML
     private Label lbWelcome;
     @FXML
-    private TableView<Velo> bicycleTable;
+    private TextField tfMark;
     @FXML
-    private TableColumn<?, ?> id_col;
+    private TextField tfModel;
     @FXML
-    private TableColumn<?, ?> mark_col;
+    private TextField tfPriceHour;
     @FXML
-    private TableColumn<?, ?> model_col;
+    private TextArea tfDesc;
     @FXML
-    private TableColumn<?, ?> desc_col;
-    @FXML
-    private TableColumn<?, ?> price_col;
-    @FXML
-    private TextField searchBar;
+    private TextField tfIdv;
 
     /**
      * Initializes the controller class.
@@ -65,9 +64,7 @@ public class VeloFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
-
         System.out.println("the user is: " + user);
-        InitTableBicycle();
     }    
 
     @FXML
@@ -115,53 +112,6 @@ public class VeloFXMLController implements Initializable {
     }
 
     @FXML
-    private void InitTableBicycle() {
-        try {
-            velolist = (ObservableList<Velo>) sv.retrieveAllVeloFroFX();
-            id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
-            mark_col.setCellValueFactory(new PropertyValueFactory<>("mark"));
-            model_col.setCellValueFactory(new PropertyValueFactory<>("model"));
-            desc_col.setCellValueFactory(new PropertyValueFactory<>("description"));
-            price_col.setCellValueFactory(new PropertyValueFactory<>("price"));
-            
-            bicycleTable.setItems(velolist);
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void search(ActionEvent event) {
-    }
-
-    @FXML
-    private void Sort(ActionEvent event) {
-    }
-
-    @FXML
-    private void GoToInfo(KeyEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void GoToInfo(MouseEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
     private void GoToRent(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
@@ -182,5 +132,59 @@ public class VeloFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
-    
+
+    @FXML
+    private void OpenAccountInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+
+    @FXML
+    private void GoToEdit(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloModifyFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToDelete(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloDeleteFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void AddVelo(ActionEvent event) {
+        try {
+            DescriptionVelo v = new DescriptionVelo();
+            ServicesVelo sv = new ServicesVelo();
+            ServiceDescription sd = new ServiceDescription();
+            
+            v.setId(Integer.parseInt(tfIdv.getText()));
+            v.setMark(tfMark.getText());
+            v.setDescription(tfDesc.getText());
+            v.setModel(tfModel.getText());
+            v.setPrice(Float.parseFloat(tfPriceHour.getText()));
+            v.setIdu(user.getId());
+            
+            sv.ajouterVelo(v);
+            sd.ajouterDescription(v.getId(), v);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }   
 }
