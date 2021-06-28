@@ -3,15 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #24425a;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VeloFXMLController">
-   <children>
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VeloModifyFXMLController">
+    <children>
       <VBox prefHeight="720.0" prefWidth="300.0" style="-fx-background-color: #0C2D48;">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
@@ -56,7 +56,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToRent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent" textFill="WHITE">
+            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -64,7 +64,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle " textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#GoToVelo" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle " textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -106,14 +106,25 @@
             </Button>
          </children>
       </VBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="1.0" prefHeight="66.0" prefWidth="780.0" text="Bicycle" textAlignment="CENTER" textFill="#2196f3">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="1.0" prefHeight="66.0" prefWidth="780.0" text="Rent" textAlignment="CENTER" textFill="#2196f3">
          <font>
             <Font name="Microsoft Tai Le" size="24.0" />
          </font>
       </Label>
+      <TableView fx:id="RentTable" layoutX="316.0" layoutY="288.0" onSort="#InitTableRent" prefHeight="374.0" prefWidth="748.0">
+         <columns>
+            <TableColumn fx:id="idv_col" prefWidth="75.0" text="idv" />
+            <TableColumn fx:id="idu_col" prefWidth="75.0" text="idu" />
+            <TableColumn fx:id="marque_col" prefWidth="75.0" text="marque" />
+            <TableColumn fx:id="model_col" prefWidth="98.0" text="model" />
+            <TableColumn fx:id="prix_per_hour_col" prefWidth="141.0" text="prix_per_hour" />
+            <TableColumn fx:id="date_disponibility" prefWidth="163.0" text="date_disponibility" />
+            <TableColumn fx:id="col_phone" prefWidth="120.0" text="phone" />
+         </columns>
+      </TableView>
       <HBox layoutX="300.0" layoutY="67.0" prefHeight="66.0" prefWidth="780.0">
          <children>
-            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de; -fx-border-radius: 0;" text="Post an offer">
+            <Button mnemonicParsing="false" onAction="#GoToAddRent" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de; -fx-border-radius: 0;" text="Post an offer">
                <HBox.margin>
                   <Insets left="1.0" right="1.0" />
                </HBox.margin>
@@ -121,7 +132,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToEdit" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Edit Offer">
+            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Edit Offer">
                <HBox.margin>
                   <Insets left="1.0" right="1.0" />
                </HBox.margin>
@@ -129,47 +140,13 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#GoToDelete" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Delete Offer">
+            <Button mnemonicParsing="false" onAction="#GoToDeleteRent" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Delete Offer">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
          </children>
       </HBox>
-      <Label layoutX="324.0" layoutY="300.0" prefHeight="40.0" prefWidth="173.0" text="Mark:" textFill="#b9b9b9">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="324.0" layoutY="400.0" prefHeight="40.0" prefWidth="173.0" text="Price" textFill="#b9b9b9">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="324.0" layoutY="350.0" prefHeight="40.0" prefWidth="173.0" text="Model: " textFill="#b9b9b9">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="324.0" layoutY="452.0" prefHeight="40.0" prefWidth="173.0" text="Description:" textFill="#b9b9b9">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tfMark" layoutX="515.0" layoutY="300.0" prefHeight="40.0" prefWidth="387.0" />
-      <TextField fx:id="tfModel" layoutX="515.0" layoutY="350.0" prefHeight="40.0" prefWidth="387.0" />
-      <TextField fx:id="tfPriceHour" layoutX="515.0" layoutY="400.0" prefHeight="40.0" prefWidth="387.0" />
-      <Button layoutX="718.0" layoutY="630.0" mnemonicParsing="false" onAction="#AddVelo" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: #3694de;" text="Add a post">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <TextArea fx:id="tfDesc" layoutX="515.0" layoutY="452.0" prefHeight="168.0" prefWidth="387.0" />
-      <Label layoutX="324.0" layoutY="249.0" prefHeight="40.0" prefWidth="173.0" text="ID:" textFill="#b9b9b9">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tfIdv" layoutX="515.0" layoutY="249.0" prefHeight="40.0" prefWidth="387.0" />
    </children>
+    
 </AnchorPane>
