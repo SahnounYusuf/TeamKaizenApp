@@ -21,8 +21,8 @@ public class MainTestVelo {
 
             ServicesVelo sv = new ServicesVelo();
 
-            Velo p1 = new Velo( "vtt", "2020", "velo tout terrain", 900f);
-            Velo p2 = new Velo( "btwin", "2021", "velo de course", 800f);
+            Velo p1 = new Velo( "vtt", "2020", 900f);
+            Velo p2 = new Velo( "btwin", "2021", 800f);
 
             // to add users to database
             sv.ajouterVelo(p1);

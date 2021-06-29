@@ -5,10 +5,12 @@
  */
 package GUI;
 
-import entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import services.MailService;
-import utils.Statics;
+import services.SmsService;
 
 /**
  * FXML Controller class
@@ -27,8 +29,9 @@ public class ForgetPasswordFXMLController implements Initializable {
 
     @FXML
     private TextField tfEmail;
-    
-    User user = Statics.getCurrentUser();
+  
+    @FXML
+    private TextField tfSms;
 
     /**
      * Initializes the controller class.
@@ -56,6 +59,15 @@ public class ForgetPasswordFXMLController implements Initializable {
 //            es.Mai(tfEmail.getText(), "just a test");
         } catch (Exception ex) {
             System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void SendSMS(ActionEvent event) {
+        try {
+            SmsService ss = new SmsService(tfSms.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(ForgetPasswordFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

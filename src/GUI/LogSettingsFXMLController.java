@@ -144,6 +144,13 @@ public class LogSettingsFXMLController implements Initializable {
 
     @FXML
     private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
@@ -159,12 +166,19 @@ public class LogSettingsFXMLController implements Initializable {
 
     @FXML
     private void GoToPiece(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
     private void GoToEvent(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AddEventFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {

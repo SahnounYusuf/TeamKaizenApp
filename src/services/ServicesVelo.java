@@ -31,8 +31,8 @@ public class ServicesVelo {
 
     public void ajouterVelo(Velo p) throws SQLException {
 
-        String req = "INSERT INTO velo (mark, model,description, price) VALUES "
-                + "('" + p.getMark() + "', '" + p.getModel() + "', '" + p.getDescription() + "', '" + p.getPrice() + "');";
+        String req = "INSERT INTO velo (id, idu, mark, model, price) VALUES "
+                + "('"+ p.getId()+ "', '" + p.getIdu()+ "', '"+ p.getMark() + "', '" + p.getModel() + "', '" + p.getPrice() + "');";
 
         Statement ste = cnx.createStatement();
 
@@ -55,14 +55,14 @@ public class ServicesVelo {
 //        pre.executeUpdate();
 //        System.out.println("INSERTION OK!!");
 //    }
-    public void modifierVelo(int id,Velo p) throws SQLException {
-        String requete = "UPDATE velo SET  mark=?, model=?, description=?, price=? WHERE id=?";
-        PreparedStatement pst = cnx.prepareStatement("UPDATE velo SET  mark=?, model=?, description=?, price=? WHERE id= "+id);
-       
+    public void modifierVelo(int id, Velo p) throws SQLException {
+
+        PreparedStatement pst = cnx.prepareStatement("UPDATE velo SET  mark=?, model=?, price=? WHERE id= " + id);
+
         pst.setString(1, p.getMark());
         pst.setString(2, p.getModel());
-        pst.setString(3, p.getDescription());
-        pst.setFloat(4, p.getPrice());
+
+        pst.setFloat(3, p.getPrice());
         pst.executeUpdate();
         System.out.println("Velo modified!");
 
@@ -97,7 +97,6 @@ public class ServicesVelo {
             p.setId(rs.getInt("id"));
             p.setMark(rs.getString(2));
             p.setModel(rs.getString("model"));
-            p.setDescription(rs.getString("description"));
             p.setPrice(rs.getFloat("price"));
 
             velos.add(p);
@@ -106,8 +105,6 @@ public class ServicesVelo {
 
         return velos;
     }
-    
-
 
     public Velo afficherVeloById(int id) throws SQLException {
         Velo velo = null;
@@ -125,14 +122,12 @@ public class ServicesVelo {
             velo.setId(rs.getInt("id"));
             velo.setMark(rs.getString(2));
             velo.setModel(rs.getString("model"));
-            velo.setDescription(rs.getString("description"));
             velo.setPrice(rs.getFloat("price"));
-
         }
 
         return velo;
     }
-    
+
     public ObservableList<Velo> retrieveAllVeloFroFX() throws SQLException {
         ObservableList velos = FXCollections.observableArrayList();
 
@@ -149,13 +144,11 @@ public class ServicesVelo {
             v.setId(rs.getInt("id"));
             v.setMark(rs.getString(2));
             v.setModel(rs.getString("model"));
-            v.setDescription(rs.getString("description"));
             v.setPrice(rs.getFloat("price"));
 
             velos.add(v);
 
         }
-
         return velos;
     }
 }

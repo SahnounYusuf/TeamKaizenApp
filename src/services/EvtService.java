@@ -40,7 +40,21 @@ public class EvtService {
 
     }
 
-    public void modifierEvent(User u) throws SQLException {
+    public void modifierEvent(int id,Event u) throws SQLException {
+        try {
+            PreparedStatement pst = cnx.prepareStatement("UPDATE event SET event_name=?, Date=?, place=? WHERE id= " + id);
+
+            pst.setString(1, u.getEvent_name());
+            pst.setString(2, u.getDate());
+            pst.setString(3, u.getPlace());
+            
+            pst.executeUpdate();
+            System.out.println("User modified!");
+           
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        
 
     }
 

@@ -6,6 +6,7 @@
 package services;
 
 import entities.Piece;
+import entities.User;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import utils.MaConnection;
 
 /**
@@ -115,5 +118,28 @@ public class PieceService {
 
         return piece;
     }
+    
+    public ObservableList<Piece> retriveAllPiecesFroFX() throws SQLException {
+        ObservableList pieces = FXCollections.observableArrayList();
 
+        String sql = "SELECT * FROM piece";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            Piece u = new Piece();
+
+            u.setIdp(rs.getInt("idp"));
+            u.setNom(rs.getString("nom"));
+            u.setType(rs.getString("type"));
+            u.setDescription(rs.getString("description"));
+            u.setPrix(rs.getString("prix"));
+
+            pieces.add(u);
+        }
+        return pieces;
+    }
 }
