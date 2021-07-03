@@ -7,6 +7,7 @@ package GUI;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,9 +26,6 @@ import services.SmsService;
 public class ForgetPasswordFXMLController implements Initializable {
 
     @FXML
-    private TextField tfEmail;
-  
-    @FXML
     private TextField tfSms;
 
     /**
@@ -36,32 +34,32 @@ public class ForgetPasswordFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void BackToLogin(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
             Parent parent = root.load();
-            tfEmail.getScene().setRoot(parent);
+            tfSms.getScene().setRoot(parent);
         } catch (IOException ex) {
             System.out.println(ex);
         }
     }
 
     @FXML
-    private void SendEmail(ActionEvent event) {
+    private void SendSMS(ActionEvent event) {
         try {
-            MailService es = new MailService(tfEmail.getText());
-//            es.Mai(tfEmail.getText(), "just a test");
-        } catch (Exception ex) {
+            if (tfSms.getText().length() == 8) {
+                SmsService ss = new SmsService(tfSms.getText());
+            }
+            else
+            {
+                MailService es = new MailService(tfSms.getText());
+            }
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
 
-    @FXML
-    private void SendSMS(ActionEvent event) {
-        SmsService ss = new SmsService(tfSms.getText());
-    }
-    
 }

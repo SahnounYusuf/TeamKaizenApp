@@ -74,7 +74,7 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="224.0" fitWidth="200.0" layoutX="479.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="File:/C:/Users/Sahnoun Yusuf/Desktop/LogoVelo.png" />
+            <Image url="./images/LogoVelo.png" />
          </image>
       </ImageView>
    </children>
