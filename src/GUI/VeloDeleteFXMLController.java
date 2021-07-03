@@ -5,8 +5,6 @@
  */
 package GUI;
 
-import entities.DescriptionVelo;
-import entities.Rent;
 import entities.User;
 import entities.Velo;
 import java.io.IOException;
@@ -21,12 +19,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import services.ServiceDescription;
 import services.ServicesVelo;
 import utils.Statics;
 
@@ -40,7 +36,7 @@ public class VeloDeleteFXMLController implements Initializable {
     @FXML
     private Label lbWelcome;
     @FXML
-    private TableView<DescriptionVelo> RentTable;
+    private TableView<Velo> RentTable;
     @FXML
     private TableColumn<?, ?> col_idv;
     @FXML
@@ -56,9 +52,9 @@ public class VeloDeleteFXMLController implements Initializable {
     
     User user = Statics.getCurrentUser();
     
-    ServiceDescription sv = new ServiceDescription();
+    ServicesVelo sv = new ServicesVelo();
 
-    ObservableList<DescriptionVelo> velolist = FXCollections.observableArrayList();
+    ObservableList<ServicesVelo> velolist = FXCollections.observableArrayList();
 
     /**
      * Initializes the controller class.
@@ -140,21 +136,7 @@ public class VeloDeleteFXMLController implements Initializable {
 
     @FXML
     private void InitTableRent() {
-        try {
-            velolist = (ObservableList<DescriptionVelo>) sv.retriveAllVeloFroFX();
-
-            col_idv.setCellValueFactory(new PropertyValueFactory<>("id"));
-            col_idu.setCellValueFactory(new PropertyValueFactory<>("idu"));
-            col_mark.setCellValueFactory(new PropertyValueFactory<>("mark"));
-            col_model.setCellValueFactory(new PropertyValueFactory<>("model"));
-            col_desc.setCellValueFactory(new PropertyValueFactory<>("description"));
-            col_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-            RentTable.setItems(velolist);
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+   
     }
 
 
@@ -194,18 +176,6 @@ public class VeloDeleteFXMLController implements Initializable {
     @FXML
     private void DeleteVelo(ActionEvent event) {
         
-        DescriptionVelo u = RentTable.getSelectionModel().getSelectedItem();
-        ServiceDescription rs = new ServiceDescription();
-        ServicesVelo sv = new ServicesVelo();
-        if (!u.equals(null)) {
-            try {
-                rs.supprimerDescriptionVelo(u.getId());
-                sv.supprimerVelo(u.getId());
-                InitTableRent();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }
-        }
     }
     
 }

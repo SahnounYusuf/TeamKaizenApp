@@ -40,13 +40,13 @@ public class AddEventFXMLController implements Initializable {
     private TextField tfEventName;
     @FXML
     private TextField tfEventPlace;
+
     @FXML
-
     private TextField tfEventDate;
-
-    private DatePicker tfEventDate;
     
     User user = Statics.getCurrentUser();
+    @FXML
+    private DatePicker dpEventDate;
 
 
     /**
@@ -125,7 +125,7 @@ public class AddEventFXMLController implements Initializable {
 
             evt.setDate(tfEventDate.getText());
 
-            evt.setDate(tfEventDate.getValue().toString());
+            evt.setDate(dpEventDate.getValue().toString());
 
             evt.setPlace(tfEventPlace.getText());
             
