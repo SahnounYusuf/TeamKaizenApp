@@ -42,8 +42,7 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
-    @FXML
-    private TableColumn<?, ?> id_col;
+   
     @FXML
     private TableColumn<?, ?> nom_col;
     @FXML
@@ -101,7 +100,7 @@ public class SettingsFXMLController implements Initializable {
 
         try {
             userlist = (ObservableList<User>) us.retriveAllUsersFroFX();
-            id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
+            
             nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
             prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -118,7 +117,7 @@ public class SettingsFXMLController implements Initializable {
     private void search(ActionEvent event) {
         String x = searchBar.getText();
         userlist = (ObservableList<User>) us.SearchUser(Integer.parseInt(x));
-        id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
+       
         nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email_col.setCellValueFactory(new PropertyValueFactory<>("email"));

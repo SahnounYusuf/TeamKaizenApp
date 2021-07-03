@@ -40,8 +40,6 @@ public class LogSettingsFXMLController implements Initializable {
     @FXML
     private TableView<UserLog> LogTable;
     @FXML
-    private TableColumn<?, ?> id_col;
-    @FXML
     private TableColumn<?, ?> nom_col;
     @FXML
     private TableColumn<?, ?> prenom_col;
@@ -109,7 +107,6 @@ public class LogSettingsFXMLController implements Initializable {
     private void InitTableLog() {
         try {
             loglist = (ObservableList<UserLog>) ul.retriveAllUserLogFroFX();
-            id_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
             nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
             prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             email_col.setCellValueFactory(new PropertyValueFactory<>("email"));

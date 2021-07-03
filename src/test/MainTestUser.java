@@ -24,9 +24,10 @@ public class MainTestUser {
      */
     public static void main(String[] args) {
 
-//            UserServices us = new UserServices();
+        try {
+            //            UserServices us = new UserServices();
 //            EvtService es = new EvtService();
-        LogService ls = new LogService();
+LogService ls = new LogService();
 
         try {
             //            User u1 = new User(12345679, "Mourad", "Kassass", "mourad.elkassas@esprit.tn", 52103402, "aaaaaaa");
@@ -41,6 +42,10 @@ public class MainTestUser {
 //            es.addEvent(e1);
 //            es.addEvent(e2);
 //        ls.addUserLog(u2);
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 // to display all the user in the database
 //            for (User u : us.retriveAllUsers()) {
 //                System.out.println(u);
@@ -52,5 +57,13 @@ public class MainTestUser {
             Logger.getLogger(MainTestUser.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+<<<<<<< HEAD
+=======
+SmsService ss = new SmsService("56207034");
+        } catch (SQLException ex) {
+            Logger.getLogger(MainTestUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+>>>>>>> master
     }
 }

@@ -133,7 +133,6 @@
       </Label>
       <TableView fx:id="LogTable" layoutX="316.0" layoutY="283.0" onSort="#InitTableLog" prefHeight="374.0" prefWidth="748.0">
          <columns>
-            <TableColumn fx:id="id_col" prefWidth="85.0" text="id" />
             <TableColumn fx:id="nom_col" prefWidth="104.0" text="First Name" />
             <TableColumn fx:id="prenom_col" prefWidth="121.0" text="Last Name" />
             <TableColumn fx:id="email_col" prefWidth="145.0" text="Email" />
