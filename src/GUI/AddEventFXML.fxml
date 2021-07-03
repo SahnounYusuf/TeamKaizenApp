@@ -2,6 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+
+<?import javafx.scene.control.DatePicker?>
+
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,7 +42,11 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
+
             <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9">
+
+            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9" underline="true">
+
                <VBox.margin>
                   <Insets left="40.0" />
                </VBox.margin>
@@ -131,7 +138,9 @@
                   <Insets left="1.0" right="1.0" />
                </HBox.margin>
             </Button>
+
             <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
+            <Button mnemonicParsing="false" onAction="#GoToEditEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
                <font>
                   <Font size="18.0" />
                </font>
@@ -164,15 +173,22 @@
             <Font size="18.0" />
          </font>
       </Label>
+
       <TextField id="tfUsername" fx:id="tfEventDate" layoutX="473.0" layoutY="377.0" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #ffffff; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
+
+
       <Label layoutX="339.0" layoutY="377.0" prefHeight="42.0" prefWidth="134.0" text="Date" textFill="#a0a2ab">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
+
+
+      <DatePicker fx:id="tfEventDate" layoutX="471.0" layoutY="376.0" prefHeight="42.0" prefWidth="273.0" />
+
    </children>
 </AnchorPane>

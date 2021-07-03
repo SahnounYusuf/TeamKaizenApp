@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.MaConnection;
 import entities.User;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -43,7 +41,7 @@ public class UserServices {
             System.out.println("User added!");
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
         return false;
     }
@@ -223,5 +221,34 @@ public class UserServices {
             System.out.println(ex);
         }
         return false;
+    }
+
+    public String retriveUserPasswordByEmail(String email) throws SQLException {
+        String password = "";
+
+        String sql = "SELECT password FROM user WHERE email = '" + email + "'";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            password = rs.getString("password");
+        }
+        return password;
+    }
+    public String retriveUserPasswordByPhone(String phone) throws SQLException {
+        String password = "";
+
+        String sql = "SELECT password FROM user WHERE phone = '" + phone + "'";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            password = rs.getString("password");
+        }
+        return password;
     }
 }

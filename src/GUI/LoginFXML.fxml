@@ -11,27 +11,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #0C2D48;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="GUI.LoginFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #0C2D48;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginFXMLController">
    <children>
-      <Label layoutX="468.0" layoutY="77.0" text="Kaizen Team" textFill="#2196f3">
+      <Label layoutX="469.0" layoutY="272.0" text="Kaizen Team" textFill="#2196f3">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="608.0" layoutY="77.0" text="App" textFill="#a0a2ab">
+      <Label layoutX="609.0" layoutY="272.0" text="App" textFill="#a0a2ab">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="989.0" layoutY="180.0" mnemonicParsing="false" onAction="#SignUpClicked" style="-fx-background-color: #0C2D48;" text="Sign Up" textFill="#a1a2ab">
+      <Button layoutX="580.0" layoutY="633.0" mnemonicParsing="false" onAction="#SignUpClicked" style="-fx-background-color: #0C2D48;" text="Sign Up" textFill="#a1a2ab" underline="true">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Label layoutX="852.0" layoutY="181.0" text="Not a member?" textFill="#a0a2ab">
+      <Label layoutX="470.0" layoutY="638.0" text="Not a member?" textFill="#a0a2ab">
          <font>
-            <Font size="18.0" />
+            <Font size="14.0" />
          </font>
       </Label>
       <PasswordField id="tfPassword" fx:id="tfPassword" layoutX="443.0" layoutY="455.0" prefHeight="42.0" prefWidth="273.0" promptText=" Password" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
@@ -52,12 +51,12 @@
             <Image url="File:/C:/Users/Sahnoun Yusuf/Desktop/user.png" />
          </image>
       </ImageView>
-      <CheckBox layoutX="412.0" layoutY="537.0" mnemonicParsing="false" style="-fx-region-border: #a0a2ab;" text="Remeber me" textFill="#a1a2ab">
+      <CheckBox layoutX="412.0" layoutY="537.0" mnemonicParsing="false" style="-fx-region-border: #a0a2ab;" text="Remember me" textFill="#a1a2ab">
          <font>
             <Font size="14.0" />
          </font>
       </CheckBox>
-      <Button layoutX="456.0" layoutY="610.0" mnemonicParsing="false" onAction="#ForgetPasswordClicked" prefHeight="30.0" prefWidth="209.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a1a2ab;" text="Forget Password?" textFill="#a1a2ab" underline="true">
+      <Button layoutX="456.0" layoutY="592.0" mnemonicParsing="false" onAction="#ForgetPasswordClicked" prefHeight="30.0" prefWidth="209.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a1a2ab;" text="Forget Password?" textFill="#a1a2ab" underline="true">
          <font>
             <Font size="14.0" />
          </font>
@@ -72,5 +71,11 @@
             <Font size="14.0" />
          </font>
       </TextField>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="224.0" fitWidth="200.0" layoutX="479.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="File:/C:/Users/Sahnoun Yusuf/Desktop/LogoVelo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

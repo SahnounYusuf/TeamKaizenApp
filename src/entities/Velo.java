@@ -12,15 +12,29 @@ package entities;
 public class Velo {
 
     private int id;
+    private int idu;
     private String mark;
     private String model;
-    private String description;
     private float price;
 
-    public Velo(String mark, String model, String description, float price) {
+    public Velo(String mark, String model, float price) {
         this.mark = mark;
         this.model = model;
-        this.description = description;
+        this.price = price;
+    }
+
+    public int getIdu() {
+        return idu;
+    }
+
+    public void setIdu(int idu) {
+        this.idu = idu;
+    }
+
+    public Velo(int idu, String mark, String model, float price) {
+        this.idu = idu;
+        this.mark = mark;
+        this.model = model;
         this.price = price;
     }
 
@@ -39,10 +53,6 @@ public class Velo {
         return model;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public float getPrice() {
         return price;
     }
@@ -59,17 +69,12 @@ public class Velo {
         this.model = model;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public void setPrice(float price) {
         this.price = price;
     }
 
     @Override
     public String toString() {
-        return "velo{" + "id=" + id + ", mark=" + mark + ", model=" + model + ", description=" + description + ", price=" + price + '}';
+        return "Velo{" + "id=" + id + ", idu=" + idu + ", mark=" + mark + ", model=" + model + ", price=" + price + '}';
     }
-
 }
