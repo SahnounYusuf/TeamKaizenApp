@@ -5,17 +5,20 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #0C2D48;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AccountFXMLController">
    <children>
-      <Label layoutX="480.0" layoutY="98.0" text="Kaizen Team" textFill="#2196f3">
+      <Label layoutX="448.0" layoutY="71.0" text="Kaizen Team" textFill="#2196f3">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="621.0" layoutY="98.0" text="App" textFill="#a0a2ab">
+      <Label layoutX="589.0" layoutY="71.0" text="App" textFill="#a0a2ab">
          <font>
             <Font size="24.0" />
          </font>
@@ -59,10 +62,20 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="807.0" layoutY="175.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab;" text="Go Back" textFill="#0c2d48" underline="true">
+      <Button layoutX="957.0" layoutY="172.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="49.0" prefWidth="109.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab;" textFill="#0c2d48" underline="true">
          <font>
             <Font size="18.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="37.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/arrow_back.png" />
+               </image>
+               <effect>
+                  <Bloom />
+               </effect>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>
