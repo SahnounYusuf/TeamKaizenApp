@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import entities.DescriptionVelo;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
@@ -16,21 +15,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import utils.Statics;
-import entities.Velo;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import services.ServiceDescription;
 import services.ServicesVelo;
 
 /**
@@ -169,22 +158,6 @@ public class VeloFXMLController implements Initializable {
 
     @FXML
     private void AddVelo(ActionEvent event) {
-        try {
-            DescriptionVelo v = new DescriptionVelo();
-            ServicesVelo sv = new ServicesVelo();
-            ServiceDescription sd = new ServiceDescription();
-            
-            v.setId(Integer.parseInt(tfIdv.getText()));
-            v.setMark(tfMark.getText());
-            v.setDescription(tfDesc.getText());
-            v.setModel(tfModel.getText());
-            v.setPrice(Float.parseFloat(tfPriceHour.getText()));
-            v.setIdu(user.getId());
-            
-            sv.ajouterVelo(v);
-            sd.ajouterDescription(v.getId(), v);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
+       
     }   
 }

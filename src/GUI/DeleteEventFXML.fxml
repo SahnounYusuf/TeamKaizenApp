@@ -127,7 +127,11 @@
             <TableColumn fx:id="participants_col" prefWidth="220.0" text="Collaborators" />
          </columns>
       </TableView>
+
+      <Button layoutX="908.0" layoutY="661.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete" />
+
       <Button layoutX="908.0" layoutY="661.0" mnemonicParsing="false" onAction="#DelEvent" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete" />
+
       <TextField id="tfUsername" fx:id="searchBar" layoutX="316.0" layoutY="175.0" onAction="#search" prefHeight="42.0" prefWidth="273.0" promptText=" Search" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
          <font>
             <Font size="14.0" />
@@ -136,7 +140,13 @@
       <ComboBox layoutX="316.0" layoutY="218.0" onAction="#Sort" prefHeight="42.0" prefWidth="273.0" promptText="Sort By" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-style: hidden hidden solid hidden; -fx-border-color: #a0a2ab;" />
       <HBox layoutX="300.0" layoutY="66.0" prefHeight="100.0" prefWidth="780.0">
          <children>
+
             <Button mnemonicParsing="false" onAction="#GoToAddEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
+
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
+
+            <Button mnemonicParsing="false" onAction="#GoToAddEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
+
                <font>
                   <Font size="18.0" />
                </font>
@@ -144,7 +154,11 @@
                   <Insets left="1.0" right="1.0" />
                </HBox.margin>
             </Button>
+
+            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
+
             <Button mnemonicParsing="false" onAction="#GoToEditEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
+
                <font>
                   <Font size="18.0" />
                </font>

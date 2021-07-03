@@ -118,7 +118,9 @@
             <Font name="Microsoft Tai Le" size="24.0" />
          </font>
       </Label>
+
       <TableView fx:id="eventTable" layoutX="316.0" layoutY="276.0" onSort="#InitTableEvent" prefHeight="374.0" prefWidth="666.0">
+
          <columns>
             <TableColumn fx:id="id_col" prefWidth="85.0" text="id" />
             <TableColumn fx:id="nom_col" prefWidth="129.0" text="Event Name" />
@@ -127,6 +129,10 @@
             <TableColumn fx:id="participants_col" prefWidth="220.0" text="Collaborators" />
          </columns>
       </TableView>
+
+      <Button layoutX="908.0" layoutY="661.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete" />
+
+
       <TextField id="tfUsername" fx:id="searchBar" layoutX="316.0" layoutY="175.0" onAction="#search" prefHeight="42.0" prefWidth="273.0" promptText=" Search" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
          <font>
             <Font size="14.0" />
@@ -143,7 +149,9 @@
                   <Insets left="1.0" right="1.0" />
                </HBox.margin>
             </Button>
+  
             <Button mnemonicParsing="false" onAction="#GoToEditEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
+
                <font>
                   <Font size="18.0" />
                </font>
@@ -151,7 +159,11 @@
                   <Insets left="1.0" right="1.0" />
                </HBox.margin>
             </Button>
+
+            
+
             <Button mnemonicParsing="false" onAction="#GoToDeleteEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Delete Event">
+
                <font>
                   <Font size="18.0" />
                </font>
