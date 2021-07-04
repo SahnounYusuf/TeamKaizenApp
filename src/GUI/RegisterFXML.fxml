@@ -6,69 +6,140 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #0C2D48;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegisterFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegisterFXMLController">
     <children>
-        <Label layoutX="464.0" layoutY="88.0" text="Kaizen Team" textFill="#2196f3">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-        <Label layoutX="604.0" layoutY="88.0" text="App" textFill="#a0a2ab">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-        <Button layoutX="965.0" layoutY="191.0" mnemonicParsing="false" onAction="#SignInClicked" style="-fx-background-color: #0C2D48;" text="Sign In" textFill="#a1a2ab">
+      <Pane layoutX="449.0" prefHeight="299.0" prefWidth="631.0" style="-fx-border-radius: 35;" styleClass="buttonBackground" stylesheets="@stylesheet.css">
+         <children>
+            <Ellipse fill="WHITE" layoutX="108.0" layoutY="285.0" radiusX="540.0" radiusY="185.0" rotate="3.4" stroke="WHITE" strokeType="INSIDE" />
+         </children>
+      </Pane>
+      
+        <Button layoutX="507.0" layoutY="588.0" mnemonicParsing="false" onAction="#RegisterClicked" prefHeight="42.0" prefWidth="273.0" style="-fx-background-radius: 35;" styleClass="buttonBackground" stylesheets="@stylesheet.css" text="Register" textFill="#0c2d48">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
-        <Label layoutX="803.0" layoutY="193.0" text="Already a member?" textFill="#a0a2ab">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
-      
-        <Button layoutX="423.0" layoutY="571.0" mnemonicParsing="false" onAction="#RegisterClicked" prefHeight="31.0" prefWidth="273.0" style="-fx-background-color: #2196f3;" text="Register" textFill="#0c2d48">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-        <TextField fx:id="tfId" layoutX="423.0" layoutY="227.0" prefHeight="42.0" prefWidth="273.0" promptText="CIN Number" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="tfNom" layoutX="423.0" layoutY="276.0" prefHeight="42.0" prefWidth="273.0" promptText="First Name" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
-      
-        <TextField fx:id="tfPrenom" layoutX="422.0" layoutY="327.0" prefHeight="42.0" prefWidth="273.0" promptText="Last Name" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="tfEmail" layoutX="422.0" layoutY="379.0" prefHeight="42.0" prefWidth="273.0" promptText="Email" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
-        <PasswordField fx:id="tfPassword" layoutX="422.0" layoutY="433.0" prefHeight="42.0" prefWidth="273.0" promptText=" Password" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
-            <font>
-                <Font size="14.0" />
-            </font>
-            <effect>
-                <Blend />
-            </effect>
-        </PasswordField>
-        <TextField fx:id="tfPhone" layoutX="423.0" layoutY="484.0" prefHeight="42.0" prefWidth="273.0" promptText="Phone Number" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </TextField>
+      <Pane prefHeight="720.0" prefWidth="450.0" style="-fx-background-color: #0C2D48;">
+         <children>
+              <Label layoutX="136.0" layoutY="43.0" text="Kaizen Team" textFill="#2196f3">
+                  <font>
+                      <Font size="24.0" />
+                  </font>
+              </Label>
+              <Label layoutX="276.0" layoutY="43.0" text="App" textFill="#a0a2ab">
+                  <font>
+                      <Font size="24.0" />
+                  </font>
+              </Label>
+              <Button layoutX="249.0" layoutY="676.0" mnemonicParsing="false" onAction="#SignInClicked" style="-fx-background-color: #0C2D48;" text="Sign In" textFill="#a1a2ab" underline="true">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Button>
+              <Label layoutX="129.0" layoutY="681.0" text="Already a member?" textFill="#a0a2ab">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </Label>
+            <Label layoutX="36.0" layoutY="178.0" prefHeight="35.0" prefWidth="383.0" text="Get started with your account" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="270.0" prefHeight="35.0" prefWidth="383.0" text="You’re a bicycle lover?" textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="299.0" prefHeight="35.0" prefWidth="383.0" text="Well, you found the perfect place to be in." textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="327.0" prefHeight="35.0" prefWidth="383.0" text="Meet new people who share the same passion as you " textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="355.0" prefHeight="35.0" prefWidth="383.0" text="and enjoy yourself by discovering new places" textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="383.0" prefHeight="35.0" prefWidth="383.0" text="and participating in the different kinds of events." textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="507.0" layoutY="159.0" prefHeight="35.0" prefWidth="383.0" text="Create an account" textFill="#a0a2ab">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="507.0" layoutY="226.0" prefHeight="42.0" prefWidth="450.0" style="-fx-border-radius: 35pt;" styleClass="textfld" stylesheets="@stylesheet.css">
+         <children>
+              <TextField fx:id="tfId" prefHeight="42.0" prefWidth="400.0" promptText="CIN Number" style="-fx-background-radius: 35;" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="507.0" layoutY="285.0" prefHeight="42.0" prefWidth="450.0" styleClass="textfld" stylesheets="@stylesheet.css">
+         <children>
+              <TextField fx:id="tfNom" prefHeight="42.0" prefWidth="400.0" promptText="First Name" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="507.0" layoutY="345.0" prefHeight="42.0" prefWidth="450.0" styleClass="textfld" stylesheets="@stylesheet.css">
+         <children>
+            
+              <TextField fx:id="tfPrenom" prefHeight="42.0" prefWidth="400.0" promptText="Last Name" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="507.0" layoutY="403.0" prefHeight="42.0" prefWidth="450.0" styleClass="textfld" stylesheets="@stylesheet.css">
+         <children>
+              <TextField fx:id="tfEmail" prefHeight="42.0" prefWidth="400.0" promptText="Email" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </TextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="507.0" layoutY="517.0" prefHeight="42.0" prefWidth="450.0" styleClass="textfld" stylesheets="@stylesheet.css">
+         <children>
+              <PasswordField fx:id="tfPassword" prefHeight="42.0" prefWidth="400.0" promptText="Password" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+                  <effect>
+                      <Blend />
+                  </effect>
+              </PasswordField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="507.0" layoutY="459.0" prefHeight="42.0" prefWidth="450.0" styleClass="textfld" stylesheets="@stylesheet.css">
+         <children>
+              <TextField fx:id="tfPhone" prefHeight="42.0" prefWidth="400.0" promptText="Phone Number" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                  <font>
+                      <Font size="14.0" />
+                  </font>
+              </TextField>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
