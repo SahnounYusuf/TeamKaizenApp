@@ -1,7 +1,5 @@
 build
 dist
-build/classes/GUI/AddEventFXML.fxml
 build/classes/test/MainTestUser.class
 nbproject/private/private.xml
 nbproject/project.properties
-src/GUI/AddEventFXML.fxml

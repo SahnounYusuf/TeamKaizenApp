@@ -27,10 +27,10 @@ public class MainTestUser {
         try {
             //            UserServices us = new UserServices();
 //            EvtService es = new EvtService();
-LogService ls = new LogService();
+            LogService ls = new LogService();
 
-        try {
-            //            User u1 = new User(12345679, "Mourad", "Kassass", "mourad.elkassas@esprit.tn", 52103402, "aaaaaaa");
+            try {
+                //            User u1 = new User(12345679, "Mourad", "Kassass", "mourad.elkassas@esprit.tn", 52103402, "aaaaaaa");
 //            User u2 = new User(12233345, "Yassin", "Nattat", "yassin.nattat@esprit.tn", 97651105, "aa");
 
 // to add users to database
@@ -42,28 +42,19 @@ LogService ls = new LogService();
 //            es.addEvent(e1);
 //            es.addEvent(e2);
 //        ls.addUserLog(u2);
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 // to display all the user in the database
 //            for (User u : us.retriveAllUsers()) {
 //                System.out.println(u);
 //            }
 // to display a specified user
 //            System.out.println(us.retriveUserById(1));
+                SmsService ss = new SmsService("56207034");
+            } catch (SQLException ex) {
+                Logger.getLogger(MainTestUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
             SmsService ss = new SmsService("56207034");
         } catch (SQLException ex) {
             Logger.getLogger(MainTestUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-<<<<<<< HEAD
-=======
-SmsService ss = new SmsService("56207034");
-        } catch (SQLException ex) {
-            Logger.getLogger(MainTestUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
->>>>>>> master
     }
 }

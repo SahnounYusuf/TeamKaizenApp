@@ -63,17 +63,4 @@ public class ForgetPasswordFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
-
-<<<<<<< HEAD
-=======
-    @FXML
-    private void SendSMS(ActionEvent event) {
-        try {
-            SmsService ss = new SmsService(tfSms.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(ForgetPasswordFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
->>>>>>> master
 }
