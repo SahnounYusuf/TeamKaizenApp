@@ -1,0 +1,25 @@
+.sidebar{
+    -fx-backgroud-color: #01509F;
+}
+.rightpane{
+    -fx-backgroud-color: #fff;
+}
+.buttonBackground{
+    -fx-background-color:  #2196f3;
+}
+.txtInputBlue{
+    -fx-background-color:  #0C2D48;
+    -fx-text-fill:  #a0a2ab;
+    -fx-border-color: #a0a2ab;
+    -fx-border-style:  hidden hidden solid hidden;
+}
+.txtInputWhite{
+    -fx-background-color:  #fff;
+    -fx-text-fill:  #a0a2ab;
+    -fx-border-color: #a0a2ab;
+    -fx-border-style:  hidden hidden hidden hidden;
+}
+.textfld{
+    -fx-border-color: #a0a2ab;
+    -fx-border-radius: 35;
+}
