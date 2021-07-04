@@ -151,6 +151,7 @@ public class EventFXMLController implements Initializable {
         }
     }
 
+
     @FXML
     private void GoToDeleteEvent(ActionEvent event) {
         try {
@@ -172,5 +173,6 @@ public class EventFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
+
 
 }
