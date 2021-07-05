@@ -13,7 +13,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RegisterFXMLController">
     <children>
-      <Pane layoutX="449.0" prefHeight="299.0" prefWidth="631.0" style="-fx-border-radius: 35;" styleClass="buttonBackground" stylesheets="@stylesheet.css">
+      <Pane layoutX="449.0" prefHeight="299.0" prefWidth="631.0" style="-fx-border-radius: 35;" styleClass="blue-panel" stylesheets="@stylesheet.css">
          <children>
             <Ellipse fill="WHITE" layoutX="108.0" layoutY="285.0" radiusX="540.0" radiusY="185.0" rotate="3.4" stroke="WHITE" strokeType="INSIDE" />
          </children>

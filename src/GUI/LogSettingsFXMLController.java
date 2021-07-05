@@ -116,7 +116,6 @@ public class LogSettingsFXMLController implements Initializable {
     }
 
 
-    @FXML
     private void GoToUserControl(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
@@ -207,5 +206,9 @@ public class LogSettingsFXMLController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+    }
+
+    @FXML
+    private void GoToLog(ActionEvent event) {
     }
 }

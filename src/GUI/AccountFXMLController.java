@@ -29,7 +29,6 @@ import utils.Statics;
  */
 public class AccountFXMLController implements Initializable {
     
-    @FXML
     private PasswordField tfPassword;
     @FXML
     private TextField tfNom;
@@ -102,17 +101,6 @@ public class AccountFXMLController implements Initializable {
                     "Your information has been modified!");
         }
     }
-
-    @FXML
-    private void BackClicked(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
-            Parent parent = root.load();
-            tfPhone.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
     
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -121,5 +109,27 @@ public class AccountFXMLController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    @FXML
+    private void GoToAcceuil(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
+            Parent parent = root.load();
+            tfPhone.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToEditPassword(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountPasswordFXML.fxml"));
+            Parent parent = root.load();
+            tfPhone.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 }
