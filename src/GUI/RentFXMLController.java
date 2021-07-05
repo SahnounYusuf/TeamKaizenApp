@@ -11,10 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +21,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 import services.RentService;
@@ -72,7 +67,6 @@ public class RentFXMLController implements Initializable {
         System.out.println("the user is: " + user);
     }
 
-    @FXML
     private void OpenAccountInfo(MouseEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
@@ -95,35 +89,6 @@ public class RentFXMLController implements Initializable {
     }
 
     @FXML
-    private void Signout(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-//    private void InitTableRent() {
-//        try {
-//            rentlist = (ObservableList<Rent>) rs.retrieveAllRentFroFX();
-//
-//            idv_col.setCellValueFactory(new PropertyValueFactory<>("idv"));
-//            idu_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
-//            marque_col.setCellValueFactory(new PropertyValueFactory<>("marque"));
-//            model_col.setCellValueFactory(new PropertyValueFactory<>("model"));
-//            prix_per_hour_col.setCellValueFactory(new PropertyValueFactory<>("prix_per_hour"));
-//            date_disponibility.setCellValueFactory(new PropertyValueFactory<>("date_disponibility"));
-//            col_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-//
-//            RentTable.setItems(rentlist);
-//
-//        } catch (SQLException ex) {
-//            System.out.println(ex);
-//        }
-//    }
-
-    @FXML
     private void GoToVelo(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
@@ -144,17 +109,6 @@ public class RentFXMLController implements Initializable {
             System.out.println(ex);
         }
 
-    }
-
-    @FXML
-    private void GoToEvents(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AddEventFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
     }
 
     @FXML
@@ -216,5 +170,49 @@ public class RentFXMLController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    @FXML
+    private void GoToInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToEvent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void SignOut(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 }
