@@ -5,7 +5,8 @@
  */
 package GUI;
 
-import static GUI.LoginFXMLController.infoBox;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
@@ -22,12 +23,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Window;
+import javafx.util.Callback;
 import services.UserServices;
 import utils.Statics;
 
@@ -39,28 +43,15 @@ import utils.Statics;
 public class SettingsFXMLController implements Initializable {
 
     User user = Statics.getCurrentUser();
+    UserServices us = new UserServices();
+    ObservableList<User> users = FXCollections.observableArrayList();
 
     @FXML
     private Label lbWelcome;
-   
-    @FXML
-    private TableColumn<?, ?> nom_col;
-    @FXML
-    private TableColumn<?, ?> prenom_col;
-    @FXML
-    private TableColumn<?, ?> email_col;
-    @FXML
-    private TableColumn<?, ?> phone_col;
-    @FXML
-    private TableColumn<?, ?> role_col;
-    @FXML
-    private TableView<User> UserTable;
-
-    UserServices us = new UserServices();
-
-    ObservableList<User> userlist = FXCollections.observableArrayList();
     @FXML
     private TextField searchBar;
+    @FXML
+    private ListView<User> userList;
 
     /**
      * Initializes the controller class.
@@ -70,6 +61,57 @@ public class SettingsFXMLController implements Initializable {
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
         InitTableUser();
+    }
+
+    private class CustomListCell extends ListCell<User> {
+
+        private HBox content;
+        private Text firstName;
+        private Text lastName;
+        private Text email;
+        private Text phone;
+        private Text role;
+        private Text space;
+
+        public CustomListCell() {
+            super();
+            firstName = new Text();
+            lastName = new Text();
+            email = new Text();
+            phone = new Text();
+            role = new Text();
+            space = new Text(" ");
+            
+
+            HBox roleInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.COG, "0.5cm"), role);
+            roleInfo.setSpacing(3);
+            HBox userInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.USER, "0.5cm"), firstName, lastName);
+            userInfo.setSpacing(3);
+            HBox emailInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.MAIL_FORWARD, "0.5cm"), email);
+            emailInfo.setSpacing(3);
+            HBox phoneInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.PHONE, "0.5cm"), phone);
+            phoneInfo.setSpacing(3);
+
+            VBox vBox = new VBox(userInfo, roleInfo, emailInfo, phoneInfo, space);
+            vBox.setSpacing(3);
+            content = new HBox(vBox);
+            content.setSpacing(20);
+        }
+
+        @Override
+        protected void updateItem(User item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null && !empty) { // <== test for null item and empty parameter
+                firstName.setText(item.getNom());
+                lastName.setText(item.getPrenom());
+                email.setText(item.getEmail());
+                phone.setText(String.valueOf(item.getPhone()));
+                role.setText(item.getRole());
+                setGraphic(content);
+            } else {
+                setGraphic(null);
+            }
+        }
     }
 
     @FXML
@@ -83,19 +125,18 @@ public class SettingsFXMLController implements Initializable {
         }
     }
 
-    @FXML
     private void InitTableUser() {
-
         try {
-            userlist = (ObservableList<User>) us.retriveAllUsersFroFX();
-            
-            nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
-            prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-            email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
-            phone_col.setCellValueFactory(new PropertyValueFactory<>("phone"));
-            role_col.setCellValueFactory(new PropertyValueFactory<>("role"));
-            UserTable.setItems(userlist);
+            users = (ObservableList<User>) us.retriveAllUsersFroFX();
+            userList.setItems(users);
+            userList.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
+                @Override
+                public ListCell<User> call(ListView<User> listView) {
+                    return new CustomListCell();
+                }
+            });
 
+            // listevents.setItems(eventlist);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
@@ -103,15 +144,15 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private void search(ActionEvent event) {
-        String x = searchBar.getText();
-        userlist = (ObservableList<User>) us.SearchUser(Integer.parseInt(x));
-       
-        nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
-        phone_col.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        role_col.setCellValueFactory(new PropertyValueFactory<>("role"));
-        UserTable.setItems(userlist);
+//        String x = searchBar.getText();
+//        userlist = (ObservableList<User>) us.SearchUser(Integer.parseInt(x));
+//       
+//        nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
+//        prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+//        email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
+//        phone_col.setCellValueFactory(new PropertyValueFactory<>("phone"));
+//        role_col.setCellValueFactory(new PropertyValueFactory<>("role"));
+//        UserTable.setItems(userlist);
     }
 
     @FXML
@@ -119,53 +160,42 @@ public class SettingsFXMLController implements Initializable {
 
     }
 
-    private void OpenAccountInfo(MouseEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
     @FXML
     private void DeleteUser(ActionEvent event) {
-        User u = UserTable.getSelectionModel().getSelectedItem();
-        if (!u.equals(null)) {
-            try {
-                us.deleteUser(u.getId());
-                InitTableUser();
-            } catch (SQLException ex) {
-                Logger.getLogger(SettingsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+//        User u = UserTable.getSelectionModel().getSelectedItem();
+//        if (!u.equals(null)) {
+//            try {
+//                us.deleteUser(u.getId());
+//                InitTableUser();
+//            } catch (SQLException ex) {
+//                Logger.getLogger(SettingsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
     }
 
     @FXML
     private void MakeAdmin(ActionEvent event) {
-        User u = UserTable.getSelectionModel().getSelectedItem();
-        if (!u.equals(null)) {
-            boolean flag = us.makeAdmin(u.getId(), u);
-            InitTableUser();
-            if (!flag) {
-                infoBox("Operation can't be made!", null, "Failed");
-            }
-        }
+//        User u = UserTable.getSelectionModel().getSelectedItem();
+//        if (!u.equals(null)) {
+//            boolean flag = us.makeAdmin(u.getId(), u);
+//            InitTableUser();
+//            if (!flag) {
+//                infoBox("Operation can't be made!", null, "Failed");
+//            }
+//        }
     }
 
     @FXML
     private void MakeUser(ActionEvent event) {
 
-        User u = UserTable.getSelectionModel().getSelectedItem();
-        if (!u.equals(null)) {
-            boolean flag = us.makeUser(u.getId(), u);
-            InitTableUser();
-            if (!flag) {
-                infoBox("Operation can't be made!", null, "Failed");
-            }
-        }
-
+//        User u = UserTable.getSelectionModel().getSelectedItem();
+//        if (!u.equals(null)) {
+//            boolean flag = us.makeUser(u.getId(), u);
+//            InitTableUser();
+//            if (!flag) {
+//                infoBox("Operation can't be made!", null, "Failed");
+//            }
+//        }
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

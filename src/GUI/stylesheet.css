@@ -1,11 +1,68 @@
+.parent{
+    -fx-background-color: transparent;
+}
+.dark-panel{
+    -fx-background-color: #45515F;
+}
+.blue-panel{
+    -fx-background-color: #2196f3;
+}
+.main-btns{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #596575;
+}
+.settings-btns{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #596575;
+}
+.icons{
+    -fx-fill: #596575;
+}
+.main-btns:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-border-color: #F3A978;
+    -fx-border-width: 0px 0px 0px 3px;
+    -fx-border-radius: 0px;
+    -fx-text-fill: white;
+}
+
+.settings-btns:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-border-color: #F3A978;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-border-radius: 0px;
+    -fx-text-fill: white;
+}
+
+.main-btns:hover .icons{
+    -fx-fill: white;
+    -fx-text-fill: white;
+}
+
+.back-button{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-text-fill: #596575;
+}
+
+.back-button:hover .icons{
+    -fx-fill: white;
+    -fx-text-fill: white;
+}
+
 .sidebar{
     -fx-backgroud-color: #01509F;
 }
 .rightpane{
     -fx-backgroud-color: #fff;
 }
-.buttonBackground{
+.buttonBlue{
     -fx-background-color:  #2196f3;
+    -fx-background-radius: 35pt;
 }
 .txtInputBlue{
     -fx-background-color:  #0C2D48;
@@ -24,29 +81,3 @@
     -fx-border-radius: 35;
 }
 
-.parent{
-    -fx-background-color: transparent;
-}
-.dark-panel{
-    -fx-background-color: #45515F;
-}
-.main-btns{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-text-fill: #596575;
-}
-.icons{
-    -fx-fill: #596575;
-}
-.main-btns:hover{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0px;
-    -fx-border-color: #F3A978;
-    -fx-border-width: 0px 0px 0px 3px;
-    -fx-border-radius: 0px;
-    -fx-text-fill: white;
-}
-.main-btns:hover .icons{
-    -fx-fill: white;
-    -fx-text-fill: white;
-}

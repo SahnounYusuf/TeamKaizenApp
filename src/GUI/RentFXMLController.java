@@ -35,14 +35,6 @@ public class RentFXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
-    private TableColumn<?, ?> idv_col;
-    private TableColumn<?, ?> idu_col;
-    private TableColumn<?, ?> marque_col;
-    private TableColumn<?, ?> model_col;
-    private TableColumn<?, ?> prix_per_hour_col;
-    private TableColumn<?, ?> date_disponibility;
-    private TableView<Rent> RentTable;
-    private TableColumn<?, ?> col_phone;
 
     User user = Statics.getCurrentUser();
 //    RentService rs = new RentService();

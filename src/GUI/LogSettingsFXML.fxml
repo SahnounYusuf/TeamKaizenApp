@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" styleClass="dark-panel" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LogSettingsFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LogSettingsFXMLController">
    <children>
       <VBox alignment="CENTER" prefHeight="720.0" prefWidth="275.0" style="-fx-background-color: #0C2D48;">
          <children>
@@ -166,45 +166,42 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" prefHeight="66.0" prefWidth="780.0" text="Settings" textAlignment="CENTER" textFill="#2196f3">
-         <font>
-            <Font name="Microsoft Tai Le" size="24.0" />
-         </font>
-      </Label>
-      <TableView fx:id="LogTable" layoutX="316.0" layoutY="283.0" onSort="#InitTableLog" prefHeight="374.0" prefWidth="748.0">
+      <TableView fx:id="LogTable" layoutX="290.0" layoutY="203.0" onSort="#InitTableLog" prefHeight="448.0" prefWidth="779.0">
          <columns>
             <TableColumn fx:id="nom_col" prefWidth="104.0" text="First Name" />
             <TableColumn fx:id="prenom_col" prefWidth="121.0" text="Last Name" />
-            <TableColumn fx:id="email_col" prefWidth="145.0" text="Email" />
-            <TableColumn fx:id="time_col" prefWidth="131.0" text="Time" />
-            <TableColumn fx:id="role_col" prefWidth="161.0" text="Role" />
+            <TableColumn fx:id="email_col" prefWidth="198.0" text="Email" />
+            <TableColumn fx:id="time_col" prefWidth="206.0" text="Time" />
+            <TableColumn fx:id="role_col" prefWidth="149.0" text="Role" />
          </columns>
       </TableView>
-      <TextField id="tfUsername" fx:id="searchBar" layoutX="316.0" layoutY="161.0" onAction="#search" prefHeight="42.0" prefWidth="273.0" promptText=" Search" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <ComboBox layoutX="316.0" layoutY="218.0" onAction="#Sort" prefHeight="42.0" prefWidth="273.0" promptText="Sort By" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-style: hidden hidden solid hidden; -fx-border-color: #a0a2ab;" />
-      <Button layoutX="908.0" layoutY="671.0" mnemonicParsing="false" onAction="#DeleteLog" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete Log" />
-      <HBox layoutX="300.0" layoutY="95.0" prefHeight="66.0" prefWidth="780.0">
+      <Button layoutX="912.0" layoutY="667.0" mnemonicParsing="false" onAction="#DeleteLog" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete Log" />
+      <HBox alignment="CENTER" layoutX="275.0" prefHeight="93.0" prefWidth="809.0" styleClass="blue-panel">
          <children>
-            <Button mnemonicParsing="false" onAction="#GoToUserControl" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de; -fx-border-radius: 0;" text="User Control">
-               <HBox.margin>
-                  <Insets left="1.0" right="1.0" />
-               </HBox.margin>
+            <JFXButton onAction="#GoToSettings" prefHeight="93.0" prefWidth="400.0" styleClass="settings-btns" text="User Control">
                <font>
-                  <Font size="18.0" />
+                  <Font size="24.0" />
                </font>
-            </Button>
-            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Log History">
-               <HBox.margin>
-                  <Insets left="1.0" right="1.0" />
-               </HBox.margin>
+            </JFXButton>
+            <JFXButton layoutX="10.0" layoutY="10.0" onAction="#GoToLog" prefHeight="93.0" prefWidth="406.0" styleClass="settings-btns" text="Log History">
                <font>
-                  <Font size="18.0" />
+                  <Font size="24.0" />
                </font>
-            </Button>
+            </JFXButton>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="611.0" layoutY="132.0" prefHeight="42.0" prefWidth="300.0" styleClass="textfld">
+         <children>
+            <ComboBox onAction="#Sort" prefHeight="35.0" prefWidth="273.0" promptText="Sort By" styleClass="txtInputWhite" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="290.0" layoutY="132.0" prefHeight="42.0" prefWidth="300.0" styleClass="textfld">
+         <children>
+            <TextField id="tfUsername" fx:id="searchBar" onAction="#search" prefHeight="34.0" prefWidth="280.0" promptText=" Search" styleClass="txtInputWhite">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
          </children>
       </HBox>
    </children>
