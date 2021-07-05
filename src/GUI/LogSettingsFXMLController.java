@@ -70,7 +70,6 @@ public class LogSettingsFXMLController implements Initializable {
         InitTableLog();
     }    
 
-    @FXML
     private void OpenAccountInfo(MouseEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
@@ -85,17 +84,6 @@ public class LogSettingsFXMLController implements Initializable {
     private void GoToNewsFeed(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void Signout(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -151,17 +139,6 @@ public class LogSettingsFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToBicycle(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
     private void GoToPiece(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
@@ -185,5 +162,50 @@ public class LogSettingsFXMLController implements Initializable {
 
     @FXML
     private void DeleteLog(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void GoToInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToVelo(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToSettings(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void SignOut(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 }

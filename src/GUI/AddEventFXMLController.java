@@ -23,9 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import services.EvtService;
 
-
 import utils.Statics;
-
 
 /**
  * FXML Controller class
@@ -40,14 +38,11 @@ public class AddEventFXMLController implements Initializable {
     private TextField tfEventName;
     @FXML
     private TextField tfEventPlace;
-
     @FXML
     private TextField tfEventDate;
-    
-    User user = Statics.getCurrentUser();
     @FXML
     private DatePicker dpEventDate;
-
+    User user = Statics.getCurrentUser();
 
     /**
      * Initializes the controller class.
@@ -60,7 +55,7 @@ public class AddEventFXMLController implements Initializable {
 
         System.out.println("the user is: " + user);
 
-    }    
+    }
 
     @FXML
     private void GoToInfo(MouseEvent event) {
@@ -89,53 +84,6 @@ public class AddEventFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToSettings(ActionEvent event) {
-
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-
-    }
-
-    @FXML
-    private void Signout(ActionEvent event) {
-
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-
-    }
-
-    @FXML
-    private void AddEvent(ActionEvent event) {
-        try {
-            EvtService es = new EvtService();
-            
-            Event evt = new Event();
-            
-            evt.setEvent_name(tfEventName.getText());
-
-            evt.setDate(tfEventDate.getText());
-
-            evt.setDate(dpEventDate.getValue().toString());
-
-            evt.setPlace(tfEventPlace.getText());
-            
-            es.addEvent(evt);
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
     private void GoToDeleteEvent(ActionEvent event) {
 
         try {
@@ -158,5 +106,94 @@ public class AddEventFXMLController implements Initializable {
         }
 
     }
-    
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToVelo(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToPiece(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToEvent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void SignOut(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToSettings(ActionEvent event) {
+
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+
+    }
+
+    @FXML
+    private void AddEvent(ActionEvent event) {
+        try {
+            EvtService es = new EvtService();
+
+            Event evt = new Event();
+
+            evt.setEvent_name(tfEventName.getText());
+
+            evt.setDate(tfEventDate.getText());
+
+            evt.setDate(dpEventDate.getValue().toString());
+
+            evt.setPlace(tfEventPlace.getText());
+
+            es.addEvent(evt);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
 }

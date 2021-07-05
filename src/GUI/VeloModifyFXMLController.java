@@ -11,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -50,9 +49,6 @@ public class VeloModifyFXMLController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void OpenAccountInfo(MouseEvent event) {
-    }
 
     @FXML
     private void GoToNewsFeed(ActionEvent event) {
@@ -67,15 +63,7 @@ public class VeloModifyFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToEvents(ActionEvent event) {
-    }
-
-    @FXML
     private void GoToSettings(ActionEvent event) {
-    }
-
-    @FXML
-    private void Signout(ActionEvent event) {
     }
 
     @FXML
@@ -88,6 +76,22 @@ public class VeloModifyFXMLController implements Initializable {
 
     @FXML
     private void GoToDeleteRent(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToInfo(MouseEvent event) {
+    }
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+    }
+
+    @FXML
+    private void GoToEvent(ActionEvent event) {
+    }
+
+    @FXML
+    private void SignOut(ActionEvent event) {
     }
     
 }

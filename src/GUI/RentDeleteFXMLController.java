@@ -19,10 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import services.RentService;
@@ -70,28 +68,6 @@ public class RentDeleteFXMLController implements Initializable {
     }
 
     @FXML
-    private void OpenAccountInfo(MouseEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void GoToNewsFeed(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
     private void GoToVelo(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
@@ -115,17 +91,6 @@ public class RentDeleteFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToEvents(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
     private void GoToSettings(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
@@ -136,9 +101,6 @@ public class RentDeleteFXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void Signout(ActionEvent event) {
-    }
 
     @FXML
     private void InitTableRent() {
@@ -172,7 +134,6 @@ public class RentDeleteFXMLController implements Initializable {
                 System.out.println(ex);
             }
         }
-
     }
 
     @FXML
@@ -190,6 +151,50 @@ public class RentDeleteFXMLController implements Initializable {
     private void GoToEdit(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./RentModifyFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToEvent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void SignOut(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {

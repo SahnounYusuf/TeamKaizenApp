@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -63,17 +61,6 @@ public class PieceFXMLController implements Initializable {
     }    
 
     @FXML
-    private void OpenAccountInfo(MouseEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
     private void GoToNewsFeed(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
@@ -95,33 +82,10 @@ public class PieceFXMLController implements Initializable {
         }
     }
 
-
-    @FXML
-    private void GoToEvents(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
     @FXML
     private void GoToSettings(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
-    private void Signout(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
@@ -191,6 +155,50 @@ public class PieceFXMLController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    @FXML
+    private void GoToInfo(MouseEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToPiece(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToEvent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void SignOut(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
     
 }
