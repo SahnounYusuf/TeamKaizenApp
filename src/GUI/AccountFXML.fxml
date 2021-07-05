@@ -5,6 +5,9 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -59,10 +62,20 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="807.0" layoutY="175.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab;" text="Go Back" textFill="#0c2d48" underline="true">
+      <Button layoutX="990.0" layoutY="175.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="64.0" prefWidth="60.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab;" textFill="#0c2d48" underline="true">
          <font>
             <Font size="18.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="52.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/arrow_back.png" />
+               </image>
+               <effect>
+                  <Bloom />
+               </effect>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>
