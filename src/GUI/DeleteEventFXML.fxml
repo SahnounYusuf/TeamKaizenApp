@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -49,6 +51,13 @@
                <font>
                   <Font size="14.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Label>
             <Button layoutX="8.0" layoutY="200.0" mnemonicParsing="false" onAction="#GoToNewsFeed" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="News Feed" textFill="WHITE">
                <VBox.margin>
@@ -141,9 +150,7 @@
       <HBox layoutX="300.0" layoutY="66.0" prefHeight="100.0" prefWidth="780.0">
          <children>
 
-            <Button mnemonicParsing="false" onAction="#GoToAddEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
-
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
+       
 
             <Button mnemonicParsing="false" onAction="#GoToAddEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
 
@@ -155,7 +162,7 @@
                </HBox.margin>
             </Button>
 
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
+            
 
             <Button mnemonicParsing="false" onAction="#GoToEditEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
 
