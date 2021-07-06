@@ -65,7 +65,11 @@ public class UserServices {
         return false;
     }
 
-    public boolean deleteUser(int id) throws SQLException {
+    public boolean deleteUser(int id, User u) throws SQLException {
+        
+        if (u.getRole().equals("Admin")) {
+            return false;
+        }
 
         String sql = "DELETE FROM user WHERE id = " + id;
 
@@ -188,13 +192,13 @@ public class UserServices {
 
     public boolean makeAdmin(int id, User u) {
 
-        if (u.getRole().equals("SuperAdmin")) {
+        if (u.getRole().equals("Admin")) {
             return false;
         }
 
         try {
             PreparedStatement pst = cnx.prepareStatement("UPDATE user SET role=? WHERE id= " + id);
-            u.setRole("admin");
+            u.setRole("Moderator");
             pst.setString(1, u.getRole());
             pst.executeUpdate();
             System.out.println("Admin created!");
@@ -207,7 +211,7 @@ public class UserServices {
 
     public boolean makeUser(int id, User u) {
 
-        if (u.getRole().equals("SuperAdmin")) {
+        if (u.getRole().equals("Admin")) {
             return false;
         }
         try {

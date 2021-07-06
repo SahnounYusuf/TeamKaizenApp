@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="GUI.RegisterVerificationFXMLController">
+   <children>
+      <Pane layoutX="449.0" prefHeight="299.0" prefWidth="631.0" style="-fx-border-radius: 35;" styleClass="blue-panel" stylesheets="@stylesheet.css">
+         <children>
+            <Ellipse fill="WHITE" layoutX="108.0" layoutY="285.0" radiusX="540.0" radiusY="185.0" rotate="3.4" stroke="WHITE" strokeType="INSIDE" />
+            <Label layoutX="58.0" layoutY="159.0" prefHeight="35.0" prefWidth="383.0" text="Create an account" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="268.0" prefHeight="35.0" prefWidth="383.0" text="You'll receive an SMS containing a verification " textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="299.0" prefHeight="35.0" prefWidth="427.0" text="Code. Please enter it down below to finish creating" textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="328.0" prefHeight="35.0" prefWidth="427.0" text="your account." textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="58.0" layoutY="236.0" prefHeight="35.0" prefWidth="383.0" text="Just one more step." textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane prefHeight="720.0" prefWidth="450.0" style="-fx-background-color: #0C2D48;">
+         <children>
+            <Label layoutX="136.0" layoutY="43.0" text="Kaizen Team" textFill="#2196f3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="276.0" layoutY="43.0" text="App" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="249.0" layoutY="676.0" mnemonicParsing="false" onAction="#SignInClicked" style="-fx-background-color: #0C2D48;" text="Sign In" textFill="#a1a2ab" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="129.0" layoutY="681.0" text="Already a member?" textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="36.0" layoutY="178.0" prefHeight="35.0" prefWidth="383.0" text="Get started with your account" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="270.0" prefHeight="35.0" prefWidth="383.0" text="You’re a bicycle lover?" textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="299.0" prefHeight="35.0" prefWidth="383.0" text="Well, you found the perfect place to be in." textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="327.0" prefHeight="35.0" prefWidth="383.0" text="Meet new people who share the same passion as you " textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="355.0" prefHeight="35.0" prefWidth="383.0" text="and enjoy yourself by discovering new places" textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="35.0" layoutY="383.0" prefHeight="35.0" prefWidth="383.0" text="and participating in the different kinds of events." textFill="#a0a2ab">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="649.0" layoutY="549.0" mnemonicParsing="false" onAction="#SignInClicked" style="-fx-background-color: #fff;" text="Resend Code" textFill="#a1a2ab" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="503.0" layoutY="554.0" text="didn't recieve anything?" textFill="#a0a2ab">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="501.0" layoutY="418.0" prefHeight="42.0" prefWidth="450.0" style="-fx-border-radius: 35pt;" styleClass="textfld" stylesheets="@stylesheet.css">
+         <children>
+            <TextField fx:id="tfCode" prefHeight="42.0" prefWidth="400.0" promptText="Code " style="-fx-background-radius: 35;" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <JFXButton layoutX="501.0" layoutY="490.0" onAction="#ConfirmSignUp" prefHeight="42.0" prefWidth="279.0" styleClass="buttonBlue" text="Finish">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

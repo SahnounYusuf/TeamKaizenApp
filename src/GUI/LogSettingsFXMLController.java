@@ -18,12 +18,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
 import services.LogService;
 import services.UserServices;
 import utils.Statics;
@@ -49,6 +51,10 @@ public class LogSettingsFXMLController implements Initializable {
     private TableColumn<?, ?> role_col;
     @FXML
     private TextField searchBar;
+    @FXML
+    private TableColumn<?, ?> time_col;
+    @FXML
+    private TableColumn<?, ?> id_col;
     
     UserServices us = new UserServices();
     LogService ul = new LogService();
@@ -56,8 +62,7 @@ public class LogSettingsFXMLController implements Initializable {
     ObservableList<UserLog> loglist = FXCollections.observableArrayList();
     
     User user = Statics.getCurrentUser();
-    @FXML
-    private TableColumn<?, ?> time_col;
+    
 
     /**
      * Initializes the controller class.
@@ -95,6 +100,8 @@ public class LogSettingsFXMLController implements Initializable {
     private void InitTableLog() {
         try {
             loglist = (ObservableList<UserLog>) ul.retriveAllUserLogFroFX();
+            id_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
+            id_col.setVisible(false);
             nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
             prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -106,6 +113,23 @@ public class LogSettingsFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
+    
+    @FXML
+    private void DeleteLog(ActionEvent event) {
+        Window owner = lbWelcome.getScene().getWindow();
+        UserLog e = LogTable.getSelectionModel().getSelectedItem();
+        if (!e.equals(null)) {
+            try {
+                ul.deleteLog(e.getIdu());
+                showAlert(Alert.AlertType.INFORMATION, owner, "Form Confirmation!",
+                        "Log deleted.");
+                InitTableLog();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
+        
+    }
 
     @FXML
     private void search(ActionEvent event) {
@@ -113,17 +137,6 @@ public class LogSettingsFXMLController implements Initializable {
 
     @FXML
     private void Sort(ActionEvent event) {
-    }
-
-
-    private void GoToUserControl(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
     }
 
     @FXML
@@ -159,10 +172,7 @@ public class LogSettingsFXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void DeleteLog(ActionEvent event) {
-        
-    }
+    
 
     @FXML
     private void GoToInfo(MouseEvent event) {
@@ -210,5 +220,14 @@ public class LogSettingsFXMLController implements Initializable {
 
     @FXML
     private void GoToLog(ActionEvent event) {
+    }
+    
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 }
