@@ -5,14 +5,13 @@
  */
 package entities;
 
-
 /**
  *
  * @author Sahnoun Yusuf
  */
-public class UserLog extends User{
-    
-    private int id;
+public class UserLog extends User {
+
+    private int idl;
     private int idu;
     private String dateLogged;
 
@@ -22,20 +21,18 @@ public class UserLog extends User{
     public UserLog(int idu) {
         this.idu = idu;
     }
-    
-    
 
-    public UserLog(int id, int idu) {
-        this.id = id;
+    public UserLog(int idl, int idu) {
+        this.idl = idl;
         this.idu = idu;
     }
 
-    public int getId() {
-        return id;
+    public int getIdl() {
+        return idl;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idl = id;
     }
 
     public int getIdu() {
@@ -53,7 +50,5 @@ public class UserLog extends User{
     public void setDateLogged(String dateLogged) {
         this.dateLogged = dateLogged;
     }
-    
-    
-    
+
 }

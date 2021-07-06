@@ -46,7 +46,7 @@ public class LogService {
 
     public boolean deleteLog(int id) throws SQLException {
 
-        String sql = "DELETE FROM log WHERE id = " + id;
+        String sql = "DELETE FROM log WHERE idl = " + id;
 
         Statement ste = cnx.createStatement();
 
@@ -66,7 +66,7 @@ public class LogService {
         while (rs.next()) {
             UserLog u = new UserLog();
 
-            u.setId(rs.getInt("id"));
+            u.setId(rs.getInt("idl"));
             u.setIdu(rs.getInt("idu"));
             u.setDateLogged(rs.getString("time"));
 
@@ -78,7 +78,7 @@ public class LogService {
     public ObservableList<UserLog> retriveAllUserLogFroFX() throws SQLException {
         ObservableList logs = FXCollections.observableArrayList();
 
-        String sql = "SELECT log.idu as user_id, nom, prenom, email, role, log.time as time_logged from log, user WHERE log.idu = user.id";
+        String sql = "SELECT log.idl as log_id, nom, prenom, email, role, log.time as time_logged from log, user WHERE log.idu = user.id";
 
         Statement ste = cnx.createStatement();
 
@@ -87,7 +87,7 @@ public class LogService {
         while (rs.next()) {
             UserLog u = new UserLog();
             
-            u.setIdu(rs.getInt("user_id"));
+            u.setIdu(rs.getInt("log_id"));
             u.setNom(rs.getString("nom"));
             u.setPrenom(rs.getString("prenom"));
             u.setEmail(rs.getString("email"));

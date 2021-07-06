@@ -16,6 +16,25 @@ public class Statics {
  
     public static User currentUser;
     public static Event selectedEvent;
+    public static User newUser;
+    public static int verificationCode;
+
+    public static User getNewUser() {
+        return newUser;
+    }
+
+    public static void setNewUser(User newUser) {
+        Statics.newUser = newUser;
+    }
+
+    public static int getVerificationCode() {
+        return verificationCode;
+    }
+
+    public static void setVerificationCode(int verificationCode) {
+        Statics.verificationCode = verificationCode;
+    }
+    
 
     public static User getCurrentUser() {
         return currentUser;

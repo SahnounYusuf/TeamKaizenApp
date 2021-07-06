@@ -4,7 +4,6 @@
 <?import com.jfoenix.controls.JFXListView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -165,9 +164,6 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Button layoutX="911.0" layoutY="667.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete User" />
-      <Button layoutX="720.0" layoutY="667.0" mnemonicParsing="false" onAction="#MakeAdmin" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Change to Admin" />
-      <Button layoutX="523.0" layoutY="667.0" mnemonicParsing="false" onAction="#MakeUser" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Change to User" />
       <HBox alignment="CENTER" layoutX="275.0" prefHeight="93.0" prefWidth="809.0" styleClass="blue-panel">
          <children>
             <JFXButton prefHeight="93.0" prefWidth="400.0" styleClass="settings-btns" text="User Control">
@@ -197,5 +193,20 @@
          </children>
       </HBox>
       <JFXListView fx:id="userList" layoutX="291.0" layoutY="205.0" prefHeight="447.0" prefWidth="777.0" />
+      <JFXButton layoutX="419.0" layoutY="667.0" onAction="#MakeUser" prefWidth="200.0" styleClass="normal-btns" text="Change to user">
+         <graphic>
+            <FontAwesomeIconView glyphName="USER" size="0.8cm" styleClass="icons" />
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="644.0" layoutY="667.0" onAction="#MakeAdmin" prefWidth="200.0" styleClass="normal-btns" text="Change to Admin">
+         <graphic>
+            <FontAwesomeIconView glyphName="LOCK" size="0.8cm" styleClass="icons" />
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="868.0" layoutY="667.0" onAction="#DeleteUser" prefWidth="200.0" styleClass="normal-btns" text="Delete User">
+         <graphic>
+            <FontAwesomeIconView glyphName="TRASH_ALT" size="0.8cm" styleClass="icons" />
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

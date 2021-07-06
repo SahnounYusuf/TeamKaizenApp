@@ -8,7 +8,10 @@ package GUI;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +21,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+import services.SmsService;
 import services.UserServices;
+import utils.Statics;
 
 /**
  * FXML Controller class
@@ -99,14 +104,27 @@ public class RegisterFXMLController implements Initializable {
         User u1;
         u1 = new User(Integer.parseInt(tfId.getText()), tfNom.getText(), tfPrenom.getText(), tfEmail.getText(), Integer.parseInt(tfPhone.getText()), tfPassword.getText());
 
-        boolean flag = us.addUser(u1);
-        if (!flag) {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
-                    "Oops! there's a problem with your informations.");
-        } else {
-            showAlert(Alert.AlertType.INFORMATION, owner, "Success!",
-                    "Welcome to the family :D");
+        int code = (int) (Math.random() * 9999);
+
+        SmsService ss = new SmsService();
+
+        try {
+            ss.SendVerificationCode(tfPhone.getText(), String.valueOf(code));
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        Statics.setVerificationCode(code);
+        Statics.setNewUser(u1);
+
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RegisterVerificationFXML.fxml"));
+            Parent parent = root.load();
+            tfEmail.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {

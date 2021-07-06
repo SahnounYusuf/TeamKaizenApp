@@ -26,10 +26,10 @@ import services.SmsService;
  * @author Sahnoun Yusuf
  */
 public class ForgetPasswordFXMLController implements Initializable {
-
+    
     @FXML
     private TextField tfEmail;
-  
+    
     @FXML
     private TextField tfSms;
 
@@ -40,7 +40,7 @@ public class ForgetPasswordFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
+    
     @FXML
     private void BackToLogin(ActionEvent event) {
         try {
@@ -51,7 +51,7 @@ public class ForgetPasswordFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
-
+    
     @FXML
     private void SendEmail(ActionEvent event) {
         try {
@@ -61,11 +61,13 @@ public class ForgetPasswordFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
-
+    
     @FXML
     private void SendSMS(ActionEvent event) {
+        
         try {
-            SmsService ss = new SmsService(tfSms.getText());
+            SmsService ss = new SmsService();
+            ss.SendPassword(tfSms.getText());
         } catch (SQLException ex) {
             Logger.getLogger(ForgetPasswordFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }

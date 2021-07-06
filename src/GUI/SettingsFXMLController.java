@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.LoginFXMLController.infoBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entities.User;
@@ -12,8 +13,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -81,7 +80,6 @@ public class SettingsFXMLController implements Initializable {
             phone = new Text();
             role = new Text();
             space = new Text(" ");
-            
 
             HBox roleInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.COG, "0.5cm"), role);
             roleInfo.setSpacing(3);
@@ -162,40 +160,40 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private void DeleteUser(ActionEvent event) {
-//        User u = UserTable.getSelectionModel().getSelectedItem();
-//        if (!u.equals(null)) {
-//            try {
-//                us.deleteUser(u.getId());
-//                InitTableUser();
-//            } catch (SQLException ex) {
-//                Logger.getLogger(SettingsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
+        User u = userList.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            try {
+                us.deleteUser(u.getId(), u);
+                InitTableUser();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
+        }
     }
 
     @FXML
     private void MakeAdmin(ActionEvent event) {
-//        User u = UserTable.getSelectionModel().getSelectedItem();
-//        if (!u.equals(null)) {
-//            boolean flag = us.makeAdmin(u.getId(), u);
-//            InitTableUser();
-//            if (!flag) {
-//                infoBox("Operation can't be made!", null, "Failed");
-//            }
-//        }
+        User u = userList.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            boolean flag = us.makeAdmin(u.getId(), u);
+            InitTableUser();
+            if (!flag) {
+                infoBox("Operation can't be made!", null, "Failed");
+            }
+        }
     }
 
     @FXML
     private void MakeUser(ActionEvent event) {
 
-//        User u = UserTable.getSelectionModel().getSelectedItem();
-//        if (!u.equals(null)) {
-//            boolean flag = us.makeUser(u.getId(), u);
-//            InitTableUser();
-//            if (!flag) {
-//                infoBox("Operation can't be made!", null, "Failed");
-//            }
-//        }
+        User u = userList.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            boolean flag = us.makeUser(u.getId(), u);
+            InitTableUser();
+            if (!flag) {
+                infoBox("Operation can't be made!", null, "Failed");
+            }
+        }
     }
 
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
