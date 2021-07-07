@@ -9,12 +9,19 @@ import static GUI.LoginFXMLController.infoBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entities.User;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,12 +32,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Window;
 import javafx.util.Callback;
+import javax.imageio.ImageIO;
 import services.UserServices;
 import utils.Statics;
 
@@ -51,15 +63,62 @@ public class SettingsFXMLController implements Initializable {
     private TextField searchBar;
     @FXML
     private ListView<User> userList;
+    @FXML
+    private Circle userAvatar;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
-        System.out.println("the user is: " + user);
+        lbWelcome.setText(user.getPrenom() + " " + user.getNom());
+        try {
+            InputStream pic = us.retrivePictureById(user.getId());
+            if (pic.available() > 0) {
+                BufferedImage imBuff = ImageIO.read(pic);
+                WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
+                userAvatar.setFill(new ImagePattern(image));
+            }
+            else{
+                InputStream photo = new FileInputStream(new File("images/user.png"));
+                BufferedImage imBuff = ImageIO.read(pic);
+                WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
+                userAvatar.setFill(new ImagePattern(image));
+            }
+        } catch (SQLException | IOException ex) {
+            System.out.println(ex);
+        }
         InitTableUser();
+    }
+
+    @FXML
+    private void SearchUpdate(KeyEvent event) {
+        FilteredList<User> filteredData = new FilteredList<>(users);
+        //Set the filter Predicate whenever the filter changes.
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(client -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every client with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (client.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; //filter matches first name
+                } else if (client.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; //filter matches last name
+                }
+                return false; //Does not match
+            });
+        });
+
+        //Wrap the FilteredList in a SortedList.
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        //put the sorted list into the listview
+        userList.setItems(sortedData);
     }
 
     private class CustomListCell extends ListCell<User> {
@@ -142,15 +201,32 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private void search(ActionEvent event) {
-//        String x = searchBar.getText();
-//        userlist = (ObservableList<User>) us.SearchUser(Integer.parseInt(x));
-//       
-//        nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//        prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-//        email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
-//        phone_col.setCellValueFactory(new PropertyValueFactory<>("phone"));
-//        role_col.setCellValueFactory(new PropertyValueFactory<>("role"));
-//        UserTable.setItems(userlist);
+        FilteredList<User> filteredData = new FilteredList<>(users);
+        //Set the filter Predicate whenever the filter changes.
+        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(client -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every client with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (client.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; //filter matches first name
+                } else if (client.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; //filter matches last name
+                }
+                return false; //Does not match
+            });
+        });
+
+        //Wrap the FilteredList in a SortedList.
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+
+        //put the sorted list into the listview
+        userList.setItems(sortedData);
     }
 
     @FXML

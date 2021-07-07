@@ -7,11 +7,10 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SettingsFXMLController">
@@ -41,22 +40,15 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </HBox>
-            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="229.0" text="Label" textFill="#b9b9b9" underline="true">
-               <VBox.margin>
                   <Insets />
                </VBox.margin>
+            </HBox>
+            <Label fx:id="lbWelcome" alignment="CENTER" contentDisplay="TOP" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="229.0" styleClass="user-label" text="Label" textFill="#b9b9b9">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/user.png" />
-                     </image>
-                  </ImageView>
+                  <Circle fx:id="userAvatar" fill="DODGERBLUE" radius="45.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: DODGERBLUE;" />
                </graphic>
             </Label>
             <JFXButton alignment="BASELINE_LEFT" onAction="#GoToNewsFeed" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="News Feed">
@@ -64,7 +56,7 @@
                   <FontAwesomeIconView glyphName="FILE_ALT" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -78,7 +70,7 @@
                   <FontAwesomeIconView glyphName="MONEY" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -92,7 +84,7 @@
                   <FontAwesomeIconView glyphName="BICYCLE" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -106,7 +98,7 @@
                   <FontAwesomeIconView glyphName="WRENCH" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -120,7 +112,7 @@
                   <FontAwesomeIconView glyphName="CALENDAR" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -134,7 +126,7 @@
                   <FontAwesomeIconView glyphName="SLIDERS" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -148,7 +140,7 @@
                   <FontAwesomeIconView glyphName="SIGN_OUT" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -185,7 +177,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="291.0" layoutY="138.0" prefHeight="42.0" prefWidth="300.0" styleClass="textfld">
          <children>
-            <TextField id="tfUsername" fx:id="searchBar" onAction="#search" prefHeight="34.0" prefWidth="280.0" promptText=" Search" styleClass="txtInputWhite">
+            <TextField id="tfUsername" fx:id="searchBar" onAction="#search" onKeyTyped="#SearchUpdate" prefHeight="34.0" prefWidth="280.0" promptText=" Search" styleClass="txtInputWhite">
                <font>
                   <Font size="14.0" />
                </font>
@@ -198,9 +190,9 @@
             <FontAwesomeIconView glyphName="USER" size="0.8cm" styleClass="icons" />
          </graphic>
       </JFXButton>
-      <JFXButton layoutX="644.0" layoutY="667.0" onAction="#MakeAdmin" prefWidth="200.0" styleClass="normal-btns" text="Change to Admin">
+      <JFXButton layoutX="644.0" layoutY="667.0" onAction="#MakeAdmin" prefWidth="200.0" styleClass="normal-btns" text="Change to Moderator">
          <graphic>
-            <FontAwesomeIconView glyphName="LOCK" size="0.8cm" styleClass="icons" />
+            <FontAwesomeIconView glyphName="SHIELD" size="0.8cm" styleClass="icons" />
          </graphic>
       </JFXButton>
       <JFXButton layoutX="868.0" layoutY="667.0" onAction="#DeleteUser" prefWidth="200.0" styleClass="normal-btns" text="Delete User">

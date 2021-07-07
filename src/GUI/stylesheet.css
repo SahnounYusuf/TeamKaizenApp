@@ -28,10 +28,23 @@
     -fx-fill: #596575;
 }
 
+.user-label{
+    -fx-text-fill: #a0a2ab;
+}
+
+.user-label:hover{
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-border-color: #2196f3;
+    -fx-border-width: 0px 0px 3px 0px;
+    -fx-border-radius: 0px;
+    -fx-text-fill: white;
+}
+
 .main-btns:hover{
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
-    -fx-border-color: #F3A978;
+    -fx-border-color: #2196f3;
     -fx-border-width: 0px 0px 0px 3px;
     -fx-border-radius: 0px;
     -fx-text-fill: white;
@@ -40,7 +53,7 @@
 .normal-btns:hover{
     -fx-background-color: #0C2D48;
     -fx-background-radius: 0px;
-    -fx-border-color: #0C2D48;
+    -fx-border-color: #2196f3;
     -fx-background-radius: 35px;
     -fx-border-width: 0px 0px 0px 2px;
     -fx-border-radius: 35px;
@@ -55,7 +68,7 @@
 .settings-btns:hover{
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
-    -fx-border-color: #F3A978;
+    -fx-border-color: #2196f3;
     -fx-border-width: 0px 0px 3px 0px;
     -fx-border-radius: 0px;
     -fx-text-fill: white;

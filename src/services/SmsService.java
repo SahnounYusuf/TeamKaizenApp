@@ -18,21 +18,11 @@ import java.sql.SQLException;
 public class SmsService {
 
     public static final String ACCOUNT_SID = "ACb6048bcc447741b1155a12ae9e46d19d";
-    public static final String AUTH_TOKEN = "d3ae4e8f5336e271871d77e8823335c4";
+    public static final String AUTH_TOKEN = "447f6b3caa684c49e11b052848e4318e";
 
-    public SmsService()  {
-//        UserServices us = new UserServices();
-//        String userPassword = us.retriveUserPasswordByPhone(userPhoneNumber);
-//        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-//        Message message = Message.creator(
-//                new com.twilio.type.PhoneNumber("+216" + userPhoneNumber),
-//                new com.twilio.type.PhoneNumber("+14233972171"),
-//                "your password is: "+userPassword)
-//                .create();
-//
-//        System.out.println(message.getSid());
+    public SmsService() {
     }
-    
+
     public void SendPassword(String userPhoneNumber) throws SQLException {
         UserServices us = new UserServices();
         String userPassword = us.retriveUserPasswordByPhone(userPhoneNumber);
@@ -40,19 +30,19 @@ public class SmsService {
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+216" + userPhoneNumber),
                 new com.twilio.type.PhoneNumber("+14233972171"),
-                "your password is: "+userPassword)
+                "your password is: " + userPassword)
                 .create();
 
         System.out.println(message.getSid());
     }
-    
+
     public void SendVerificationCode(String userPhoneNumber, String code) throws SQLException {
-        
+
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+216" + userPhoneNumber),
                 new com.twilio.type.PhoneNumber("+14233972171"),
-                "your Verification Code: "+code)
+                "your Verification Code: " + code)
                 .create();
 
         System.out.println(message.getSid());

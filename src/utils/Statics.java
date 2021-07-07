@@ -18,6 +18,15 @@ public class Statics {
     public static Event selectedEvent;
     public static User newUser;
     public static int verificationCode;
+    public static String ImagePath;
+
+    public static String getImagePath() {
+        return ImagePath;
+    }
+
+    public static void setImagePath(String ImagePath) {
+        Statics.ImagePath = ImagePath;
+    }
 
     public static User getNewUser() {
         return newUser;
