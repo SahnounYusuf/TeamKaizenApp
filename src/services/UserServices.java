@@ -5,6 +5,7 @@
  */
 package services;
 
+import com.mysql.jdbc.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.MaConnection;
 import entities.User;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -46,27 +53,34 @@ public class UserServices {
         return false;
     }
 
-    public boolean modifyUser(int id, User u) {
+    public boolean modifyUser(int id, User u, String pic) {
 
         try {
-            PreparedStatement pst = cnx.prepareStatement("UPDATE user SET nom=?, prenom=?, email=?, phone=?, password=? WHERE id= " + id);
+            InputStream photo = new FileInputStream(new File(pic));
+            PreparedStatement pst = cnx.prepareStatement("UPDATE user SET nom=?, prenom=?, email=?, phone=?, password=?, picture=? WHERE id= " + id);
 
             pst.setString(1, u.getNom());
             pst.setString(2, u.getPrenom());
             pst.setString(3, u.getEmail());
             pst.setInt(4, u.getPhone());
             pst.setString(5, u.getPassword());
+            if (pic != null) {
+                pst.setBlob(6, photo);
+            }
+
             pst.executeUpdate();
             System.out.println("User modified!");
             return true;
         } catch (SQLException ex) {
             System.out.println(ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
 
     public boolean deleteUser(int id, User u) throws SQLException {
-        
+
         if (u.getRole().equals("Admin")) {
             return false;
         }
@@ -241,6 +255,7 @@ public class UserServices {
         }
         return password;
     }
+
     public String retriveUserPasswordByPhone(String phone) throws SQLException {
         String password = "";
 
@@ -254,5 +269,22 @@ public class UserServices {
             password = rs.getString("password");
         }
         return password;
+    }
+
+    public InputStream retrivePictureById(int id) throws SQLException {
+
+        String sql = "SELECT picture FROM user WHERE id = " + id;
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+        InputStream is = null;
+        while (rs.next()) {
+            Blob img = (Blob) rs.getBlob(1);
+            is = img.getBinaryStream();
+        }
+        System.out.println("User with ID: " + id);
+
+        return is;
     }
 }
