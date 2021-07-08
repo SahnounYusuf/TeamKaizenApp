@@ -172,12 +172,12 @@
       </HBox>
       <HBox alignment="CENTER" layoutX="612.0" layoutY="138.0" prefHeight="42.0" prefWidth="300.0" styleClass="textfld">
          <children>
-            <ComboBox onAction="#Sort" prefHeight="35.0" prefWidth="273.0" promptText="Sort By" styleClass="txtInputWhite" />
+            <ComboBox fx:id="sortBy" onAction="#Sort" prefHeight="35.0" prefWidth="273.0" promptText="Sort By" styleClass="txtInputWhite" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="291.0" layoutY="138.0" prefHeight="42.0" prefWidth="300.0" styleClass="textfld">
          <children>
-            <TextField id="tfUsername" fx:id="searchBar" onAction="#search" onKeyTyped="#SearchUpdate" prefHeight="34.0" prefWidth="280.0" promptText=" Search" styleClass="txtInputWhite">
+            <TextField id="tfUsername" fx:id="searchBar" onAction="#search" prefHeight="34.0" prefWidth="280.0" promptText=" Search" styleClass="txtInputWhite">
                <font>
                   <Font size="14.0" />
                </font>

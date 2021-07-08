@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXListView;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import entities.User;
 import entities.UserLog;
 import java.awt.image.BufferedImage;
@@ -14,9 +17,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.Collator;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,16 +31,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Window;
+import javafx.util.Callback;
 import javax.imageio.ImageIO;
 import services.LogService;
 import services.UserServices;
@@ -49,31 +63,18 @@ public class LogSettingsFXMLController implements Initializable {
     @FXML
     private Label lbWelcome;
     @FXML
-    private TableView<UserLog> LogTable;
-    @FXML
-    private TableColumn<?, ?> nom_col;
-    @FXML
-    private TableColumn<?, ?> prenom_col;
-    @FXML
-    private TableColumn<?, ?> email_col;
-    @FXML
-    private TableColumn<?, ?> role_col;
+    private JFXListView<UserLog> LogTable;
     @FXML
     private TextField searchBar;
     @FXML
-    private TableColumn<?, ?> time_col;
+    private Circle userAvatar;
     @FXML
-    private TableColumn<?, ?> id_col;
-    
+    private ComboBox<String> sortBy;
+
     UserServices us = new UserServices();
     LogService ul = new LogService();
-
     ObservableList<UserLog> loglist = FXCollections.observableArrayList();
-    
     User user = Statics.getCurrentUser();
-    @FXML
-    private Circle userAvatar;
-    
 
     /**
      * Initializes the controller class.
@@ -82,14 +83,18 @@ public class LogSettingsFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         lbWelcome.setText(user.getPrenom() + " " + user.getNom());
+
+        final ObservableList<String> comboBoxItems = FXCollections.observableArrayList();
+        comboBoxItems.addAll("First Name", "Last Name", "Role", "Date Logged");
+        sortBy.setItems(new SortedList<String>(comboBoxItems, Collator.getInstance()));
+
         try {
             InputStream pic = us.retrivePictureById(user.getId());
             if (pic.available() > 0) {
                 BufferedImage imBuff = ImageIO.read(pic);
                 WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
                 userAvatar.setFill(new ImagePattern(image));
-            }
-            else{
+            } else {
                 InputStream photo = new FileInputStream(new File("images/user.png"));
                 BufferedImage imBuff = ImageIO.read(pic);
                 WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
@@ -99,47 +104,75 @@ public class LogSettingsFXMLController implements Initializable {
             System.out.println(ex);
         }
         InitTableLog();
-    }    
+    }
 
-    private void OpenAccountInfo(MouseEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
+    private class CustomListCell extends ListCell<UserLog> {
+
+        private HBox content;
+        private Text firstName;
+        private Text lastName;
+        private Text timeLoggeed;
+        private Text email;
+        private Text role;
+        private Text space;
+
+        public CustomListCell() {
+            super();
+            firstName = new Text();
+            lastName = new Text();
+            timeLoggeed = new Text();
+            email = new Text();
+            role = new Text();
+            space = new Text(" ");
+
+            HBox roleInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.COG, "0.5cm"), role);
+            roleInfo.setSpacing(3);
+            HBox userInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.USER, "0.5cm"), firstName, lastName);
+            userInfo.setSpacing(3);
+            HBox emailInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.CALENDAR_PLUS_ALT, "0.5cm"), timeLoggeed);
+            emailInfo.setSpacing(3);
+            HBox phoneInfo = new HBox(new FontAwesomeIconView(FontAwesomeIcon.MAIL_FORWARD, "0.5cm"), email);
+            phoneInfo.setSpacing(3);
+
+            VBox vBox = new VBox(userInfo, roleInfo, emailInfo, phoneInfo, space);
+            vBox.setSpacing(3);
+            content = new HBox(vBox);
+            content.setSpacing(20);
+        }
+
+        @Override
+        protected void updateItem(UserLog item, boolean empty) {
+            super.updateItem(item, empty);
+            if (item != null && !empty) { // <== test for null item and empty parameter
+                firstName.setText(item.getNom());
+                lastName.setText(item.getPrenom());
+                timeLoggeed.setText(item.getDateLogged());
+                email.setText(item.getEmail());
+                role.setText(item.getRole());
+                setGraphic(content);
+            } else {
+                setGraphic(null);
+            }
         }
     }
 
-    @FXML
-    private void GoToNewsFeed(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    @FXML
     private void InitTableLog() {
         try {
             loglist = (ObservableList<UserLog>) ul.retriveAllUserLogFroFX();
-            id_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
-            id_col.setVisible(false);
-            nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
-            prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-            email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
-            time_col.setCellValueFactory(new PropertyValueFactory<>("dateLogged"));
-            role_col.setCellValueFactory(new PropertyValueFactory<>("role"));
             LogTable.setItems(loglist);
+            LogTable.setCellFactory(new Callback<ListView<UserLog>, ListCell<UserLog>>() {
+                @Override
+                public ListCell<UserLog> call(ListView<UserLog> listView) {
+                    return new CustomListCell();
+                }
+            });
 
+            // listevents.setItems(eventlist);
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
+
     @FXML
     private void DeleteLog(ActionEvent event) {
         Window owner = lbWelcome.getScene().getWindow();
@@ -154,15 +187,83 @@ public class LogSettingsFXMLController implements Initializable {
                 System.out.println(ex);
             }
         }
-        
+
     }
 
     @FXML
     private void search(ActionEvent event) {
+        try {
+            // Wrap the ObservableList in a FilteredList (initially display all data).
+            FilteredList<UserLog> filteredData = new FilteredList<>(ul.retriveAllUserLogFroFX(), p -> true);
+
+            //Set the filter Predicate whenever the filter changes.
+            searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(client -> {
+                    // If filter text is empty, display all persons.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+
+                    // Compare first name and last name of every client with filter text.
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (client.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches first name
+                    } else if (client.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches last name
+                    } else if (client.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches last name
+
+                    } else if (String.valueOf(client.getDateLogged()).toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches last name
+                    }
+                    return false; //Does not match
+                });
+            });
+
+            //Wrap the FilteredList in a SortedList.
+            SortedList<UserLog> sortedData = new SortedList<>(filteredData);
+
+            //put the sorted list into the listview
+            LogTable.setItems(sortedData);
+            LogTable.setCellFactory(new Callback<ListView<UserLog>, ListCell<UserLog>>() {
+                @Override
+                public ListCell<UserLog> call(ListView<UserLog> listView) {
+                    return new CustomListCell();
+                }
+            });
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
-    private void Sort(ActionEvent event) {
+    private void Sort(ActionEvent event) throws SQLException {
+        loglist = (ObservableList<UserLog>) ul.retriveAllUserLogFroFX();
+        if (sortBy.getValue().equals("First Name")) {
+            loglist = (ObservableList<UserLog>) ul.retriveAllUsersSortedFirstName();
+            LogTable.setItems(loglist);
+        } else if (sortBy.getValue().equals("Last Name")) {
+            loglist = (ObservableList<UserLog>) ul.retriveAllUsersSortedLastName();
+            LogTable.setItems(loglist);
+        } else if (sortBy.getValue().equals("Role")) {
+            loglist = (ObservableList<UserLog>) ul.retriveAllUsersSortedRole();
+            LogTable.setItems(loglist);
+        } else {
+            loglist = (ObservableList<UserLog>) ul.retriveAllUsersSortedDate();
+            LogTable.setItems(loglist);
+        }
+    }
+
+    @FXML
+    private void GoToNewsFeed(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
@@ -197,8 +298,6 @@ public class LogSettingsFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
-
-    
 
     @FXML
     private void GoToInfo(MouseEvent event) {
@@ -247,7 +346,7 @@ public class LogSettingsFXMLController implements Initializable {
     @FXML
     private void GoToLog(ActionEvent event) {
     }
-    
+
     private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);

@@ -98,5 +98,99 @@ public class LogService {
         }
         return logs;
     }
+    
+    public ObservableList<UserLog> retriveAllUsersSortedFirstName() throws SQLException {
+        ObservableList logs = FXCollections.observableArrayList();
+
+        String sql = "SELECT log.idl as log_id, nom, prenom, email, role, log.time as time_logged from log, user WHERE log.idu = user.id ORDER BY user.prenom;";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            UserLog u = new UserLog();
+            
+            u.setIdu(rs.getInt("log_id"));
+            u.setNom(rs.getString("nom"));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setRole(rs.getString("role"));
+            u.setDateLogged(rs.getString("time_logged"));
+
+            logs.add(u);
+        }
+        return logs;
+    }
+    
+    public ObservableList<UserLog> retriveAllUsersSortedLastName() throws SQLException {
+        ObservableList logs = FXCollections.observableArrayList();
+
+        String sql = "SELECT log.idl as log_id, nom, prenom, email, role, log.time as time_logged from log, user WHERE log.idu = user.id ORDER BY user.nom;";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            UserLog u = new UserLog();
+            
+            u.setIdu(rs.getInt("log_id"));
+            u.setNom(rs.getString("nom"));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setRole(rs.getString("role"));
+            u.setDateLogged(rs.getString("time_logged"));
+
+            logs.add(u);
+        }
+        return logs;
+    }
+    public ObservableList<UserLog> retriveAllUsersSortedRole() throws SQLException {
+        ObservableList logs = FXCollections.observableArrayList();
+
+        String sql = "SELECT log.idl as log_id, nom, prenom, email, role, log.time as time_logged from log, user WHERE log.idu = user.id ORDER BY user.role;";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            UserLog u = new UserLog();
+            
+            u.setIdu(rs.getInt("log_id"));
+            u.setNom(rs.getString("nom"));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setRole(rs.getString("role"));
+            u.setDateLogged(rs.getString("time_logged"));
+
+            logs.add(u);
+        }
+        return logs;
+    }
+    public ObservableList<UserLog> retriveAllUsersSortedDate() throws SQLException {
+        ObservableList logs = FXCollections.observableArrayList();
+
+        String sql = "SELECT log.idl as log_id, nom, prenom, email, role, log.time as time_logged from log, user WHERE log.idu = user.id ORDER BY log.time DESC;";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            UserLog u = new UserLog();
+            
+            u.setIdu(rs.getInt("log_id"));
+            u.setNom(rs.getString("nom"));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setRole(rs.getString("role"));
+            u.setDateLogged(rs.getString("time_logged"));
+
+            logs.add(u);
+        }
+        return logs;
+    }
 
 }

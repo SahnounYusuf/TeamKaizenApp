@@ -16,7 +16,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.Collator;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,11 +31,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -65,6 +70,8 @@ public class SettingsFXMLController implements Initializable {
     private ListView<User> userList;
     @FXML
     private Circle userAvatar;
+    @FXML
+    private ComboBox<String> sortBy;
 
     /**
      * Initializes the controller class.
@@ -72,14 +79,18 @@ public class SettingsFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         lbWelcome.setText(user.getPrenom() + " " + user.getNom());
+
+        final ObservableList<String> comboBoxItems = FXCollections.observableArrayList();
+        comboBoxItems.addAll("First Name", "Last Name", "Role", "Email");
+        sortBy.setItems(new SortedList<String>(comboBoxItems, Collator.getInstance()));
+
         try {
             InputStream pic = us.retrivePictureById(user.getId());
             if (pic.available() > 0) {
                 BufferedImage imBuff = ImageIO.read(pic);
                 WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
                 userAvatar.setFill(new ImagePattern(image));
-            }
-            else{
+            } else {
                 InputStream photo = new FileInputStream(new File("images/user.png"));
                 BufferedImage imBuff = ImageIO.read(pic);
                 WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
@@ -89,36 +100,6 @@ public class SettingsFXMLController implements Initializable {
             System.out.println(ex);
         }
         InitTableUser();
-    }
-
-    @FXML
-    private void SearchUpdate(KeyEvent event) {
-        FilteredList<User> filteredData = new FilteredList<>(users);
-        //Set the filter Predicate whenever the filter changes.
-        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(client -> {
-                // If filter text is empty, display all persons.
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                // Compare first name and last name of every client with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                if (client.getNom().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; //filter matches first name
-                } else if (client.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; //filter matches last name
-                }
-                return false; //Does not match
-            });
-        });
-
-        //Wrap the FilteredList in a SortedList.
-        SortedList<User> sortedData = new SortedList<>(filteredData);
-
-        //put the sorted list into the listview
-        userList.setItems(sortedData);
     }
 
     private class CustomListCell extends ListCell<User> {
@@ -171,17 +152,6 @@ public class SettingsFXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void GoToNewsFeed(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-    }
-
     private void InitTableUser() {
         try {
             users = (ObservableList<User>) us.retriveAllUsersFroFX();
@@ -201,36 +171,66 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private void search(ActionEvent event) {
-        FilteredList<User> filteredData = new FilteredList<>(users);
-        //Set the filter Predicate whenever the filter changes.
-        searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(client -> {
-                // If filter text is empty, display all persons.
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
+        try {
+            // Wrap the ObservableList in a FilteredList (initially display all data).
+            FilteredList<User> filteredData = new FilteredList<>(us.retriveAllUsersFroFX(), p -> true);
 
-                // Compare first name and last name of every client with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
+            //Set the filter Predicate whenever the filter changes.
+            searchBar.textProperty().addListener((observable, oldValue, newValue) -> {
+                filteredData.setPredicate(client -> {
+                    // If filter text is empty, display all persons.
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
 
-                if (client.getNom().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; //filter matches first name
-                } else if (client.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; //filter matches last name
-                }
-                return false; //Does not match
+                    // Compare first name and last name of every client with filter text.
+                    String lowerCaseFilter = newValue.toLowerCase();
+
+                    if (client.getPrenom().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches first name
+                    } else if (client.getNom().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches last name
+                    } else if (client.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches last name
+
+                    } else if (String.valueOf(client.getPhone()).toLowerCase().contains(lowerCaseFilter)) {
+                        return true; //filter matches last name
+                    }
+                    return false; //Does not match
+                });
             });
-        });
 
-        //Wrap the FilteredList in a SortedList.
-        SortedList<User> sortedData = new SortedList<>(filteredData);
+            //Wrap the FilteredList in a SortedList.
+            SortedList<User> sortedData = new SortedList<>(filteredData);
 
-        //put the sorted list into the listview
-        userList.setItems(sortedData);
+            //put the sorted list into the listview
+            userList.setItems(sortedData);
+            userList.setCellFactory(new Callback<ListView<User>, ListCell<User>>() {
+                @Override
+                public ListCell<User> call(ListView<User> listView) {
+                    return new CustomListCell();
+                }
+            });
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
-    private void Sort(ActionEvent event) {
+    private void Sort(ActionEvent event) throws SQLException {
+        if (sortBy.getValue().equals("First Name")) {
+            users = (ObservableList<User>) us.retriveAllUsersSortedFirstName();
+            userList.setItems(users);
+        } else if (sortBy.getValue().equals("Last Name")) {
+            users = (ObservableList<User>) us.retriveAllUsersSortedLastName();
+            userList.setItems(users);
+        } else if (sortBy.getValue().equals("Email")) {
+            users = (ObservableList<User>) us.retriveAllUsersSortedEmail();
+            userList.setItems(users);
+        } else {
+            users = (ObservableList<User>) us.retriveAllUsersSortedRole();
+            userList.setItems(users);
+        }
 
     }
 
@@ -279,6 +279,17 @@ public class SettingsFXMLController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    @FXML
+    private void GoToNewsFeed(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
