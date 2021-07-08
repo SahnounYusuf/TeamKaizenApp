@@ -287,4 +287,107 @@ public class UserServices {
 
         return is;
     }
+    
+    public ObservableList<User> retriveAllUsersSortedFirstName() throws SQLException {
+        ObservableList users = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM user ORDER BY user.prenom";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            User u = new User();
+
+            u.setId(rs.getInt("id"));
+            u.setNom(rs.getString(2));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setPhone(rs.getInt("phone"));
+            u.setPassword(rs.getString("password"));
+            u.setRole(rs.getString("role"));
+
+            users.add(u);
+        }
+        return users;
+    }
+    
+    public ObservableList<User> retriveAllUsersSortedLastName() throws SQLException {
+        ObservableList users = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM user ORDER BY user.nom";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            User u = new User();
+
+            u.setId(rs.getInt("id"));
+            u.setNom(rs.getString(2));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setPhone(rs.getInt("phone"));
+            u.setPassword(rs.getString("password"));
+            u.setRole(rs.getString("role"));
+
+            users.add(u);
+        }
+        return users;
+    }
+    
+    public ObservableList<User> retriveAllUsersSortedEmail() throws SQLException {
+        ObservableList users = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM user ORDER BY user.email";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            User u = new User();
+
+            u.setId(rs.getInt("id"));
+            u.setNom(rs.getString(2));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setPhone(rs.getInt("phone"));
+            u.setPassword(rs.getString("password"));
+            u.setRole(rs.getString("role"));
+
+            users.add(u);
+        }
+        return users;
+    }
+    public ObservableList<User> retriveAllUsersSortedRole() throws SQLException {
+        ObservableList users = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM user ORDER BY user.role";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+
+            User u = new User();
+
+            u.setId(rs.getInt("id"));
+            u.setNom(rs.getString(2));
+            u.setPrenom(rs.getString("prenom"));
+            u.setEmail(rs.getString("email"));
+            u.setPhone(rs.getInt("phone"));
+            u.setPassword(rs.getString("password"));
+            u.setRole(rs.getString("role"));
+
+            users.add(u);
+        }
+        return users;
+    }
 }

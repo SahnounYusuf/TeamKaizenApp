@@ -32,7 +32,7 @@ public class User {
         this.nom = nom;
         this.prenom = prenom;
     }
-    
+
     public User(int id, String nom, String prenom, String email, int phone, String password) {
         this.id = id;
         this.nom = nom;
@@ -102,7 +102,5 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", phone=" + phone + ", password=" + password + ", role=" + role + '}';
     }
-
-
 
 }
