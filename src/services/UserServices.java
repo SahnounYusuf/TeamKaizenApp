@@ -390,4 +390,33 @@ public class UserServices {
         }
         return users;
     }
+    
+    public String retriveUserPasswordById(String id) throws SQLException {
+        String password = "";
+
+        String sql = "SELECT password FROM user WHERE id = '" + id + "'";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            password = rs.getString("password");
+        }
+        return password;
+    }
+    
+    public boolean updatePassword(int id, String password) {
+        
+        try {
+            PreparedStatement pst = cnx.prepareStatement("UPDATE user SET password=? WHERE id= " + id);
+            pst.setString(1, password);
+            pst.executeUpdate();
+            System.out.println("Password modified!");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
+    }
 }
