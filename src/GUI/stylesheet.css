@@ -55,7 +55,7 @@
     -fx-background-radius: 0px;
     -fx-border-color: #2196f3;
     -fx-background-radius: 35px;
-    -fx-border-width: 0px 0px 0px 2px;
+    -fx-border-width: 0px 0px 3px 0px;
     -fx-border-radius: 35px;
     -fx-text-fill: white;
 }
@@ -68,7 +68,7 @@
 .settings-btns:hover{
     -fx-background-color: transparent;
     -fx-background-radius: 0px;
-    -fx-border-color: #2196f3;
+    -fx-border-color: #45515F;
     -fx-border-width: 0px 0px 3px 0px;
     -fx-border-radius: 0px;
     -fx-text-fill: white;

@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTimePicker;
 import entities.Event;
 import entities.User;
 import java.io.IOException;
@@ -15,12 +17,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.DatePicker;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import services.EvtService;
 
 import utils.Statics;
@@ -43,6 +50,8 @@ public class AddEventFXMLController implements Initializable {
     @FXML
     private DatePicker dpEventDate;
     User user = Statics.getCurrentUser();
+    @FXML
+    private HBox hbox;
 
     /**
      * Initializes the controller class.
@@ -54,6 +63,20 @@ public class AddEventFXMLController implements Initializable {
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
 
         System.out.println("the user is: " + user);
+
+//        JFXTimePicker blueDatePicker = new JFXTimePicker();
+//        blueDatePicker.setOverLay(true);
+//        myPane.getChildren().add(blueDatePicker);
+//        stackpane.getChildren().add(myPane);
+//        StackPane.setMargin(myPane, new Insets(100));
+//        stackpane.setStyle("-fx-background-color:WHITE");
+
+        JFXTimePicker timePickerFX = new JFXTimePicker();
+
+        timePickerFX.setEditable(false);
+        timePickerFX.setPromptText("Earth Time");
+        timePickerFX.setId("earth-time");
+        hbox = new HBox(5, timePickerFX);
 
     }
 
