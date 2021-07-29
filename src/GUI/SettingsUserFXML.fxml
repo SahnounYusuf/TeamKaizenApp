@@ -3,19 +3,62 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #24425a;" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AddEventFXMLController">
-   <children>
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SettingsUserFXMLController">
+    <children>
+      <Pane layoutX="275.0" prefHeight="299.0" prefWidth="805.0" style="-fx-border-radius: 35;" styleClass="blue-panel" stylesheets="@stylesheet.css">
+         <children>
+            <Ellipse fill="WHITE" layoutX="181.0" layoutY="394.0" radiusX="713.0" radiusY="344.0" rotate="5.4" stroke="WHITE" strokeType="INSIDE" />
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="325.0" prefHeight="322.0" prefWidth="767.0" style="-fx-border-radius: 15pt;" styleClass="textfld" stylesheets="@stylesheet.css">
+               <children>
+                  <TextField fx:id="reportTextArea" alignment="TOP_LEFT" prefHeight="289.0" prefWidth="739.0" promptText="Write your report..." style="-fx-background-radius: 35;" styleClass="txtInputWhite" />
+               </children>
+            </HBox>
+            <JFXButton layoutX="14.0" layoutY="660.0" onAction="#SendReport" prefHeight="42.0" prefWidth="279.0" styleClass="buttonBlue" text="Send Report">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="264.0" prefHeight="42.0" prefWidth="450.0" style="-fx-border-radius: 35pt;" styleClass="textfld" stylesheets="@stylesheet.css">
+               <children>
+                  <TextField fx:id="tfSubject" prefHeight="42.0" prefWidth="400.0" promptText="Subject" style="-fx-background-radius: 35;" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label layoutX="14.0" layoutY="86.0" prefHeight="35.0" prefWidth="383.0" text="Send Feedback" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="162.0" prefHeight="35.0" prefWidth="607.0" text="Just provide us with the necessary information about what’s bothering you" textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="193.0" prefHeight="35.0" prefWidth="427.0" text="And we’ll handle the rest." textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="130.0" prefHeight="35.0" prefWidth="383.0" text="To help improve our community " textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <VBox alignment="CENTER" prefHeight="720.0" prefWidth="275.0" style="-fx-background-color: #0C2D48;">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -41,30 +84,23 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </HBox>
-            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="229.0" text="Label" textFill="#b9b9b9" underline="true">
-               <VBox.margin>
                   <Insets />
                </VBox.margin>
+            </HBox>
+            <Label fx:id="lbWelcome" alignment="CENTER" contentDisplay="TOP" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="229.0" styleClass="user-label" text="Label" textFill="#b9b9b9">
                <font>
-                  <Font size="14.0" />
+                  <Font size="18.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/user.png" />
-                     </image>
-                  </ImageView>
+                  <Circle fx:id="userAvatar" fill="DODGERBLUE" radius="45.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: DODGERBLUE;" />
                </graphic>
             </Label>
-            <JFXButton alignment="BASELINE_LEFT" onAction="#GoToNewsFeed" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" stylesheets="@stylesheet.css" text="News Feed">
+            <JFXButton alignment="BASELINE_LEFT" onAction="#GoToNewsFeed" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="News Feed">
                <graphic>
                   <FontAwesomeIconView glyphName="FILE_ALT" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -78,7 +114,7 @@
                   <FontAwesomeIconView glyphName="MONEY" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -92,7 +128,7 @@
                   <FontAwesomeIconView glyphName="BICYCLE" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -106,7 +142,7 @@
                   <FontAwesomeIconView glyphName="WRENCH" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -120,7 +156,7 @@
                   <FontAwesomeIconView glyphName="CALENDAR" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -134,7 +170,7 @@
                   <FontAwesomeIconView glyphName="SLIDERS" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -148,7 +184,7 @@
                   <FontAwesomeIconView glyphName="SIGN_OUT" size="0.8cm" styleClass="icons" />
                </graphic>
                <VBox.margin>
-                  <Insets top="25.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
                <padding>
                   <Insets left="30.0" />
@@ -164,77 +200,5 @@
             <Insets />
          </opaqueInsets>
       </HBox>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" prefHeight="66.0" prefWidth="780.0" text="Events" textAlignment="CENTER" textFill="#2196f3">
-         <font>
-            <Font name="Microsoft Tai Le" size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="908.0" layoutY="661.0" mnemonicParsing="false" onAction="#AddEvent" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Add Event" />
-      <TextField id="tfUsername" fx:id="tfEventName" layoutX="473.0" layoutY="317.0" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #ffffff; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <HBox layoutX="300.0" layoutY="66.0" prefHeight="100.0" prefWidth="780.0">
-         <children>
-            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Add Event">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="1.0" right="1.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#GoToEditEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Modify Event">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="1.0" right="1.0" />
-               </HBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#GoToDeleteEvent" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #3694de;" text="Delete Event">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="1.0" right="1.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <Label layoutX="339.0" layoutY="317.0" prefHeight="42.0" prefWidth="134.0" text="Name" textFill="#a0a2ab">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField id="tfUsername" fx:id="tfEventPlace" layoutX="473.0" layoutY="433.0" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #ffffff; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-      <Label layoutX="339.0" layoutY="433.0" prefHeight="42.0" prefWidth="134.0" text="Place" textFill="#a0a2ab">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-
-      <TextField id="tfUsername" fx:id="tfEventDate" layoutX="473.0" layoutY="377.0" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #ffffff; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab;">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </TextField>
-
-
-      <Label layoutX="339.0" layoutY="377.0" prefHeight="42.0" prefWidth="134.0" text="Date" textFill="#a0a2ab">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-
-
-      <DatePicker fx:id="dpEventDate" layoutX="471.0" layoutY="376.0" prefHeight="42.0" prefWidth="273.0" />
-      <HBox fx:id="hbox" layoutX="746.0" layoutY="166.0" prefHeight="100.0" prefWidth="200.0" />
-
    </children>
 </AnchorPane>

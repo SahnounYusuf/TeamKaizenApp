@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import com.jfoenix.controls.JFXDatePicker;
+import com.jfoenix.controls.JFXTimePicker;
 import entities.Event;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Window;
 import services.EvtService;
 import utils.Statics;
@@ -34,6 +38,8 @@ public class DetailsEventFXMLController implements Initializable {
     private TextField tfDate;
     @FXML
     private TextField tfPlace;
+    @FXML
+    private FlowPane myPane;
 
     Event e = Statics.getSelectedEvent();
 
@@ -46,6 +52,15 @@ public class DetailsEventFXMLController implements Initializable {
         tfEvent_name.setText(e.getEvent_name());
         tfDate.setText(e.getDate());
         tfPlace.setText(e.getPlace());
+
+        JFXDatePicker datePickerFX = new JFXDatePicker();
+
+        myPane.getChildren().add(datePickerFX);
+        datePickerFX.setPromptText("pick a date");
+        JFXTimePicker blueDatePicker = new JFXTimePicker();
+        blueDatePicker.setDefaultColor(Color.valueOf("#3f51b5"));
+        blueDatePicker.setOverLay(true);
+        myPane.getChildren().add(blueDatePicker);
     }
 
     @FXML
@@ -61,7 +76,7 @@ public class DetailsEventFXMLController implements Initializable {
             EvtService es = new EvtService();
             es.modifierEvent(e.getId(), e1);
             showAlert(Alert.AlertType.INFORMATION, owner, "Form Confirmation!",
-                        "Event Modified.");
+                    "Event Modified.");
         } catch (SQLException ex) {
             System.out.println(e);
         }

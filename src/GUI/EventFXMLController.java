@@ -101,9 +101,16 @@ public class EventFXMLController implements Initializable {
     @FXML
     private void GoToSettings(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
+            if (user.getRole().equals("user")) {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsUserFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            } else {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            }
+
         } catch (IOException ex) {
             System.out.println(ex);
         }
