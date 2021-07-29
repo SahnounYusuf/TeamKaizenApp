@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.SettingsUserFXMLController">
+    <children>
+      <Pane layoutX="275.0" prefHeight="299.0" prefWidth="805.0" style="-fx-border-radius: 35;" styleClass="blue-panel" stylesheets="@stylesheet.css">
+         <children>
+            <Ellipse fill="WHITE" layoutX="181.0" layoutY="394.0" radiusX="713.0" radiusY="344.0" rotate="5.4" stroke="WHITE" strokeType="INSIDE" />
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="325.0" prefHeight="322.0" prefWidth="767.0" style="-fx-border-radius: 15pt;" styleClass="textfld" stylesheets="@stylesheet.css">
+               <children>
+                  <TextField fx:id="reportTextArea" alignment="TOP_LEFT" prefHeight="289.0" prefWidth="739.0" promptText="Write your report..." style="-fx-background-radius: 35;" styleClass="txtInputWhite" />
+               </children>
+            </HBox>
+            <JFXButton layoutX="14.0" layoutY="660.0" onAction="#SendReport" prefHeight="42.0" prefWidth="279.0" styleClass="buttonBlue" text="Send Report">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="264.0" prefHeight="42.0" prefWidth="450.0" style="-fx-border-radius: 35pt;" styleClass="textfld" stylesheets="@stylesheet.css">
+               <children>
+                  <TextField fx:id="tfSubject" prefHeight="42.0" prefWidth="400.0" promptText="Subject" style="-fx-background-radius: 35;" styleClass="txtInputWhite" stylesheets="@stylesheet.css">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label layoutX="14.0" layoutY="86.0" prefHeight="35.0" prefWidth="383.0" text="Send Feedback" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="162.0" prefHeight="35.0" prefWidth="607.0" text="Just provide us with the necessary information about what’s bothering you" textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="193.0" prefHeight="35.0" prefWidth="427.0" text="And we’ll handle the rest." textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="130.0" prefHeight="35.0" prefWidth="383.0" text="To help improve our community " textFill="#a0a2ab">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="275.0" style="-fx-background-color: #0C2D48;">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Kaizen Team" textAlignment="CENTER" textFill="#2196f3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="App" textAlignment="CENTER" textFill="#a0a2ab">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lbWelcome" alignment="CENTER" contentDisplay="TOP" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="229.0" styleClass="user-label" text="Label" textFill="#b9b9b9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <Circle fx:id="userAvatar" fill="DODGERBLUE" radius="45.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: DODGERBLUE;" />
+               </graphic>
+            </Label>
+            <JFXButton alignment="BASELINE_LEFT" onAction="#GoToNewsFeed" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="News Feed">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FILE_ALT" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" onAction="#GoToRent" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Rent">
+               <graphic>
+                  <FontAwesomeIconView glyphName="MONEY" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="223.0" onAction="#GoToVelo" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Bicycle">
+               <graphic>
+                  <FontAwesomeIconView glyphName="BICYCLE" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" onAction="#GoToPiece" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Piece">
+               <graphic>
+                  <FontAwesomeIconView glyphName="WRENCH" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="223.0" onAction="#GoToEvent" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Events">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CALENDAR" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="276.0" onAction="#GoToSettings" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Settings">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SLIDERS" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="435.0" onAction="#SignOut" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Sign Out">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SIGN_OUT" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+</AnchorPane>

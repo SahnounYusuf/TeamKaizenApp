@@ -5,15 +5,20 @@
  */
 package GUI;
 
+import entities.User;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
+import utils.Statics;
 
 /**
  * FXML Controller class
@@ -21,6 +26,8 @@ import javafx.scene.input.MouseEvent;
  * @author Sahnoun Yusuf
  */
 public class VeloModifyFXMLController implements Initializable {
+
+    User user = Statics.getCurrentUser();
 
     @FXML
     private Label lbWelcome;
@@ -47,8 +54,7 @@ public class VeloModifyFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-
+    }
 
     @FXML
     private void GoToNewsFeed(ActionEvent event) {
@@ -64,6 +70,20 @@ public class VeloModifyFXMLController implements Initializable {
 
     @FXML
     private void GoToSettings(ActionEvent event) {
+        try {
+            if (user.getRole().equals("user")) {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsUserFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            } else {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+
     }
 
     @FXML
@@ -93,5 +113,5 @@ public class VeloModifyFXMLController implements Initializable {
     @FXML
     private void SignOut(ActionEvent event) {
     }
-    
+
 }

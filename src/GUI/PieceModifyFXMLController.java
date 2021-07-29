@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import entities.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import utils.Statics;
 
 /**
  * FXML Controller class
@@ -36,6 +38,8 @@ public class PieceModifyFXMLController implements Initializable {
     private TextField tfDate;
     @FXML
     private TextField tfPhone;
+    
+    User user = Statics.getCurrentUser();
 
     /**
      * Initializes the controller class.
@@ -114,9 +118,16 @@ public class PieceModifyFXMLController implements Initializable {
     @FXML
     private void GoToSettings(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
+            if (user.getRole().equals("user")) {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsUserFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            } else {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            }
+
         } catch (IOException ex) {
             System.out.println(ex);
         }

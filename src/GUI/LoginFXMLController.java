@@ -31,7 +31,7 @@ import utils.Statics;
  * @author Sahnoun Yusuf
  */
 public class LoginFXMLController implements Initializable {
-    
+
     private static User currentUser;
 
     @FXML
@@ -98,15 +98,16 @@ public class LoginFXMLController implements Initializable {
                 UserServices us = new UserServices();
                 LogService ls = new LogService();
                 ls.addUserLog(us.retriveUserById(id));
-                
+
                 Statics.setCurrentUser(us.retriveUserById(id));
                 System.out.println(Statics.getCurrentUser());
-                
+
                 FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
-                
+
                 Parent parent = root.load();
 
                 tfPassword.getScene().setRoot(parent);
+
             }
         } catch (SQLException | IOException ex) {
             System.out.println(ex);

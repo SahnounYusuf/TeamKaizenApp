@@ -9,14 +9,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
 import services.MailService;
 import services.SmsService;
 
@@ -26,12 +26,9 @@ import services.SmsService;
  * @author Sahnoun Yusuf
  */
 public class ForgetPasswordFXMLController implements Initializable {
-    
+
     @FXML
-    private TextField tfEmail;
-    
-    @FXML
-    private TextField tfSms;
+    private TextField tfEmailPhone;
 
     /**
      * Initializes the controller class.
@@ -39,38 +36,54 @@ public class ForgetPasswordFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-    @FXML
+    }
+
     private void BackToLogin(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
             Parent parent = root.load();
-            tfEmail.getScene().setRoot(parent);
+            tfEmailPhone.getScene().setRoot(parent);
         } catch (IOException ex) {
             System.out.println(ex);
         }
     }
-    
+
     @FXML
-    private void SendEmail(ActionEvent event) {
+    private void SendPassword(ActionEvent event) {
+        Window owner = tfEmailPhone.getScene().getWindow();
         try {
-            MailService es = new MailService(tfEmail.getText());
-//            es.Mai(tfEmail.getText(), "just a test");
-        } catch (Exception ex) {
+            if (tfEmailPhone.getText().length() == 8) {
+                SmsService ss = new SmsService();
+                ss.SendPassword(tfEmailPhone.getText());
+                showAlert(Alert.AlertType.INFORMATION, owner, "Success", "An SMS has been send to your phone number.");
+            } else {
+                MailService es = new MailService();
+                es.SendPassword(tfEmailPhone.getText());
+                showAlert(Alert.AlertType.INFORMATION, owner, "Success", "An Email has been send to you.");
+            }
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    
+
     @FXML
-    private void SendSMS(ActionEvent event) {
-        
+    private void GoToLogin(ActionEvent event) {
         try {
-            SmsService ss = new SmsService();
-            ss.SendPassword(tfSms.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(ForgetPasswordFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
+            Parent parent = root.load();
+            tfEmailPhone.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
         }
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
     
 }

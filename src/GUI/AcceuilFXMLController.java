@@ -57,8 +57,7 @@ public class AcceuilFXMLController implements Initializable {
                 BufferedImage imBuff = ImageIO.read(pic);
                 WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
                 userAvatar.setFill(new ImagePattern(image));
-            }
-            else{
+            } else {
                 InputStream photo = new FileInputStream(new File("images/user.png"));
                 BufferedImage imBuff = ImageIO.read(pic);
                 WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
@@ -128,9 +127,16 @@ public class AcceuilFXMLController implements Initializable {
     @FXML
     private void GoToSettings(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
+            if (user.getRole().equals("user")) {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsUserFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            } else {
+                FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
+                Parent parent = root.load();
+                lbWelcome.getScene().setRoot(parent);
+            }
+
         } catch (IOException ex) {
             System.out.println(ex);
         }
