@@ -43,7 +43,7 @@ public class PieceService {
 
     public void modifierPiece(int idp, Piece p) throws SQLException {
 
-        PreparedStatement pst = cnx.prepareStatement("UPDATE velo SET type=?, nom=?, description=?, prix=? WHERE idp= "+idp);
+        PreparedStatement pst = cnx.prepareStatement("UPDATE piece SET type=?, nom=?, description=?, prix=? WHERE idp= "+idp);
        
         pst.setString(1, p.getType());
         pst.setString(2, p.getNom());
