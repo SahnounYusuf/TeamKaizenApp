@@ -189,40 +189,87 @@
             </Button>
          </children>
       </HBox>
-      <Label layoutX="324.0" layoutY="300.0" prefHeight="40.0" prefWidth="173.0" text="Mark:" textFill="#b9b9b9">
+      <Label layoutX="300.0" layoutY="232.0" prefHeight="40.0" prefWidth="173.0" text="Model" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="400.0" prefHeight="40.0" prefWidth="173.0" text="Price" textFill="#b9b9b9">
+      <Label layoutX="300.0" layoutY="332.0" prefHeight="40.0" prefWidth="173.0" text="Size" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="350.0" prefHeight="40.0" prefWidth="173.0" text="Model: " textFill="#b9b9b9">
+      <Label layoutX="300.0" layoutY="282.0" prefHeight="40.0" prefWidth="173.0" text="Type" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="452.0" prefHeight="40.0" prefWidth="173.0" text="Description:" textFill="#b9b9b9">
+      <Label layoutX="650.0" layoutY="440.0" prefHeight="40.0" prefWidth="173.0" text="Description" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfMark" layoutX="515.0" layoutY="300.0" prefHeight="40.0" prefWidth="387.0" />
-      <TextField fx:id="tfModel" layoutX="515.0" layoutY="350.0" prefHeight="40.0" prefWidth="387.0" />
-      <TextField fx:id="tfPriceHour" layoutX="515.0" layoutY="400.0" prefHeight="40.0" prefWidth="387.0" />
-      <Button layoutX="718.0" layoutY="630.0" mnemonicParsing="false" onAction="#AddVelo" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: #3694de;" text="Add a post">
+      <TextField fx:id="tfModel" layoutX="419.0" layoutY="238.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfType" layoutX="419.0" layoutY="288.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfSize" layoutX="420.0" layoutY="338.0" prefHeight="40.0" prefWidth="192.0" />
+      <Button layoutX="718.0" layoutY="602.0" mnemonicParsing="false" onAction="#AddVelo" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: #3694de;" text="Add a post">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextArea fx:id="tfDesc" layoutX="515.0" layoutY="452.0" prefHeight="168.0" prefWidth="387.0" />
-      <Label layoutX="324.0" layoutY="249.0" prefHeight="40.0" prefWidth="173.0" text="ID:" textFill="#b9b9b9">
+      <TextArea fx:id="tfDesc" layoutX="793.0" layoutY="441.0" prefHeight="100.0" prefWidth="249.0" />
+      <Label layoutX="296.0" layoutY="181.0" prefHeight="40.0" prefWidth="173.0" text="Brand" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfIdv" layoutX="515.0" layoutY="249.0" prefHeight="40.0" prefWidth="387.0" />
+      <TextField fx:id="tfBrand" layoutX="419.0" layoutY="188.0" prefHeight="40.0" prefWidth="192.0" />
+      <Label layoutX="648.0" layoutY="236.0" prefHeight="40.0" prefWidth="173.0" text="Quantity" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="648.0" layoutY="336.0" prefHeight="40.0" prefWidth="173.0" text="Weight" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="648.0" layoutY="286.0" prefHeight="40.0" prefWidth="173.0" text="Color" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfQte" layoutX="821.0" layoutY="239.0" prefHeight="40.0" onKeyPressed="#webQ"  prefWidth="192.0" />
+      <TextField fx:id="tfColor" layoutX="821.0" layoutY="289.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfWheight" layoutX="821.0" layoutY="339.0" prefHeight="40.0" onKeyPressed="#webW" prefWidth="192.0" />
+      <Label layoutX="648.0" layoutY="185.0" prefHeight="40.0" prefWidth="173.0" text="NumberOfSpeed" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfSpeed" layoutX="821.0" layoutY="188.0" prefHeight="40.0" onKeyPressed="#webSpeed" prefWidth="192.0" />
+      <Label layoutX="300.0" layoutY="385.0" prefHeight="40.0" prefWidth="173.0" text="WheelSize" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfWheelSize" layoutX="419.0" layoutY="388.0" prefHeight="40.0" onKeyPressed="#webWheel" prefWidth="192.0" />
+      <Label layoutX="648.0" layoutY="389.0" prefHeight="40.0" prefWidth="173.0" text="Price" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfPrice" layoutX="821.0" layoutY="390.0" prefHeight="40.0" onKeyPressed="#webPrice" prefWidth="192.0" />
+      <Label layoutX="300.0" layoutY="440.0" prefHeight="40.0" prefWidth="173.0" text="BrakingType" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfBreak" layoutX="419.0" layoutY="439.0" prefHeight="40.0" prefWidth="192.0" />
+      <Button layoutX="754.0" layoutY="653.0" mnemonicParsing="false" onAction="#ClearFields" text="Clear Fields">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ package utils;
 
 import entities.Event;
 import entities.User;
+import entities.Velo;
 
 /**
  *
@@ -19,6 +20,15 @@ public class Statics {
     public static User newUser;
     public static int verificationCode;
     public static String ImagePath;
+    public static Velo selectedVelo;
+
+    public static Velo getSelectedVelo() {
+        return selectedVelo;
+    }
+
+    public static void setSelectedVelo(Velo selectedVelo) {
+        Statics.selectedVelo = selectedVelo;
+    }
 
     public static String getImagePath() {
         return ImagePath;
