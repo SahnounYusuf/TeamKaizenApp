@@ -21,6 +21,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import services.LoginService;
 import javafx.stage.Window;
+import services.LogService;
 import services.UserServices;
 import utils.Statics;
 
@@ -48,11 +49,7 @@ public class LoginFXMLController implements Initializable {
     private void SignUpClicked(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./RegisterFXML.fxml"));
-
             Parent parent = root.load();
-
-            RegisterFXMLController apc = root.getController();
-
             tfUsername.getScene().setRoot(parent);
         } catch (IOException ex) {
             System.out.println(ex);
@@ -61,7 +58,13 @@ public class LoginFXMLController implements Initializable {
 
     @FXML
     private void ForgetPasswordClicked(ActionEvent event) {
-        System.out.println("Dude how can you forget your password!!!");
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./ForgetPasswordFXML.fxml"));
+            Parent parent = root.load();
+            tfUsername.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
     }
 
     @FXML
@@ -93,6 +96,9 @@ public class LoginFXMLController implements Initializable {
                 infoBox("Please enter correct Email and Password", null, "Failed");
             } else {
                 UserServices us = new UserServices();
+                LogService ls = new LogService();
+                ls.addUserLog(us.retriveUserById(id));
+                
                 Statics.setCurrentUser(us.retriveUserById(id));
                 System.out.println(Statics.getCurrentUser());
                 

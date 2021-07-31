@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import static GUI.LoginFXMLController.infoBox;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
@@ -19,13 +20,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
 import services.UserServices;
 import utils.Statics;
 
@@ -40,8 +42,7 @@ public class SettingsFXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
-    @FXML
-    private TableColumn<?, ?> id_col;
+   
     @FXML
     private TableColumn<?, ?> nom_col;
     @FXML
@@ -66,7 +67,7 @@ public class SettingsFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lbWelcome.setText("Welcome " + user.getPrenom() + " " + user.getNom());
+        lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
         InitTableUser();
     }
@@ -99,7 +100,7 @@ public class SettingsFXMLController implements Initializable {
 
         try {
             userlist = (ObservableList<User>) us.retriveAllUsersFroFX();
-            id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
+            
             nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
             prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
             email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -116,7 +117,7 @@ public class SettingsFXMLController implements Initializable {
     private void search(ActionEvent event) {
         String x = searchBar.getText();
         userlist = (ObservableList<User>) us.SearchUser(Integer.parseInt(x));
-        id_col.setCellValueFactory(new PropertyValueFactory<>("id"));
+       
         nom_col.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenom_col.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         email_col.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -151,6 +152,96 @@ public class SettingsFXMLController implements Initializable {
             } catch (SQLException ex) {
                 Logger.getLogger(SettingsFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+
+    @FXML
+    private void MakeAdmin(ActionEvent event) {
+        User u = UserTable.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            boolean flag = us.makeAdmin(u.getId(), u);
+            InitTableUser();
+            if (!flag) {
+                infoBox("Operation can't be made!", null, "Failed");
+            }
+        }
+    }
+
+    @FXML
+    private void MakeUser(ActionEvent event) {
+
+        User u = UserTable.getSelectionModel().getSelectedItem();
+        if (!u.equals(null)) {
+            boolean flag = us.makeUser(u.getId(), u);
+            InitTableUser();
+            if (!flag) {
+                infoBox("Operation can't be made!", null, "Failed");
+            }
+        }
+
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
+    @FXML
+    private void GoToLog(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./LogSettingsFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToVelo(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToPiece(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @FXML
+    private void GoToEvent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AddEventFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
         }
     }
 }

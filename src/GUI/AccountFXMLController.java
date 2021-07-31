@@ -9,7 +9,6 @@ import static GUI.LoginFXMLController.infoBox;
 import entities.User;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +19,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
-import services.LoginService;
 import services.UserServices;
 import utils.Statics;
 
@@ -50,6 +48,10 @@ public class AccountFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        tfEmail.setText(user.getEmail());
+        tfPhone.setText(Integer.toString(user.getPhone()));
+        tfPrenom.setText(user.getPrenom());
+        tfNom.setText(user.getNom());
     }    
 
     @FXML

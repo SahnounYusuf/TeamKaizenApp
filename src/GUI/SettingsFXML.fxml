@@ -42,7 +42,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#OpenAccountInfo" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9">
+            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#OpenAccountInfo" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9" underline="true">
                <VBox.margin>
                   <Insets left="40.0" />
                </VBox.margin>
@@ -58,7 +58,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#GoToRent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -66,7 +66,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle " textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#GoToVelo" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle " textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -74,7 +74,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy Pieces" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#GoToPiece" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy Pieces" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -82,7 +82,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events" textFill="WHITE">
+            <Button mnemonicParsing="false" onAction="#GoToEvent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -90,7 +90,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Settings" textFill="WHITE">
+            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Settings" textFill="WHITE">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -118,9 +118,8 @@
             <Font name="Microsoft Tai Le" size="24.0" />
          </font>
       </Label>
-      <TableView fx:id="UserTable" layoutX="319.0" layoutY="221.0" onSort="#InitTableUser" prefHeight="374.0" prefWidth="748.0">
+      <TableView fx:id="UserTable" layoutX="316.0" layoutY="283.0" onSort="#InitTableUser" prefHeight="374.0" prefWidth="748.0">
         <columns>
-          <TableColumn fx:id="id_col" prefWidth="85.0" text="id" />
           <TableColumn fx:id="nom_col" prefWidth="104.0" text="First Name" />
             <TableColumn fx:id="prenom_col" prefWidth="121.0" text="Last Name" />
             <TableColumn fx:id="email_col" prefWidth="145.0" text="Email" />
@@ -128,12 +127,34 @@
             <TableColumn fx:id="role_col" prefWidth="161.0" text="Role" />
         </columns>
       </TableView>
-      <TextField id="tfUsername" fx:id="searchBar" layoutX="319.0" layoutY="89.0" onAction="#search" prefHeight="42.0" prefWidth="273.0" promptText=" Search" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
+      <TextField id="tfUsername" fx:id="searchBar" layoutX="316.0" layoutY="161.0" onAction="#search" prefHeight="42.0" prefWidth="273.0" promptText=" Search" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-color: #a0a2ab; -fx-border-style: hidden hidden solid hidden;">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <ComboBox layoutX="319.0" layoutY="152.0" onAction="#Sort" prefHeight="42.0" prefWidth="273.0" promptText="Sort By" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-style: hidden hidden solid hidden; -fx-border-color: #a0a2ab;" />
-      <Button layoutX="908.0" layoutY="608.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete User" />
+      <ComboBox layoutX="316.0" layoutY="224.0" onAction="#Sort" prefHeight="42.0" prefWidth="273.0" promptText="Sort By" style="-fx-background-color: #24425a; -fx-text-fill: #a0a2ab; -fx-border-style: hidden hidden solid hidden; -fx-border-color: #a0a2ab;" />
+      <Button layoutX="908.0" layoutY="671.0" mnemonicParsing="false" onAction="#DeleteUser" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete User" />
+      <Button layoutX="726.0" layoutY="671.0" mnemonicParsing="false" onAction="#MakeAdmin" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Change to Admin" />
+      <Button layoutX="540.0" layoutY="671.0" mnemonicParsing="false" onAction="#MakeUser" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Change to User" />
+      <HBox layoutX="300.0" layoutY="95.0" prefHeight="66.0" prefWidth="780.0">
+         <children>
+            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de; -fx-border-radius: 0;" text="User Control">
+               <HBox.margin>
+                  <Insets left="1.0" right="1.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToLog" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Log History">
+               <HBox.margin>
+                  <Insets left="1.0" right="1.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

@@ -18,9 +18,9 @@ public class MaConnection {
 //    final String URL = "jdbc:mysql://51.89.167.87:4002/test";
 //    final String LOGIN = "elife";
 //    final String PASSWORD = "elife";
-    final String URL = "jdbc:mysql://127.0.0.1/pidev";
-    final String LOGIN = "root";
-    final String PASSWORD = "";
+    final String URL = "jdbc:mysql://193.70.2.35:41063/pidev";
+    final String LOGIN = "yassine";
+    final String PASSWORD = "yassine";
     private Connection cnx;
     private static MaConnection instance; //to return a single connection per app
 

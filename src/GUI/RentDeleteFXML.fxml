@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #24425a;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RentDeleteFXMLController">
+    <children>
+      <VBox prefHeight="720.0" prefWidth="300.0" style="-fx-background-color: #0C2D48;">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Kaizen Team" textAlignment="CENTER" textFill="#2196f3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="55.0" top="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="App" textAlignment="CENTER" textFill="#a0a2ab">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" top="40.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#OpenAccountInfo" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9" underline="true">
+               <VBox.margin>
+                  <Insets left="40.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="8.0" layoutY="200.0" mnemonicParsing="false" onAction="#GoToNewsFeed" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="News Feed" textFill="WHITE">
+               <VBox.margin>
+                  <Insets bottom="20.0" top="60.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent" textFill="WHITE">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToVelo" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle " textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToPiece" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy Pieces" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToEvents" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToSettings" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Settings" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#Signout" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Sign Out" textFill="WHITE">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="1.0" prefHeight="66.0" prefWidth="780.0" text="Rent" textAlignment="CENTER" textFill="#2196f3">
+         <font>
+            <Font name="Microsoft Tai Le" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="RentTable" layoutX="318.0" layoutY="286.0" onSort="#InitTableRent" prefHeight="374.0" prefWidth="748.0">
+         <columns>
+            <TableColumn fx:id="idv_col" prefWidth="75.0" text="idv" />
+            <TableColumn fx:id="idu_col" prefWidth="75.0" text="idu" />
+            <TableColumn fx:id="marque_col" prefWidth="75.0" text="marque" />
+            <TableColumn fx:id="model_col" prefWidth="98.0" text="model" />
+            <TableColumn fx:id="prix_per_hour_col" prefWidth="141.0" text="prix_per_hour" />
+            <TableColumn fx:id="date_disponibility" prefWidth="163.0" text="date_disponibility" />
+            <TableColumn fx:id="col_phone" prefWidth="120.0" text="phone" />
+         </columns>
+      </TableView>
+      <Button layoutX="906.0" layoutY="671.0" mnemonicParsing="false" onAction="#DeleteRent" prefHeight="35.0" prefWidth="158.0" style="-fx-background-color: #3694de;" text="Delete" />
+      <HBox layoutX="300.0" layoutY="67.0" prefHeight="66.0" prefWidth="780.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#GoToPost" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de; -fx-border-radius: 0;" text="Post an offer">
+               <HBox.margin>
+                  <Insets left="1.0" right="1.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#GoToEdit" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Edit Offer">
+               <HBox.margin>
+                  <Insets left="1.0" right="1.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="390.0" style="-fx-background-color: #3694de;" text="Delete Offer">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

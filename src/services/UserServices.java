@@ -14,9 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import utils.MaConnection;
 import entities.User;
-import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -32,24 +29,28 @@ public class UserServices {
         cnx = MaConnection.getInstance().getCnx();
     }
 
-    public void addUser(User u) throws SQLException {
-        u.setRole("user");
-        String req = "INSERT INTO user (id, nom, prenom, email, phone, password, role) VALUES "
-                + "('" + u.getId() + "', '" + u.getNom() + "', '" + u.getPrenom() + "', '" + u.getEmail()
-                + "', '" + u.getPhone() + "', '" + u.getPassword() + "', '" + u.getRole()+ "');";
+    public boolean addUser(User u) {
+        try {
+            u.setRole("user");
+            String req = "INSERT INTO user (id, nom, prenom, email, phone, password, role) VALUES "
+                    + "('" + u.getId() + "', '" + u.getNom() + "', '" + u.getPrenom() + "', '" + u.getEmail()
+                    + "', '" + u.getPhone() + "', '" + u.getPassword() + "', '" + u.getRole() + "');";
 
-        Statement ste = cnx.createStatement();
-
-        ste.executeUpdate(req);
-        System.out.println("User added!");
-
+            Statement ste = cnx.createStatement();
+            ste.executeUpdate(req);
+            System.out.println("User added!");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
     }
 
     public boolean modifyUser(int id, User u) {
 
         try {
             PreparedStatement pst = cnx.prepareStatement("UPDATE user SET nom=?, prenom=?, email=?, phone=?, password=? WHERE id= " + id);
-            
+
             pst.setString(1, u.getNom());
             pst.setString(2, u.getPrenom());
             pst.setString(3, u.getEmail());
@@ -59,7 +60,7 @@ public class UserServices {
             System.out.println("User modified!");
             return true;
         } catch (SQLException ex) {
-            Logger.getLogger(UserServices.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
         return false;
     }
@@ -74,7 +75,6 @@ public class UserServices {
             System.out.println("User Deleted!");
             return true;
         }
-
         return false;
     }
 
@@ -105,6 +105,7 @@ public class UserServices {
 
         return users;
     }
+
     public ObservableList<User> retriveAllUsersFroFX() throws SQLException {
         ObservableList users = FXCollections.observableArrayList();
 
@@ -127,9 +128,7 @@ public class UserServices {
             u.setRole(rs.getString("role"));
 
             users.add(u);
-
         }
-
         return users;
     }
 
@@ -158,7 +157,7 @@ public class UserServices {
         System.out.println("User with ID: " + id);
         return user;
     }
-    
+
     public ObservableList<User> SearchUser(int id) {
 
         ObservableList list = FXCollections.observableArrayList();
@@ -187,4 +186,69 @@ public class UserServices {
         return list;
     }
 
+    public boolean makeAdmin(int id, User u) {
+
+        if (u.getRole().equals("SuperAdmin")) {
+            return false;
+        }
+
+        try {
+            PreparedStatement pst = cnx.prepareStatement("UPDATE user SET role=? WHERE id= " + id);
+            u.setRole("admin");
+            pst.setString(1, u.getRole());
+            pst.executeUpdate();
+            System.out.println("Admin created!");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
+    }
+
+    public boolean makeUser(int id, User u) {
+
+        if (u.getRole().equals("SuperAdmin")) {
+            return false;
+        }
+        try {
+            PreparedStatement pst = cnx.prepareStatement("UPDATE user SET role=? WHERE id= " + id);
+            u.setRole("user");
+            pst.setString(1, u.getRole());
+            pst.executeUpdate();
+            System.out.println("User modified!");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return false;
+    }
+
+    public String retriveUserPasswordByEmail(String email) throws SQLException {
+        String password = "";
+
+        String sql = "SELECT password FROM user WHERE email = '" + email + "'";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            password = rs.getString("password");
+        }
+        return password;
+    }
+    public String retriveUserPasswordByPhone(String phone) throws SQLException {
+        String password = "";
+
+        String sql = "SELECT password FROM user WHERE phone = '" + phone + "'";
+
+        Statement ste = cnx.createStatement();
+
+        ResultSet rs = ste.executeQuery(sql);
+
+        while (rs.next()) {
+            password = rs.getString("password");
+        }
+        return password;
+    }
 }
