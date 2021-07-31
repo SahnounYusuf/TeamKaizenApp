@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #24425a;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VeloFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1080.0" styleClass="dark-panel" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.VeloFXMLController">
    <children>
-      <VBox prefHeight="720.0" prefWidth="300.0" style="-fx-background-color: #0C2D48;">
+      <VBox alignment="CENTER" prefHeight="720.0" prefWidth="275.0" style="-fx-background-color: #0C2D48;">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Label text="Kaizen Team" textAlignment="CENTER" textFill="#2196f3">
                      <font>
                         <Font size="24.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="55.0" top="40.0" />
+                        <Insets right="5.0" />
                      </HBox.margin>
                   </Label>
                   <Label text="App" textAlignment="CENTER" textFill="#a0a2ab">
@@ -29,7 +33,7 @@
                         <Font size="24.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="5.0" top="40.0" />
+                        <Insets />
                      </HBox.margin>
                   </Label>
                </children>
@@ -37,73 +41,122 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
             </HBox>
-            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#OpenAccountInfo" prefHeight="40.0" prefWidth="220.0" text="Label" textFill="#b9b9b9" underline="true">
-               <VBox.margin>
-                  <Insets left="40.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Button layoutX="8.0" layoutY="200.0" mnemonicParsing="false" onAction="#GoToNewsFeed" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="News Feed" textFill="WHITE">
-               <VBox.margin>
-                  <Insets bottom="20.0" top="60.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#GoToRent" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Rent" textFill="WHITE">
+            <Label fx:id="lbWelcome" alignment="CENTER" onMouseClicked="#GoToInfo" prefHeight="40.0" prefWidth="229.0" text="Label" textFill="#b9b9b9" underline="true">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
-            <Button blendMode="HARD_LIGHT" mnemonicParsing="false" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy bicycle " textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <JFXButton alignment="BASELINE_LEFT" onAction="#GoToNewsFeed" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="News Feed">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FILE_ALT" size="0.8cm" styleClass="icons" />
+               </graphic>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="25.0" />
                </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#GoToPiece" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Buy Pieces" textFill="WHITE">
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" onAction="#GoToRent" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Rent">
+               <graphic>
+                  <FontAwesomeIconView glyphName="MONEY" size="0.8cm" styleClass="icons" />
+               </graphic>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="25.0" />
                </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#GoToEvents" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Events" textFill="WHITE">
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="223.0" onAction="#GoToVelo" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Bicycle">
+               <graphic>
+                  <FontAwesomeIconView glyphName="BICYCLE" size="0.8cm" styleClass="icons" />
+               </graphic>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="25.0" />
                </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#GoToSettings" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Settings" textFill="WHITE">
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="170.0" onAction="#GoToPiece" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Piece">
+               <graphic>
+                  <FontAwesomeIconView glyphName="WRENCH" size="0.8cm" styleClass="icons" />
+               </graphic>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="25.0" />
                </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#Signout" prefHeight="50.0" prefWidth="340.0" style="-fx-background-color: #2196f3;" text="Sign Out" textFill="WHITE">
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="223.0" onAction="#GoToEvent" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Events">
+               <graphic>
+                  <FontAwesomeIconView glyphName="CALENDAR" size="0.8cm" styleClass="icons" />
+               </graphic>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="25.0" />
                </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font>
-            </Button>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="276.0" onAction="#GoToSettings" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Settings">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SLIDERS" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton alignment="BASELINE_LEFT" layoutX="10.0" layoutY="435.0" onAction="#SignOut" prefHeight="53.0" prefWidth="300.0" styleClass="main-btns" text="Sign Out">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SIGN_OUT" size="0.8cm" styleClass="icons" />
+               </graphic>
+               <VBox.margin>
+                  <Insets top="25.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
          </children>
       </VBox>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="1.0" prefHeight="66.0" prefWidth="780.0" text="Bicycle" textAlignment="CENTER" textFill="#2196f3">
@@ -136,40 +189,87 @@
             </Button>
          </children>
       </HBox>
-      <Label layoutX="324.0" layoutY="300.0" prefHeight="40.0" prefWidth="173.0" text="Mark:" textFill="#b9b9b9">
+      <Label layoutX="300.0" layoutY="232.0" prefHeight="40.0" prefWidth="173.0" text="Model" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="400.0" prefHeight="40.0" prefWidth="173.0" text="Price" textFill="#b9b9b9">
+      <Label layoutX="300.0" layoutY="332.0" prefHeight="40.0" prefWidth="173.0" text="Size" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="350.0" prefHeight="40.0" prefWidth="173.0" text="Model: " textFill="#b9b9b9">
+      <Label layoutX="300.0" layoutY="282.0" prefHeight="40.0" prefWidth="173.0" text="Type" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="324.0" layoutY="452.0" prefHeight="40.0" prefWidth="173.0" text="Description:" textFill="#b9b9b9">
+      <Label layoutX="650.0" layoutY="440.0" prefHeight="40.0" prefWidth="173.0" text="Description" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfMark" layoutX="515.0" layoutY="300.0" prefHeight="40.0" prefWidth="387.0" />
-      <TextField fx:id="tfModel" layoutX="515.0" layoutY="350.0" prefHeight="40.0" prefWidth="387.0" />
-      <TextField fx:id="tfPriceHour" layoutX="515.0" layoutY="400.0" prefHeight="40.0" prefWidth="387.0" />
-      <Button layoutX="718.0" layoutY="630.0" mnemonicParsing="false" onAction="#AddVelo" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: #3694de;" text="Add a post">
+      <TextField fx:id="tfModel" layoutX="419.0" layoutY="238.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfType" layoutX="419.0" layoutY="288.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfSize" layoutX="420.0" layoutY="338.0" prefHeight="40.0" prefWidth="192.0" />
+      <Button layoutX="718.0" layoutY="602.0" mnemonicParsing="false" onAction="#AddVelo" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: #3694de;" text="Add a post">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextArea fx:id="tfDesc" layoutX="515.0" layoutY="452.0" prefHeight="168.0" prefWidth="387.0" />
-      <Label layoutX="324.0" layoutY="249.0" prefHeight="40.0" prefWidth="173.0" text="ID:" textFill="#b9b9b9">
+      <TextArea fx:id="tfDesc" layoutX="793.0" layoutY="441.0" prefHeight="100.0" prefWidth="249.0" />
+      <Label layoutX="296.0" layoutY="181.0" prefHeight="40.0" prefWidth="173.0" text="Brand" textFill="#b9b9b9">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="tfIdv" layoutX="515.0" layoutY="249.0" prefHeight="40.0" prefWidth="387.0" />
+      <TextField fx:id="tfBrand" layoutX="419.0" layoutY="188.0" prefHeight="40.0" prefWidth="192.0" />
+      <Label layoutX="648.0" layoutY="236.0" prefHeight="40.0" prefWidth="173.0" text="Quantity" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="648.0" layoutY="336.0" prefHeight="40.0" prefWidth="173.0" text="Weight" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="648.0" layoutY="286.0" prefHeight="40.0" prefWidth="173.0" text="Color" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfQte" layoutX="821.0" layoutY="239.0" prefHeight="40.0" onKeyPressed="#webQ"  prefWidth="192.0" />
+      <TextField fx:id="tfColor" layoutX="821.0" layoutY="289.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfWheight" layoutX="821.0" layoutY="339.0" prefHeight="40.0" onKeyPressed="#webW" prefWidth="192.0" />
+      <Label layoutX="648.0" layoutY="185.0" prefHeight="40.0" prefWidth="173.0" text="NumberOfSpeed" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfSpeed" layoutX="821.0" layoutY="188.0" prefHeight="40.0" onKeyPressed="#webSpeed" prefWidth="192.0" />
+      <Label layoutX="300.0" layoutY="385.0" prefHeight="40.0" prefWidth="173.0" text="WheelSize" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfWheelSize" layoutX="419.0" layoutY="388.0" prefHeight="40.0" onKeyPressed="#webWheel" prefWidth="192.0" />
+      <Label layoutX="648.0" layoutY="389.0" prefHeight="40.0" prefWidth="173.0" text="Price" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfPrice" layoutX="821.0" layoutY="390.0" prefHeight="40.0" onKeyPressed="#webPrice" prefWidth="192.0" />
+      <Label layoutX="300.0" layoutY="440.0" prefHeight="40.0" prefWidth="173.0" text="BrakingType" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfBreak" layoutX="419.0" layoutY="439.0" prefHeight="40.0" prefWidth="192.0" />
+      <Button layoutX="754.0" layoutY="653.0" mnemonicParsing="false" onAction="#ClearFields" text="Clear Fields">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

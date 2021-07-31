@@ -21,12 +21,12 @@ public class MainTestVelo {
 
             ServicesVelo sv = new ServicesVelo();
 
-            Velo p1 = new Velo( "vtt", "2020", 900f);
-            Velo p2 = new Velo( "btwin", "2021", 800f);
+//            Velo p1 = new Velo( "vtt", "2020", 900f);
+//            Velo p2 = new Velo( "btwin", "2021", 800f);
 
             // to add users to database
-            sv.ajouterVelo(p1);
-            sv.ajouterVelo(p2);
+//            sv.ajouterVelo(p1);
+//            sv.ajouterVelo(p2);
             // to delete velo from database
 //            sv.supprimerVelo(1);
             // to modify a velo

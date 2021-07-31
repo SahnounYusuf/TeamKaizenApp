@@ -18,57 +18,76 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
 import services.ServicesVelo;
 import utils.Statics;
 
 /**
  * FXML Controller class
  *
- * @author Sahnoun Yusuf
+ * @author Mohamed
  */
 public class VeloDeleteFXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
     @FXML
-    private TableView<Velo> RentTable;
+    private TableView<Velo> VeloTable;
     @FXML
-    private TableColumn<?, ?> col_idv;
+    private TableColumn<?, ?> id_col;
     @FXML
-    private TableColumn<?, ?> col_idu;
+    private TableColumn<?, ?> brand_col;
     @FXML
-    private TableColumn<?, ?> col_mark;
+    private TableColumn<?, ?> model_col;
     @FXML
-    private TableColumn<?, ?> col_model;
+    private TableColumn<?, ?> type_col;
     @FXML
-    private TableColumn<?, ?> col_desc;
+    private TableColumn<?, ?> quantity_col;
     @FXML
-    private TableColumn<?, ?> col_price;
-    
-    User user = Statics.getCurrentUser();
-    
-    ServicesVelo sv = new ServicesVelo();
+    private TableColumn<?, ?> price_col;
+    ServicesVelo es = new ServicesVelo();
 
-    ObservableList<ServicesVelo> velolist = FXCollections.observableArrayList();
+    ObservableList<Velo> velolist = FXCollections.observableArrayList();
+
+    Velo velo = new Velo();
+
+    User user = Statics.getCurrentUser();
+    @FXML
+    private TableColumn<?, ?> size_col;
+    @FXML
+    private TableColumn<?, ?> wheelsize_col;
+    @FXML
+    private TableColumn<?, ?> Brakingtype_col;
+    @FXML
+    private TableColumn<?, ?> numberofspeed_col;
+    @FXML
+    private TableColumn<?, ?> color_col;
+    @FXML
+    private TableColumn<?, ?> weight_col;
+    @FXML
+    private TableColumn<?, ?> description_col;
 
     /**
      * Initializes the controller class.
+     *
+     * @param url
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         lbWelcome.setText("User: " + user.getPrenom() + " " + user.getNom());
         System.out.println("the user is: " + user);
-        InitTableRent();
-    }    
+        InitTableVelo();
+        // TODO
+    }
 
     @FXML
-    private void OpenAccountInfo(MouseEvent event) {
+    private void GoToInfo(MouseEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AccountFXML.fxml"));
             Parent parent = root.load();
@@ -78,7 +97,6 @@ public class VeloDeleteFXMLController implements Initializable {
         }
     }
 
-    @FXML
     private void GoToNewsFeed(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
@@ -89,8 +107,26 @@ public class VeloDeleteFXMLController implements Initializable {
         }
     }
 
+    private void GoToRent(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
 
-    @FXML
+    private void GoToVelo(ActionEvent event) {
+        try {
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./VeloFXML.fxml"));
+            Parent parent = root.load();
+            lbWelcome.getScene().setRoot(parent);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
     private void GoToPiece(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./PieceFXML.fxml"));
@@ -101,8 +137,7 @@ public class VeloDeleteFXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void GoToEvents(ActionEvent event) {
+    private void GoToEvent(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./EventFXML.fxml"));
             Parent parent = root.load();
@@ -112,7 +147,6 @@ public class VeloDeleteFXMLController implements Initializable {
         }
     }
 
-    @FXML
     private void GoToSettings(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./SettingsFXML.fxml"));
@@ -123,8 +157,7 @@ public class VeloDeleteFXMLController implements Initializable {
         }
     }
 
-    @FXML
-    private void Signout(ActionEvent event) {
+    private void SignOut(ActionEvent event) {
         try {
             FXMLLoader root = new FXMLLoader(getClass().getResource("./LoginFXML.fxml"));
             Parent parent = root.load();
@@ -133,12 +166,6 @@ public class VeloDeleteFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
-
-    @FXML
-    private void InitTableRent() {
-   
-    }
-
 
     @FXML
     private void GoToPost(ActionEvent event) {
@@ -163,19 +190,53 @@ public class VeloDeleteFXMLController implements Initializable {
     }
 
     @FXML
-    private void GoToRent(ActionEvent event) {
-        try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./RentFXML.fxml"));
-            Parent parent = root.load();
-            lbWelcome.getScene().setRoot(parent);
-        } catch (IOException ex) {
-            System.out.println(ex);
+    private void DelVelo(ActionEvent event) {
+        Window owner = lbWelcome.getScene().getWindow();
+        Velo e = (Velo) VeloTable.getSelectionModel().getSelectedItem();
+        if (!e.equals(null)) {
+            try {
+                es.supprimerVelo(e.getId());
+                showAlert(Alert.AlertType.INFORMATION, owner, "Form Confirmation!",
+                        "Velo deleted.");
+                InitTableVelo();
+            } catch (SQLException ex) {
+                System.out.println(ex);
+            }
         }
     }
 
     @FXML
-    private void DeleteVelo(ActionEvent event) {
-        
+    private void InitTableVelo() {
+        try {
+            velolist = (ObservableList<Velo>) es.retrieveAllVeloFroFX();
+            id_col.setCellValueFactory(new PropertyValueFactory<>("idu"));
+            brand_col.setCellValueFactory(new PropertyValueFactory<>("Brand"));
+            model_col.setCellValueFactory(new PropertyValueFactory<>("Model"));
+            type_col.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            size_col.setCellValueFactory(new PropertyValueFactory<>("Size"));
+            wheelsize_col.setCellValueFactory(new PropertyValueFactory<>("WheelSize"));
+            Brakingtype_col.setCellValueFactory(new PropertyValueFactory<>("BrakingType"));
+            numberofspeed_col.setCellValueFactory(new PropertyValueFactory<>("NumberOfSpeed"));
+            quantity_col.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+            color_col.setCellValueFactory(new PropertyValueFactory<>("Color"));
+            weight_col.setCellValueFactory(new PropertyValueFactory<>("Weight"));
+            price_col.setCellValueFactory(new PropertyValueFactory<>("Price"));
+            description_col.setCellValueFactory(new PropertyValueFactory<>("Description"));
+
+            VeloTable.setItems(velolist);
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
-    
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
 }
