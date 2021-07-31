@@ -3,8 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/PieceModifyFXMLController.java</file>
-            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/services/UserServices.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/VeloDeleteFXMLController.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/utils/Statics.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/entities/Velo.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/VeloFXMLController.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/VeloModifyFXMLController.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/VeloFXML.fxml</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/test/MainTestVelo.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/AccountFXMLController.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/VeloModifyFXML.fxml</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/services/ServicesVelo.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/test/SmsTest.java</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/stylesheet.css</file>
+            <file>file:/D:/NetBeansProjects/TeamKaizenApp/src/GUI/VeloDeleteFXML.fxml</file>
         </group>
     </open-files>
 </project-private>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DetailsVeloFXMLController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="758.0" prefWidth="1090.0" style="-fx-background-color: #0C2D48;">
+         <children>
+            <Label layoutX="480.0" layoutY="98.0" text="Kaizen Team" textFill="#2196f3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="621.0" layoutY="98.0" text="App" textFill="#a0a2ab">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="432.0" layoutY="654.0" mnemonicParsing="false" onAction="#ConfrimClicked" prefHeight="31.0" prefWidth="273.0" style="-fx-background-color: #2196f3;" text="Confirm" textFill="#0c2d48">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="456.0" layoutY="175.0" prefHeight="42.0" prefWidth="273.0" style="-fx-text-fill: #2196f3;" text="Edit Velo Information">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Button layoutX="807.0" layoutY="175.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="42.0" prefWidth="273.0" style="-fx-background-color: #0C2D48; -fx-text-fill: #a0a2ab;" text="Go Back" textFill="#0c2d48" underline="true">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Label layoutX="258.0" layoutY="343.0" prefHeight="40.0" prefWidth="173.0" text="Model" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="258.0" layoutY="443.0" prefHeight="40.0" prefWidth="173.0" text="Size" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="258.0" layoutY="393.0" prefHeight="40.0" prefWidth="173.0" text="Type" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="608.0" layoutY="551.0" prefHeight="40.0" prefWidth="173.0" text="Description" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfModel" layoutX="377.0" layoutY="349.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfType" layoutX="377.0" layoutY="399.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfSize" layoutX="378.0" layoutY="449.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextArea fx:id="tfDesc" layoutX="751.0" layoutY="552.0" prefHeight="100.0" prefWidth="249.0" />
+      <Label layoutX="254.0" layoutY="292.0" prefHeight="40.0" prefWidth="173.0" text="Brand" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfBrand" layoutX="377.0" layoutY="299.0" prefHeight="40.0" prefWidth="192.0" />
+      <Label layoutX="606.0" layoutY="347.0" prefHeight="40.0" prefWidth="173.0" text="Quantity" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="606.0" layoutY="447.0" prefHeight="40.0" prefWidth="173.0" text="Weight" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="606.0" layoutY="397.0" prefHeight="40.0" prefWidth="173.0" text="Color" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfQte" layoutX="779.0" layoutY="350.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfColor" layoutX="779.0" layoutY="400.0" prefHeight="40.0" prefWidth="192.0" />
+      <TextField fx:id="tfWheight" layoutX="779.0" layoutY="450.0" prefHeight="40.0" prefWidth="192.0" />
+      <Label layoutX="606.0" layoutY="296.0" prefHeight="40.0" prefWidth="173.0" text="NumberOfSpeed" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfSpeed" layoutX="779.0" layoutY="299.0" prefHeight="40.0" prefWidth="192.0" />
+      <Label layoutX="258.0" layoutY="496.0" prefHeight="40.0" prefWidth="173.0" text="WheelSize" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfWheelSize" layoutX="377.0" layoutY="499.0" prefHeight="40.0" prefWidth="192.0" />
+      <Label layoutX="606.0" layoutY="500.0" prefHeight="40.0" prefWidth="173.0" text="Price" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfPrice" layoutX="779.0" layoutY="501.0" prefHeight="40.0" prefWidth="192.0" />
+      <Label layoutX="258.0" layoutY="551.0" prefHeight="40.0" prefWidth="173.0" text="BrakingType" textFill="#b9b9b9">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfBreak" layoutX="377.0" layoutY="550.0" prefHeight="40.0" prefWidth="192.0" />
+   </children>
+</AnchorPane>
