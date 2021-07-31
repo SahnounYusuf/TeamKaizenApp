@@ -1,19 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package GUI;
 
-import entities.Piece;
 import entities.User;
 import entities.post;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.embed.swing.SwingFXUtils;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,14 +21,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.WritableImage;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javax.imageio.ImageIO;
 import services.Postservice;
-import services.UserServices;
 import utils.Statics;
 
 /**
@@ -37,25 +32,17 @@ import utils.Statics;
  *
  * @author Sahnoun Yusuf
  */
-public class AcceuilFXMLController implements Initializable {
-
-    User user = Statics.getCurrentUser();
-    UserServices us = new UserServices();
+public class Acceuil_1FXMLController implements Initializable {
 
     @FXML
     private Label lbWelcome;
     @FXML
     private Circle userAvatar;
+    @FXML
+    private TextField descriptionTextArea;
 
-    @FXML
-    private TableColumn<?, ?> col_post;
-    @FXML
-    private TableView<post> postTable;
-    
-    ObservableList<post> postList = FXCollections.observableArrayList();
     Postservice ps = new Postservice();
-    @FXML
-    private TableColumn<?, ?> col_postedby;
+    User user = Statics.getCurrentUser();
 
     /**
      * Initializes the controller class.
@@ -63,23 +50,19 @@ public class AcceuilFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        lbWelcome.setText(user.getPrenom() + " " + user.getNom());
+    }
+
+    @FXML
+    private void AddPost(ActionEvent event) {
         try {
-            InputStream pic = us.retrivePictureById(user.getId());
-            if (pic.available() > 0) {
-                BufferedImage imBuff = ImageIO.read(pic);
-                WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
-                userAvatar.setFill(new ImagePattern(image));
-            } else {
-                InputStream photo = new FileInputStream(new File("images/user.png"));
-                BufferedImage imBuff = ImageIO.read(pic);
-                WritableImage image = SwingFXUtils.toFXImage(imBuff, null);
-                userAvatar.setFill(new ImagePattern(image));
-            }
-        } catch (SQLException | IOException ex) {
+            post p = new post();
+            p.setDescription(descriptionTextArea.getText());
+            p.setIdu(user.getId());
+            p.setPostedby(user.getNom() + " " + user.getPrenom());
+            ps.addPost(p);
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
-        InitTablePiece();
     }
 
     @FXML
@@ -165,25 +148,11 @@ public class AcceuilFXMLController implements Initializable {
             System.out.println(ex);
         }
     }
-    
-    private void InitTablePiece() {
-        try {
-            postList = (ObservableList<post>) ps.retriveAllPostsFroFX();
-
-            col_postedby.setCellValueFactory(new PropertyValueFactory<>("postedby"));
-            col_post.setCellValueFactory(new PropertyValueFactory<>("description"));
-
-            postTable.setItems(postList);
-
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
 
     @FXML
-    private void AddPost(ActionEvent event) {
+    private void GoToAcceuil(ActionEvent event) {
         try {
-            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML_1.fxml"));
+            FXMLLoader root = new FXMLLoader(getClass().getResource("./AcceuilFXML.fxml"));
             Parent parent = root.load();
             lbWelcome.getScene().setRoot(parent);
         } catch (IOException ex) {
